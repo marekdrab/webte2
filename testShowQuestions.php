@@ -3,8 +3,8 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 
-require_once "inc/DatabasePeter.php";
-$conn = (new DatabasePeter())->getConnection();
+require_once "inc/Database.php";
+$conn = (new DatabasePeter())->createConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['code'])){

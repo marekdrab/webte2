@@ -1,0 +1,6 @@
+.is-active {
+    background-color: green;
+}
+.is-inactive{
+    background-color: red;
+}
