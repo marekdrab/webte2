@@ -10,7 +10,7 @@ class Database
     /**
      * @return mixed
      */
-    public function getConnection()
+    public function createConnection()
     {
         $this->conn = null;
         try{
