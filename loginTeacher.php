@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $ga = new PHPGangsta_GoogleAuthenticator();
           $result = $ga->verifyCode($user['secret'], $code);
           if ($result == 1) {
-            header("location: https://wt41.fei.stuba.sk/final/homepage.php");
+            header("location: https://wt41.fei.stuba.sk/final/domov.php");
           } else {
               echo 'Login failed';
           }
