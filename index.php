@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 ?>
 <?php echo getHeader('Login'); ?>
 <body>
-<div class="container">
-    <div class="d-grid gap-2 col-6 mx-auto">
+<div class="container margin-top-15">
+    <div class="d-grid gap-2 col-6 mx-auto ">
         <button onclick="window.location.href='loginStudent.php'" class="btn btn-choice btn-lg" type="button">Student</button>
         <button onclick="window.location.href='loginTeacher.php'" class="btn btn-choice btn-lg" type="button">Teacher</button>
     </div>
