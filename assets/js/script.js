@@ -22,6 +22,7 @@ $(document).ready(function() {
             },
         }
     });
+    $('#tableData').css('width','')
 
     $('#addTest').click(function () {
         $.ajax({
