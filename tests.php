@@ -32,7 +32,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         <td><?php echo $row['name']; ?></td>
                         <td class="row-data"><?php echo $row['code']; ?></td>
                         <td>
-                            <input class="btn btn-login changeActivity row-data <?php echo $row['is_active'] == 1 ? 'is-active' : 'is-inactive' ?>"
+                            <input class="btn btn-login row-data <?php echo $row['is_active'] == 1 ? 'is-active' : 'is-inactive' ?>"
                                    type="button" onclick="changeActivity()" value="<?php echo $row['is_active']; ?>">
                         </td>
                         <td><?php echo $row['time_limit']; ?></td>

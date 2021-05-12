@@ -55,7 +55,7 @@ function changeActivity() {
         url: 'routes/TestControler.php?code=' + code +'&activity=' + activity,
         success: function (result) {
             if(result==1)
-                data[1].style.backgroundColor = 'green'
+                data[1].style.backgroundColor = '#9dc88d'
             else
                 data[1].style.backgroundColor ='red'
             data[1].value =result
