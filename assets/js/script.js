@@ -148,8 +148,6 @@ jQuery(document).ready(function () {
             //cleanup
             questionSelected = null;
             questionEndpoint = null;
-            console.log(sources);
-            console.log(targets);
         }
     });
 });
@@ -158,4 +156,28 @@ function clearConnections(){
     jsPlumb.deleteEveryEndpoint();
     sources = [];
     targets = [];
+}
+
+function points3rdQuestion(){
+    var match1 = document.getElementById('match1').innerText;
+    var match2 = document.getElementById('match2').innerText;
+    var match3 = document.getElementById('match3').innerText;
+    var match4 = document.getElementById('match4').innerText;
+
+    var answer1 = document.getElementById('answer1').innerText;
+    var answer2 = document.getElementById('answer2').innerText;
+    var answer3 = document.getElementById('answer3').innerText;
+    var answer4 = document.getElementById('answer4').innerText;
+
+    var pairs = [match1 + answer1, match2 + answer2, match3 + answer3, match4 + answer4];
+
+    var points = 0;
+    for (var i = 0; i<4; i++){
+        //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])) === pairs[i]);
+        //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])));
+        if (pairs.includes(document.getElementById(sources[i]).innerText + document.getElementById(targets[i]).innerText)){
+            points++;
+        }
+    }
+    document.getElementById('points-question3').value = points;
 }
