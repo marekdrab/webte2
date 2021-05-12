@@ -6,15 +6,16 @@ error_reporting(E_ALL);
 //Pridanie 6 otazok (3 pre prvy a druhy typ) do DB staci spustit raz
 //Nezabudni prepisat $conn pre vlastnu DB
 
-require_once "inc/DatabasePeter.php";
-$conn = (new DatabasePeter())->getConnection();
+require_once "inc/Database.php";
+$conn = (new Database())->createConnection();
 
 //vyhlada otazku podla ID
 $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
 //vyhlada odpoved podla ID
 $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = ?");
 
-$stmGetQuestion->execute([7]);
+//zatial pevne definovane
+$stmGetQuestion->execute([20]);
 $question = $stmGetQuestion->fetch(PDO::FETCH_ASSOC);
 //var_dump($question);
 
@@ -29,47 +30,37 @@ $matches = explode(",", $strQuestion);
 //var_dump($matches);
 $answers = explode(",", $strAnswer);
 //var_dump($answers);
-
+require_once "partials/header.php";
+echo getHead('Test');
 ?>
+<style>
+    ul {
+        width: 150px;
+        padding: 0;
+        margin-left: 100px;
+        float: left;
+    }
+    li {
+        margin-bottom: 20px;
+        list-style: none;
+        background-color: #ededed;
+        height: 40px;
+        padding: 5px;
+    }
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="assets/js/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.5/js/jsplumb.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <style>
-        ul {
-            width: 150px;
-            padding: 0;
-            margin-left: 100px;
-            float: left;
-        }
-        li {
-            margin-bottom: 20px;
-            list-style: none;
-            background-color: #ededed;
-            height: 40px;
-            padding: 5px;
-        }
+    .jtk-connector
+    path {
+        stroke: #e03571;
+        stroke-width: 3;
+    }
 
 
-        .jtk-connector
-        path {
-            stroke: #e03571;
-            stroke-width: 3;
-        }
-
-
-        .jtk-endpoint
-        circle {
-            fill: #e03571;
-        }
-    </style>
-</head>
+    .jtk-endpoint
+    circle {
+        fill: #e03571;
+    }
+</style>
 <body>
 <div id="page_connections">
     <div id="select_list_lebensbereiche">
