@@ -7,8 +7,8 @@ require_once "partials/loginChecker.php";
 //Pridanie 6 otazok (3 pre prvy a druhy typ) do DB staci spustit raz
 //Nezabudni prepisat $conn pre vlastnu DB
 
-require_once "inc/DatabasePeter.php";
-$conn = (new DatabasePeter())->getConnection();
+require_once "inc/Database.php";
+$conn = (new Database())->createConnection();
 
 $question1 = "Aké je hlavné mesto Nemecka?";
 $correctAnswer1 = "Berlin";
