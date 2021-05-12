@@ -1,5 +1,27 @@
-$(document).ready(function () {
-    $('#myTable').DataTable();
+$(document).ready(function() {
+    $('#tableData').DataTable( {
+        responsive:true,
+        "language": {
+            "decimal":        "",
+            "emptyTable":     "Dáta nie sú dostupné",
+            "infoEmpty":      "Zobrazené od 0 do 0 z 0 výsledkov",
+            "infoFiltered":   "(filtrované z _MAX_ všetkých záznamov)",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "Načitáva...",
+            "processing":     "Spracuváva...",
+            "zeroRecords":    "Žiadne zhodné záznamy",
+            "lengthMenu":     "Zobraz _MENU_ výsledkov na stranu",
+            "search":         "Hľadaj",
+            "info":           "Zobrazené od _START_ do _END_, z _TOTAL_ výsledkov",
+            "paginate": {
+                "first":      "Prvá",
+                "last":       "Posledná",
+                "next":       "Nasledujúca",
+                "previous":   "Predchádzajúca"
+            },
+        }
+    });
 
     $('#addTest').click(function () {
         $.ajax({
@@ -18,7 +40,7 @@ $(document).ready(function () {
             }
         })
     })
-})
+} );
 
 function changeActivity() {
     var rowId = event.target.parentNode.parentNode.id;

@@ -13,16 +13,15 @@ echo getHeader('Testy');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]);?>
 <body>
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
-            <table id="myTable">
+            <table id="tableData">
                 <thead>
                 <tr>
-                    <td>Nazov</td>
-                    <td>Kod</td>
+                    <td>Názov</td>
+                    <td>Kód</td>
                     <td>Aktivita</td>
-                    <td>Cas</td>
+                    <td>Čas</td>
                     <td></td>
                 </tr>
                 </thead>
@@ -42,7 +41,9 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 <?php } ?>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
+
 </body>
