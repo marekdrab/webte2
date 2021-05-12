@@ -1,6 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #9dc88d;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+header{
+    background-color: #164a41;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link{
+    color: ghostwhite;
+    font-size: x-large;
+}
+
+.nav-link:hover{
+    color: #9dc88d;
+}
+
+.navRight{
+    text-align: right;
+
+}
+#noHover:hover{
+     color: ghostwhite;
+}
+
+footer{
+    background-color: #164a41;
+    color: ghostwhite;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+}
+
 .is-active {
     background-color: green;
 }
 .is-inactive{
     background-color: red;
 }
+.container{
+    margin-top: 10%;
+}
+
+.btn{
+    background-color: #4d774e;
+    color: ghostwhite;
+}
+
+.btn-choice{
+    height: 10rem;
+    font-size: 200%;
+}
+
+.btn-choice:hover{
+    background-color: #164a41;
+    color: ghostwhite;
+}
+
+
+.btn-login{
+    background-color: #9dc88d;
+    color: black;
+}
+
+.btn-login:hover{
+    color: ghostwhite;
+}
+
+.container-login{
+    background-color: #4d774e;
+    color: ghostwhite;
+    padding: 2rem;
+}
+
+.marginBottom{
+    margin-bottom: 4rem;
+}
+
+
+.form-control{
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+a{
+    text-decoration: none;
+    color: ghostwhite;
+}
+
+a:hover{
+    color: #9dc88d;
+}
+
+h5, .qrCode{
+    padding-top: 1rem;
+}
+
+.nav-item rightBar{
+    text-align: right;
+}
+
+
+

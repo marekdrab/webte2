@@ -36,28 +36,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <?php
 require_once "partials/header.php";
-echo getHeader('Login  učiteľ'); ?>
+echo getHeader('Login  učiteľ');
+echo getHeaderHome()?>
 <body>
-    <form action="loginTeacher.php" method="POST">
-        <div class="container">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <form action="loginTeacher.php" method="POST">
+                <div class="container-login">
 
-            <h1>Prihlásenie</h1>
+                    <h1>Prihlásenie</h1>
 
-            <label for="email"><b>Email</b></label>
-            <input type="email" class="form-control" placeholder="Vlož Email" name="email" id="email" required>
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
 
-            <label for="psw"><b>Heslo</b></label>
-            <input type="password" class="form-control" placeholder="Vlož heslo" name="psw" id="psw" required>
+                    <label for="psw"><b>Heslo</b></label>
+                    <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
 
-            <label for="code"><b>Kod bez medzery</b></label>
-            <input type="text" class="form-control" placeholder="Vlož kod" name="code" id="code" required maxlength="6" minlength="6">
+                    <label for="code"><b>Kód bez medzery</b></label>
+                    <input type="text" class="form-control" placeholder="Kód" name="code" id="code" required maxlength="6" minlength="6">
 
-            <button type="submit" class='btn btn-primary btn-block'>Prihlas sa</button>
+                    <button type="submit" class='btn btn-login btn-block'>Prihlásiť</button>
+                    <h5>Nemáš účet? <a href="register.php">Zaregistruj sa !</a></h5>
+                </div>
+
+            </form>
         </div>
+    </div>
+</div>
 
-        <div class="container signin">
-            <h2>Nemas ucet? <a href="register.php">Zaregistruj sa !</a></h2>
-        </div>
-    </form>
+
+<?php echo getFooter();?>
 </body>
 </html>

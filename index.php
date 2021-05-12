@@ -9,14 +9,11 @@ error_reporting(E_ALL);
 <?php echo getHeader('Login'); ?>
 <body>
 <div class="container">
-    <div class="row justify-content-center" >
-        <div class="col-md-12"><h1>TODO</h1></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"><a href="loginStudent.php">Student - login</a></div>
-        <div class="col-md-4"> <a href="loginTeacher.php">Teacher - login</a></div>
-        <div class="col-md-4"><a href="register.php">Teacher - register</a></div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button onclick="window.location.href='loginStudent.php'" class="btn btn-choice btn-lg" type="button">Student</button>
+        <button onclick="window.location.href='loginTeacher.php'" class="btn btn-choice btn-lg" type="button">Teacher</button>
     </div>
 </div>
+<?php echo getFooter();?>
 </body>
 </html>

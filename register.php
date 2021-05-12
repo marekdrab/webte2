@@ -42,43 +42,54 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <?php
 require_once "partials/header.php";
-echo getHeader('Registrácia'); ?>
+echo getHeader('Registrácia');
+echo getHeaderHome()?>
 <body>
-    <form action="register.php" method="POST">
-        <div class="container">
-
-            <h1>Registrácia</h1>
-
-            <label for="email"><b>Email</b></label>
-            <input type="email" class="form-control" placeholder="Vlož Email" name="email" id="email" required>
-
-            <label for="name"><b>Meno</b></label>
-            <input type="text" class="form-control" placeholder="Vlož meno" name="name" id="name" required>
-
-            <label for="surname"><b>Priezvisko</b></label>
-            <input type="text" class="form-control" placeholder="Vlož priezvisko" name="surname" id="surname" required>
-
-            <label for="psw"><b>Heslo</b></label>
-            <input type="password" class="form-control" placeholder="Vlož heslo" name="psw" id="psw" required>
-
-            <label for="psw-repeat"><b>Heslo znova</b></label>
-            <input type="password" class="form-control" placeholder="Zopakuj heslo" name="psw-repeat" id="psw-repeat" required>
-
-        <br>
+<div class="container">
+    <div class="row justify-content-center marginBottom">
+        <div class="col-lg-3 container-login">
+            <br>
             <?php
             $secret = $ga->createSecret();
             $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
-            echo '<h2>Toto si naskenuj :<img src="'.$qrCodeUrl.'" />' . "</h2>";
+            echo '<h4>Naskenuj QR kód: <img class="qrCode" src="'.$qrCodeUrl.'" />' . "</h4>";
             ?>
             <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
             <hr>
-            <button type="submit" class='btn btn-primary btn-block'>Zaregistruj</button>
+        </div>
+        <div class="col-lg-3 container-login">
+            <form action="register.php" method="POST">
+                <div>
+
+                    <h1>Registrácia</h1>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+
+                    <label for="name"><b>Meno</b></label>
+                    <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
+
+                    <label for="surname"><b>Priezvisko</b></label>
+                    <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
+
+                    <label for="psw"><b>Zadaj heslo</b></label>
+                    <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
+
+                    <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
+                    <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat" required>
+
+
+                    <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
+                    <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
+                </div>
+
+            </form>
         </div>
 
-        <div class="container signin">
-            <h2>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h2>
-        </div>
-    </form>
+    </div>
+</div>
+
+<?php echo getFooter();?>
 </body>
 </html>
 

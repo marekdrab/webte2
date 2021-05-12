@@ -9,7 +9,8 @@ $stmt->execute();
 $rs = $stmt->fetchAll();
 
 
-echo getHeader('Testy'); ?>
+echo getHeader('Testy');
+echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]);?>
 <body>
 <div class="container">
 
