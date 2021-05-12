@@ -1,5 +1,6 @@
 <?php
 require_once "partials/header.php";
+require_once "partials/loginChecker.php";
 echo getHeader('Pridať test'); ?>
 <body>
 <div class="container">

@@ -1,4 +1,5 @@
 <?php
+require_once "partials/loginChecker.php";
 require_once "partials/header.php";
 require_once "inc/Database.php";
 
