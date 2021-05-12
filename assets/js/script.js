@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $('#tableData').DataTable( {
-        responsive:true,
         "language": {
             "decimal":        "",
             "emptyTable":     "Dáta nie sú dostupné",

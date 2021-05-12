@@ -13,7 +13,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 <input class="form-control" type="text" id="name" name="name" required>
                 <label for="timeLimit">Čas</label>
                 <input class="form-control" type="number" id="timeLimit" name="timeLimit" required>
-                <input class="btn btn-login btn-block" type="button" value="Potvrdit" id="addTest">
+                <input class="btn btn-login btn-block" type="button" value="Potvrdiť" id="addTest">
             </div>
         </div>
     </div>

@@ -112,4 +112,21 @@ h5, .qrCode{
     text-align: right;
 }
 
-.tableData
+#tableData_wrapper{
+    background-color: #4d774e;
+    padding: 1rem;
+    font-size: large;
+}
+
+#tableData_filter, #tableData_length, #tableData_info, #tableData_previous, .sorting{
+    color: ghostwhite;
+}
+
+.row{
+    background-color: #9dc88d;
+}
+
+#testInfo{
+    height: 5rem;
+    font-size: large;
+}
