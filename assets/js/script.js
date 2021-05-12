@@ -1,70 +1,81 @@
-$(document).ready(function() {
-    $('#tableData').DataTable( {
+$(document).ready(function () {
+    $('#tableData').DataTable({
         "language": {
-            "decimal":        "",
-            "emptyTable":     "Dáta nie sú dostupné",
-            "infoEmpty":      "Zobrazené od 0 do 0 z 0 výsledkov",
-            "infoFiltered":   "(filtrované z _MAX_ všetkých záznamov)",
-            "infoPostFix":    "",
-            "thousands":      ",",
+            "decimal": "",
+            "emptyTable": "Dáta nie sú dostupné",
+            "infoEmpty": "Zobrazené od 0 do 0 z 0 výsledkov",
+            "infoFiltered": "(filtrované z _MAX_ všetkých záznamov)",
+            "infoPostFix": "",
+            "thousands": ",",
             "loadingRecords": "Načitáva...",
-            "processing":     "Spracuváva...",
-            "zeroRecords":    "Žiadne zhodné záznamy",
-            "lengthMenu":     "Zobraz _MENU_ výsledkov na stranu",
-            "search":         "Hľadaj",
-            "info":           "Zobrazené od _START_ do _END_, z _TOTAL_ výsledkov",
+            "processing": "Spracuváva...",
+            "zeroRecords": "Žiadne zhodné záznamy",
+            "lengthMenu": "Zobraz _MENU_ výsledkov na stranu",
+            "search": "Hľadaj",
+            "info": "Zobrazené od _START_ do _END_, z _TOTAL_ výsledkov",
             "paginate": {
-                "first":      "Prvá",
-                "last":       "Posledná",
-                "next":       "Nasledujúca",
-                "previous":   "Predchádzajúca"
+                "first": "Prvá",
+                "last": "Posledná",
+                "next": "Nasledujúca",
+                "previous": "Predchádzajúca"
             },
         }
     });
-    $('#tableData').css('width','')
+    $('#tableData').css('width', '')
 
     $('#addTest').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: 'routes/TestControler.php',
-            data: {
-                name: $('#name').val(),
-                timeLimit: $('#timeLimit').val(),
-            },
-            success: function (result) {
-                console.log(result)
-                window.location.replace('testOverview.php?code=' + parseInt(result))
-            },
-            error: function (result) {
-                alert('error');
-            }
-        })
+        var error = false
+        if ($('#name').val() == '') {
+            error = true
+            $('#nameError').text('Meno je prázdne')
+        }
+        if ($('#timeLimit').val() == '') {
+            error = true
+            $('#timeError').text('Čas je prázdny')
+        }
+        if (!error)
+            $.ajax({
+                type: 'POST',
+                url: 'routes/TestControler.php',
+                data: {
+                    name: $('#name').val(),
+                    timeLimit: $('#timeLimit').val(),
+                },
+                success: function (result) {
+                    console.log(result)
+                    window.location.replace('testOverview.php?code=' + parseInt(result))
+                },
+                error: function (result) {
+                    alert('error: '+result);
+                }
+            })
     })
-} );
+});
 
 function changeActivity() {
     var rowId = event.target.parentNode.parentNode.id;
     var data = document.getElementById(rowId).querySelectorAll(".row-data");
     var code = data[0].innerHTML;
     var activity = data[1].value;
-    if(activity==0)
-        activity=1
-    else activity=0
+    if (activity == 0)
+        activity = 1
+    else activity = 0
     $.ajax({
         type: 'PUT',
-        url: 'routes/TestControler.php?code=' + code +'&activity=' + activity,
+        url: 'routes/TestControler.php?code=' + code + '&activity=' + activity,
         success: function (result) {
-            if(result==1)
+            if (result == 1)
                 data[1].style.backgroundColor = '#9dc88d'
             else
-                data[1].style.backgroundColor ='red'
-            data[1].value =result
+                data[1].style.backgroundColor = 'red'
+            data[1].value = result
         },
         error: function (result) {
-            alert('error');
+            alert('error: '+result);
         }
     })
 }
+
 sources = [];
 targets = [];
 
@@ -77,7 +88,8 @@ jQuery(document).ready(function () {
         reattach: true,
         endpoint: "Dot",
         connector: ["Bezier", {
-            curviness: 50}],
+            curviness: 50
+        }],
         setDragAllowedWhenFull: true
     };
 
@@ -90,7 +102,8 @@ jQuery(document).ready(function () {
         reattach: true,
         endpoint: "Dot",
         connector: ["Bezier", {
-            curviness: 50}],
+            curviness: 50
+        }],
         setDragAllowedWhenFull: true
     };
 
@@ -106,11 +119,10 @@ jQuery(document).ready(function () {
     var questionEndpoint = null;
 
     //remember the question you clicked on
-    jQuery("#select_list_lebensbereiche ul > li").click( function () {
+    jQuery("#select_list_lebensbereiche ul > li").click(function () {
 
         //remove endpoint if there is one
-        if( questionSelected !== null )
-        {
+        if (questionSelected !== null) {
             jsPlumb.deleteEndpoint(questionEndpoint);
             console.log('deleted');
         }
@@ -121,12 +133,11 @@ jQuery(document).ready(function () {
     });
 
     //now click on an answer to link it with previously selected question
-    jQuery("#select_list_wirkdimensionen ul > li").click( function () {
+    jQuery("#select_list_wirkdimensionen ul > li").click(function () {
 
         //we must have previously selected question
         //for this to work
-        if( questionSelected !== null )
-        {
+        if (questionSelected !== null) {
             //create endpoint
             var answer = jsPlumb.addEndpoint(jQuery(this)[0], targetOption);
 
@@ -136,10 +147,8 @@ jQuery(document).ready(function () {
                 jsPlumb.connect({source: questionEndpoint, target: answer});
                 sources.push(questionEndpoint['anchor']['elementId']);
                 targets.push(answer['anchor']['elementId']);
-            }
-            else{
-                if( questionSelected !== null )
-                {
+            } else {
+                if (questionSelected !== null) {
                     jsPlumb.deleteEndpoint(questionEndpoint);
                     jsPlumb.deleteEndpoint(answer);
                     console.log('deleted');
@@ -152,7 +161,7 @@ jQuery(document).ready(function () {
     });
 });
 
-function clearConnections(){
+function clearConnections() {
     jsPlumb.deleteEveryEndpoint();
     sources = [];
     targets = [];

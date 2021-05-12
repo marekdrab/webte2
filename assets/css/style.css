@@ -130,3 +130,6 @@ h5, .qrCode{
 .is-inactive{
     background-color: red;
 }
+.error{
+ color: red;
+}

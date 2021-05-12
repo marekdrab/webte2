@@ -8,6 +8,8 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
     <div class="d-grid gap-2 col-6 mx-auto">
         <button onclick="window.location.href='addTest.php'" class="btn" id="testInfo" type="button">Pridať test</button>
         <button onclick="window.location.href='tests.php'" class="btn" id="testInfo" type="button">Všetky testy</button>
+        <button onclick="" class="btn" id="testInfo" type="button">Odovzdané testy</button>
+        <button onclick="" class="btn" id="testInfo" type="button">Prebiehajúce testy</button>
     </div>
 
 </div>
