@@ -133,3 +133,6 @@ h5, .qrCode{
 .error{
  color: red;
 }
+#questionShort,#questionChoices,#questionDrawing,#questionMaths, #questionPairs {
+    display: none;
+}

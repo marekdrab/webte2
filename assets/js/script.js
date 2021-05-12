@@ -50,6 +50,29 @@ $(document).ready(function () {
                 }
             })
     })
+    $('#questionType').change(function (){
+        if($('#questionType').val()==1)
+            $('#questionShort').css('display', 'block')
+        else
+            $('#questionShort').css('display', 'none')
+        if($('#questionType').val()==2)
+            $('#questionChoices').css('display', 'block')
+        else
+            $('#questionChoices').css('display', 'none')
+        if($('#questionType').val()==3)
+            $('#questionPairs').css('display', 'block')
+        else
+            $('#questionPairs').css('display', 'none')
+        if($('#questionType').val()==4)
+            $('#questionDrawing').css('display', 'block')
+        else
+            $('#questionDrawing').css('display', 'none')
+        if($('#questionType').val()==5)
+            $('#questionMaths').css('display', 'block')
+        else
+            $('#questionMaths').css('display', 'none')
+
+    })
 });
 
 function changeActivity() {

@@ -21,7 +21,6 @@ function getHead($pageTitle)
     <link rel="stylesheet" href="assets/css/partials/margins.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 </head>
-
 HTML;
 }
 
@@ -65,6 +64,8 @@ function getFooter(){
 <footer>
     <span>Záverečné zadanie WEBTECH 2</span>
 </footer>
+</body>
+</html>
 HTMl;
 
 }

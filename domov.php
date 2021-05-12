@@ -14,4 +14,3 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 
 </div>
 <?php echo getFooter();?>
-</body>
