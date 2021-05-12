@@ -1,7 +1,7 @@
 <?php
 require_once "partials/header.php";
 require_once "partials/loginChecker.php";
-echo getHeader('Pridať test');
+echo getHead('Pridať test');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
 
 <body>

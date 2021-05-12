@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 
 ?>
-<?php echo getHeader('Login'); ?>
+<?php echo getHead('Login'); ?>
 <body>
 <div class="container margin-top-15">
     <div class="d-grid gap-2 col-6 mx-auto ">

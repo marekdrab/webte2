@@ -1,5 +1,5 @@
 <?php
-function getHeader($pageTitle)
+function getHead($pageTitle)
 {
     return <<<HTML
 <!doctype html>

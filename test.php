@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
 
 
-echo getHeader('TEST');
+echo getHead('TEST');
 ?>
 <body>
 <?php

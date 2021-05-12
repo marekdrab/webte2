@@ -1,7 +1,7 @@
 <?php
 require_once "partials/header.php";
 require_once "partials/loginChecker.php";
-echo getHeader('Domov');
+echo getHead('Domov');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
 <body>
 <div class="container">

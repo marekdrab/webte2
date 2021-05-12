@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <?php
 require_once "partials/header.php";
-echo getHeader('Login  učiteľ');
+echo getHead('Login  učiteľ');
 echo getHeaderHome()?>
 <body>
 <div class="container">
