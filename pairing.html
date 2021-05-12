@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="assets/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.5/js/jsplumb.min.js"></script>
+    <script defer src="assets/js/script.js"></script>
+    <style>
+        ul {
+            width: 150px;
+            padding: 0;
+            margin-left: 100px;
+            float: left;
+        }
+        li {
+            margin-bottom: 20px;
+            list-style: none;
+            background-color: #ededed;
+            height: 40px;
+            padding: 5px;
+        }
+
+
+        .jtk-connector
+        path {
+            stroke: #e03571;
+            stroke-width: 3;
+        }
+
+
+        .jtk-endpoint
+        circle {
+            fill: #e03571;
+        }
+    </style>
+</head>
+<body>
+<div id="page_connections">
+    <div id="select_list_lebensbereiche">
+        <ul>
+            <li id="match1">Source 1</li>
+            <li id="match2">Source 2</li>
+            <li id="match3">Source 3</li>
+            <li id="match4">Source 4</li>
+        </ul>
+    </div>
+    <div id="select_list_wirkdimensionen">
+        <ul>
+            <li id="answer1">Target 1</li>
+            <li id="answer2">Target 2</li>
+            <li id="answer3">Target 3</li>
+            <li id="answer4">Target 4</li>
+        </ul>
+    </div>
+</div>
+<input type="button" value="button" onclick="clearConnections();">
+
+</body>
+</html>
