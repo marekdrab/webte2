@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: localhost:3306
--- Čas generovania: So 01.Máj 2021, 10:51
+-- Čas generovania: St 12.Máj 2021, 18:45
 -- Verzia serveru: 8.0.23-0ubuntu0.20.04.1
 -- Verzia PHP: 8.0.3
 
@@ -44,6 +44,17 @@ CREATE TABLE `no_question_type` (
   `type` varchar(64) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
+--
+-- Sťahujem dáta pre tabuľku `no_question_type`
+--
+
+INSERT INTO `no_question_type` (`id`, `type`) VALUES
+(1, ' otvorená odpoveď'),
+(2, 'možnosti'),
+(3, 'párovanie'),
+(4, 'kreslenie'),
+(5, 'matematický výraz');
+
 -- --------------------------------------------------------
 
 --
@@ -55,7 +66,7 @@ CREATE TABLE `questions` (
   `question` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
   `type_id` int NOT NULL,
   `correct_answer_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
-  `all_answers_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL
+  `all_answers_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
 -- --------------------------------------------------------
@@ -116,7 +127,11 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `surname`, `email`, `password`, `secret`) VALUES
-(5, 'David', 'Gavenda', 'gavendadavid@gmail.com', '$2y$10$VjCF4lCdVzqy3MvLA8Sile5JMNHFXLRt6qiHNqemheFcySRClADJO', 'YBBJZJRQN3OO2VLL');
+(5, 'David', 'Gavenda', 'gavendadavid@gmail.com', '$2y$10$VjCF4lCdVzqy3MvLA8Sile5JMNHFXLRt6qiHNqemheFcySRClADJO', 'YBBJZJRQN3OO2VLL'),
+(6, 'Marek', 'Drab', 'marek.drablp@gmail.com', '$2y$10$Dd6MsXfyNxe39D.uBZVr8e2YQitWSfjzEfMxCivj13KmGZsppi3vW', 'DYG2UCL4I4TG3MIO'),
+(8, 'peter', 'najlepšie', 'peter@mail.to', '$2y$10$MK4yZfkxFyejRQgFnPqF1OCpdHErM4VkF0S9K6uS42MH6cUboUtn6', 'VPCSLW24E6BATNUQ'),
+(9, 'Michal', 'Hamrák', 'xhamrak@stuba.sk', '$2y$10$ZvOjbDWkgKx/FvgoMXjjHeGc.m2fLvYITj7/f98b2/ZRrgjTZb1lK', 'PYDGKGAL5NYXAJ3K'),
+(10, 'David', 'Gavenda', 'davidgavenda@mail.com', '$2y$10$7dQ3Z/a0jYjXU5FjUME5zOTze27Tc20siGskTiuvB75e88GkPYDK6', '');
 
 -- --------------------------------------------------------
 
@@ -128,10 +143,20 @@ CREATE TABLE `tests` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
   `code` int NOT NULL,
-  `question_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
+  `question_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
   `time_limit` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
+
+--
+-- Sťahujem dáta pre tabuľku `tests`
+--
+
+INSERT INTO `tests` (`id`, `name`, `code`, `question_id`, `is_active`, `time_limit`) VALUES
+(17, 'test 3 ', 17773, NULL, 1, 22),
+(16, 'test 2', 18540, NULL, 1, 25),
+(15, 'test 1 ', 37307, NULL, 1, 23),
+(19, 'test4', 95663, NULL, 1, 10);
 
 --
 -- Kľúče pre exportované tabuľky
@@ -194,19 +219,19 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT pre tabuľku `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pre tabuľku `no_question_type`
 --
 ALTER TABLE `no_question_type`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pre tabuľku `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pre tabuľku `students`
@@ -230,13 +255,13 @@ ALTER TABLE `submitted_tests`
 -- AUTO_INCREMENT pre tabuľku `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pre tabuľku `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
