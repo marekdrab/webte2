@@ -250,7 +250,6 @@ jQuery(document).ready(function () {
                 if (questionSelected !== null) {
                     jsPlumb.deleteEndpoint(questionEndpoint);
                     jsPlumb.deleteEndpoint(answer);
-                    console.log('deleted');
                 }
             }
             //cleanup
