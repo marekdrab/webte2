@@ -34,7 +34,16 @@ echo getHead('Test |');
                     <label for="answer-1"><b>Spravna odpoved</b></label>
                     <input class="form-control" type="text" id="answer-1" name="answer-1" required>
                 </div>
-                <div id="questionChoices">2</div>
+                <div id="questionChoices">
+                    <label for="answer-1"><b>Spravna odpoved</b></label>
+                    <input class="form-control" type="text" id="answer-1" name="answer-1" required>
+                    <label for="answer-2"><b>Nespravna odpoved</b></label>
+                    <input class="form-control" type="text" id="answer-2" name="answer-2" required>
+                    <label for="answer-3"><b>Nespravna odpoved</b></label>
+                    <input class="form-control" type="text" id="answer-3" name="answer-3" required>
+                    <label for="answer-4"><b>Nespravna odpoved</b></label>
+                    <input class="form-control" type="text" id="answer-4" name="answer-4" required>
+                </div>
                 <div id="questionPairs">3</div>
                 <div id="questionDrawing">4</div>
                 <div id="questionMaths">5</div>
