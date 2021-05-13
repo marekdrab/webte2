@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $table == 'question' && isset($key))
 
                 $otherAnswerIDs = $otherAnswerIDs.$answerID.',';
             }
+            $otherAnswerIDs = substr($otherAnswerIDs, 0, -1);
             $insertQuestion = $conn->prepare("insert into questions(question, type_id,correct_answer_id,all_answers_id) 
             values (:question, :type, :correct_answer_id,:all_answers_id)");
             $insertQuestion->bindParam(':question', $_POST['question']);

@@ -141,13 +141,13 @@ h5, .qrCode{
     display: none;
 }
 
-ul {
+.containerPairs ul {
     width: 150px;
     padding: 0;
     margin-left: 100px;
     float: left;
 }
-li {
+.containerPairs li {
     text-align: center;
     margin-bottom: 20px;
     list-style: none;

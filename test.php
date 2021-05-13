@@ -5,10 +5,9 @@ error_reporting(E_ALL);
 
 require_once "partials/loginChecker.php";
 require_once "partials/header.php";
-require_once "inc/DatabasePeter.php";
-echo getHead('test');
+require_once "inc/Database.php";
 
-$conn = (new DatabasePeter())->createConnection();
+$conn = (new Database())->createConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['code'])){
@@ -19,13 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 
-
-echo getHead('Test');
+echo getHead('test');
 ?>
+
 
 <body>
 <div class="container">
-
 <?php
 if (isset($test)){
 
@@ -71,6 +69,8 @@ if (isset($test)){
                             foreach ($otherAnswersIds as $otherAnswersId){
                                 $stmGetAnswer->execute([$otherAnswersId]);
                                 $otherAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
+                                //var_dump($otherAnswer);
+                                //var_dump($stmGetAnswer);
                                 ?>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="question<?php echo $noQuestion . $noRadioAnswer ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">

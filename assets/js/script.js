@@ -94,6 +94,8 @@ $(document).ready(function () {
                         },
                         success: function (result) {
                             console.log(result)
+                            $('#questionShort input[type="text"]').val('');
+                            $('#question').val('');
                         }
                     })
                 }
@@ -135,6 +137,8 @@ $(document).ready(function () {
                         answer_2: $('#answer-2-4').val(),
                     },
                     success: function (result) {
+                        $('#questionChoices input[type="text"]').val('');
+                        $('#question').val('');
                         console.log(result)
                     }
                 })
@@ -205,6 +209,9 @@ $(document).ready(function () {
                     },
                     success: function (result) {
                         console.log(result)
+                        $("#questionType option[value='3']").remove();
+                        $('#questionPairs input[type="text"]').val('');
+                        $('#question').val('');
                     }
                 })
             }
@@ -218,6 +225,7 @@ $(document).ready(function () {
                     },
                     success: function (result) {
                         console.log(result)
+                        $('#question').val('');
                     }
                 })
             }
