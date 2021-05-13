@@ -142,7 +142,7 @@ jQuery(document).ready(function () {
     var questionEndpoint = null;
 
     //remember the question you clicked on
-    jQuery("#select_list_lebensbereiche ul > li").click(function () {
+    jQuery("#select-list-matches ul > li").click(function () {
 
         //remove endpoint if there is one
         if (questionSelected !== null) {
@@ -156,7 +156,7 @@ jQuery(document).ready(function () {
     });
 
     //now click on an answer to link it with previously selected question
-    jQuery("#select_list_wirkdimensionen ul > li").click(function () {
+    jQuery("#select-list-answers ul > li").click(function () {
 
         //we must have previously selected question
         //for this to work

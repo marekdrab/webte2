@@ -32,20 +32,29 @@ echo getHead('Test |');
                 <input class="form-control" type="text" id="question" name="question" required>
                 <hr>
                 <div id="questionShort">
-                    <label for="answer-1"><b>Správna odpoveď</b></label>
-                    <input class="form-control" type="text" id="answer-1" name="answer-1" required>
+                    <label for="answer-11"><b>Správna odpoveď</b></label>
+                    <input class="form-control" type="text" id="answer-11" name="answer-11" required>
                 </div>
                 <div id="questionChoices">
-                    <label for="answer-2"><b>Správna odpoveď</b></label>
-                    <input class="form-control" type="text" id="answer-2" name="answer-2" required>
-                    <label for="answer-3"><b>Nesprávna odpoveď</b></label>
-                    <input class="form-control" type="text" id="answer-3" name="answer-3" required>
-                    <label for="answer-4"><b>Nesprávna odpoveď</b></label>
-                    <input class="form-control" type="text" id="answer-4" name="answer-4" required>
-                    <label for="answer-5"><b>Nesprávna odpoveď</b></label>
-                    <input class="form-control" type="text" id="answer-5" name="answer-5" required>
+                    <label for="answer-21"><b>Správna odpoveď</b></label>
+                    <input class="form-control" type="text" id="answer-21" name="answer-21" required>
+                    <label for="answer-22"><b>Nesprávna odpoveď</b></label>
+                    <input class="form-control" type="text" id="answer-22" name="answer-22" required>
+                    <label for="answer-23"><b>Nesprávna odpoveď</b></label>
+                    <input class="form-control" type="text" id="answer-23" name="answer-23" required>
+                    <label for="answer-24"><b>Nesprávna odpoveď</b></label>
+                    <input class="form-control" type="text" id="answer-24" name="answer-24" required>
                 </div>
-                <div id="questionPairs">3</div>
+                <div id="questionPairs">
+                    <div class="col-md-6">
+                        <label for="answer-31"><b>Match</b></label>
+                        <input class="form-control" type="text" id="answer-31" name="answer-31" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="answer-32"><b>Answer</b></label>
+                        <input class="form-control" type="text" id="answer-32" name="answer-32" required>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
