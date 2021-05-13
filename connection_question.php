@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 //Nezabudni prepisat $conn pre vlastnu DB
 
 require_once "inc/DatabasePeter.php";
-$conn = (new DatabasePeter())->getConnection();
+$conn = (new DatabasePeter())->createConnection();
 
 //vyhlada otazku podla ID
 $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
@@ -35,35 +35,7 @@ $answers = explode("~", $arrPairs[1]);
 require_once "partials/header.php";
 echo getHead('test');
 ?>
-<style>
-    ul {
-        width: 150px;
-        padding: 0;
-        margin-left: 100px;
-        float: left;
-    }
-    li {
-        text-align: center;
-        margin-bottom: 20px;
-        list-style: none;
-        background-color: #ededed;
-        height: 40px;
-        padding: 5px;
-    }
 
-
-    .jtk-connector
-    path {
-        stroke: #000000;
-        stroke-width: 3;
-    }
-
-
-    .jtk-endpoint
-    circle {
-        fill: #000000;
-    }
-</style>
 <div class="container">
     <div id="page_connections" >
         <p><?php echo $strQuestion ?></p>

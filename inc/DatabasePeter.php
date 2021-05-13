@@ -5,7 +5,7 @@ class DatabasePeter {
     private $DB_PASS = "rPKR#$5llalehx";
     private $DB_NAME = "webte2finalne";
 
-    public function getConnection(){
+    public function createConnection(){
         $conn = null;
         try{
             $conn = new PDO("mysql:host=" . $this->DB_HOST . ";dbname=" . $this->DB_NAME, $this->DB_USER, $this->DB_PASS);

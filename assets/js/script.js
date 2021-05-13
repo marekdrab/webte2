@@ -312,7 +312,6 @@ jQuery(document).ready(function () {
         //remove endpoint if there is one
         if (questionSelected !== null) {
             jsPlumb.deleteEndpoint(questionEndpoint);
-            console.log('deleted');
         }
 
         //add new endpoint
