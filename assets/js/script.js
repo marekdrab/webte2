@@ -256,9 +256,7 @@ function points3rdQuestion() {
     var pairs = [match1 + answer1, match2 + answer2, match3 + answer3, match4 + answer4];
 
     var points = 0;
-    for (var i = 0; i < 4; i++) {
-        //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])) === pairs[i]);
-        //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])));
+    for (var i = 0; i < sources.length; i++) {
         if (pairs.includes(document.getElementById(sources[i]).innerText + document.getElementById(targets[i]).innerText)) {
             points++;
         }
