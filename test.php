@@ -76,7 +76,15 @@ if (isset($test)){
             </div>
         </div>
     </div>
-
+    <script>
+        document.addEventListener("visibilitychange", function (){
+            document.title = document.visibilityState;
+            if (document.visibilityState == "hidden"){
+                console.log("opustil");
+            }
+            //console.log(document.visibilityState);
+        })
+    </script>
 
     <?php
 }

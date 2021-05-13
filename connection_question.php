@@ -61,51 +61,55 @@ echo getHead('test');
         fill: #e03571;
     }
 </style>
-<div id="page_connections">
-    <div id="select_list_lebensbereiche">
-        <ul>
-            <?php
-            $changeColumn1 = rand(0,1);
-            if ($changeColumn1 == 0){
-                $idCounter = 1;
-                foreach ($matches as $match) {
-                    echo '<li id="match' . $idCounter . '">' . $match . '</li>';
-                    $idCounter++;
+<div class="container">
+    <div id="page_connections" >
+        <div id="select_list_lebensbereiche">
+            <ul>
+                <?php
+                $changeColumn1 = rand(0,1);
+                if ($changeColumn1 == 0){
+                    $idCounter = 1;
+                    foreach ($matches as $match) {
+                        echo '<li id="match' . $idCounter . '">' . $match . '</li>';
+                        $idCounter++;
+                    }
                 }
-            }
-            else {
-                $idCounter = 4;
-                foreach (array_reverse($matches) as $match) {
-                    echo '<li id="match' . $idCounter . '">' . $match . '</li>';
-                    $idCounter--;
+                else {
+                    $idCounter = 4;
+                    foreach (array_reverse($matches) as $match) {
+                        echo '<li id="match' . $idCounter . '">' . $match . '</li>';
+                        $idCounter--;
+                    }
                 }
-            }
-            ?>
-        </ul>
-    </div>
-    <div id="select_list_wirkdimensionen">
-        <ul>
-            <?php
-            $changeColumn2 = rand(0,1);
-            if ($changeColumn2 == 0) {
-                $idCounter = 1;
-                foreach ($answers as $answer) {
-                    echo '<li id="answer' . $idCounter . '">' . $answer . '</li>';
-                    $idCounter++;
+                ?>
+            </ul>
+        </div>
+        <div id="select_list_wirkdimensionen">
+            <ul>
+                <?php
+                $changeColumn2 = rand(0,1);
+                if ($changeColumn2 == 0) {
+                    $idCounter = 1;
+                    foreach ($answers as $answer) {
+                        echo '<li id="answer' . $idCounter . '">' . $answer . '</li>';
+                        $idCounter++;
+                    }
                 }
-            }
-            else{
-                $idCounter = 4;
-                foreach (array_reverse($answers) as $answer) {
-                    echo '<li id="answer' . $idCounter . '">' . $answer . '</li>';
-                    $idCounter--;
+                else{
+                    $idCounter = 4;
+                    foreach (array_reverse($answers) as $answer) {
+                        echo '<li id="answer' . $idCounter . '">' . $answer . '</li>';
+                        $idCounter--;
+                    }
                 }
-            }
-            ?>
-        </ul>
+                ?>
+            </ul>
+        </div>
     </div>
 </div>
+
 <input type="button" value="reset" onclick="clearConnections();">
 <input type="button" value="done" onclick="points3rdQuestion();">
 
 <input type="hidden" value="0" id="points-question3" name="points-question3">
+<?php echo getFooter(); ?>
