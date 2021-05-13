@@ -20,6 +20,9 @@ function getHead($pageTitle)
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/partials/margins.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <script src="assets/drawingboard.js-master/dist/drawingboard.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/drawingboard.js-master/dist/drawingboard.css">
+
 </head>
 HTML;
 }
