@@ -23,3 +23,8 @@ if($_SERVER['REQUEST_METHOD']=='PUT'){
     $rs = $get->fetch();
     echo $rs['is_active'];
 }
+if($_SERVER['REQUEST_METHOD']=='DELETE'){
+    $stmt = $conn->prepare("delete from tests where code = :code");
+    $stmt->bindParam(':code', $_GET['code']);
+    $stmt->execute();
+}
