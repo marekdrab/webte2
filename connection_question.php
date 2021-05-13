@@ -30,6 +30,8 @@ $matches = explode(",", $strQuestion);
 //var_dump($matches);
 $answers = explode(",", $strAnswer);
 //var_dump($answers);
+require_once "partials/header.php";
+echo getHead('test');
 ?>
 <style>
     ul {
