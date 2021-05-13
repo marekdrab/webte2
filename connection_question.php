@@ -26,7 +26,7 @@ $correctAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC);
 $strQuestion = $question['question'];
 $strPairs = $correctAnswer['answer'];
 
-$arrPairs = explode("$", $strPairs);
+$arrPairs = explode("&", $strPairs);
 
 $matches = explode(",", $arrPairs[0]);
 //var_dump($matches);
