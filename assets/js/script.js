@@ -46,32 +46,70 @@ $(document).ready(function () {
                     window.location.replace('testOverview.php?code=' + parseInt(result))
                 },
                 error: function (result) {
-                    alert('error: '+result);
+                    alert('error: ' + result);
                 }
             })
     })
-    $('#questionType').change(function (){
-        if($('#questionType').val()==1)
+    $('#questionType').change(function () {
+        if ($('#questionType').val() == 1)
             $('#questionShort').css('display', 'block')
         else
             $('#questionShort').css('display', 'none')
-        if($('#questionType').val()==2)
+        if ($('#questionType').val() == 2)
             $('#questionChoices').css('display', 'block')
         else
             $('#questionChoices').css('display', 'none')
-        if($('#questionType').val()==3)
+        if ($('#questionType').val() == 3)
             $('#questionPairs').css('display', 'flex')
         else
             $('#questionPairs').css('display', 'none')
-        if($('#questionType').val()==4)
+        if ($('#questionType').val() == 4)
             $('#questionDrawing').css('display', 'block')
         else
             $('#questionDrawing').css('display', 'none')
-        if($('#questionType').val()==5)
+        if ($('#questionType').val() == 5)
             $('#questionMaths').css('display', 'block')
         else
             $('#questionMaths').css('display', 'none')
 
+    })
+    $('#addQuestion').click(function () {
+        if ($('#question').val() == '') {
+            $('#questionError').text('Nebola zadana otazka')
+        } else {
+            if ($('#questionType').val() == 1) {
+                if ($('#answer-1-1').val() == '') {
+                    $('#answer-1-1-error').text('Nebola zadana odpoved')
+                } else {
+                    $('#answer-1-1-error').text('')
+
+                }
+            }
+            if ($('#questionType').val() == 2) {
+                if ($('#answer-2-1').val() == '') {
+                    $('#answer-2-1-error').text('Nebola zadana odpoved')
+                } else {
+                    $('#answer-2-1-error').text('')
+                }
+                if ($('#answer-2-2').val() == '') {
+                    $('#answer-2-2-error').text('Nebola zadana odpoved')
+                } else {
+                    $('#answer-2-2-error').text('')
+                }
+                if ($('#answer-2-3').val() == '') {
+                    $('#answer-2-3-error').text('Nebola zadana odpoved')
+                } else {
+                    $('#answer-2-3-error').text('')
+                }
+                if ($('#answer-2-4').val() == '') {
+                    $('#answer-2-4-error').text('Nebola zadana odpoved')
+                } else {
+                    $('#answer-2-4-error').text('')
+                }
+                if ($('#questionType').val() == 3) {
+                }
+            }
+        }
     })
 });
 
@@ -94,7 +132,21 @@ function changeActivity() {
             data[1].value = result
         },
         error: function (result) {
-            alert('error: '+result);
+            alert('error: ' + result);
+        }
+    })
+}
+
+function deleteTest() {
+    var code = event.target.parentNode.parentNode.id;
+    $.ajax({
+        type: 'DELETE',
+        url: 'routes/TestControler.php?code=' + code,
+        success: function (result) {
+            $('table#tableData tr#' + code).remove();
+        },
+        error: function (result) {
+            alert('error: ' + result);
         }
     })
 }
@@ -190,7 +242,7 @@ function clearConnections() {
     targets = [];
 }
 
-function points3rdQuestion(){
+function points3rdQuestion() {
     var match1 = document.getElementById('match1').innerText;
     var match2 = document.getElementById('match2').innerText;
     var match3 = document.getElementById('match3').innerText;
@@ -204,18 +256,18 @@ function points3rdQuestion(){
     var pairs = [match1 + answer1, match2 + answer2, match3 + answer3, match4 + answer4];
 
     var points = 0;
-    for (var i = 0; i<4; i++){
+    for (var i = 0; i < 4; i++) {
         //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])) === pairs[i]);
         //console.log((document.getElementById(sources[i])+document.getElementById(targets[i])));
-        if (pairs.includes(document.getElementById(sources[i]).innerText + document.getElementById(targets[i]).innerText)){
+        if (pairs.includes(document.getElementById(sources[i]).innerText + document.getElementById(targets[i]).innerText)) {
             points++;
         }
     }
     document.getElementById('points-question3').value = points;
 }
 
-function visibility(){
-    document.addEventListener("visibilitychange", function (){
+function visibility() {
+    document.addEventListener("visibilitychange", function () {
         document.title = document.visibilityState;
         console.log(document.visibilityState);
     })
