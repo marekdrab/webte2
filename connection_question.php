@@ -28,9 +28,9 @@ $strPairs = $correctAnswer['answer'];
 
 $arrPairs = explode("&", $strPairs);
 
-$matches = explode(",", $arrPairs[0]);
+$matches = explode("~", $arrPairs[0]);
 //var_dump($matches);
-$answers = explode(",", $arrPairs[1]);
+$answers = explode("~", $arrPairs[1]);
 //var_dump($answers);
 require_once "partials/header.php";
 echo getHead('test');
