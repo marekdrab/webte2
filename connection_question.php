@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 //Pridanie 6 otazok (3 pre prvy a druhy typ) do DB staci spustit raz
 //Nezabudni prepisat $conn pre vlastnu DB
 
-require_once "inc/Database.php";
-$conn = (new Database())->createConnection();
+require_once "inc/DatabasePeter.php";
+$conn = (new DatabasePeter())->getConnection();
 
 //vyhlada otazku podla ID
 $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
@@ -15,7 +15,7 @@ $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
 $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = ?");
 
 //zatial pevne definovane
-$stmGetQuestion->execute([20]);
+$stmGetQuestion->execute([7]);
 $question = $stmGetQuestion->fetch(PDO::FETCH_ASSOC);
 //var_dump($question);
 
@@ -24,12 +24,14 @@ $correctAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC);
 //var_dump($correctAnswer);
 
 $strQuestion = $question['question'];
-$strAnswer = $correctAnswer['answer'];
+$strPairs = $correctAnswer['answer'];
 
-$matches = explode(",", $strQuestion);
-//var_dump($matches);
-$answers = explode(",", $strAnswer);
-//var_dump($answers);
+$arrPairs = explode("$", $strPairs);
+
+$matches = explode(",", $arrPairs[0]);
+var_dump($matches);
+$answers = explode(",", $arrPairs[1]);
+var_dump($answers);
 require_once "partials/header.php";
 echo getHead('test');
 ?>
@@ -63,7 +65,8 @@ echo getHead('test');
 </style>
 <div class="container">
     <div id="page_connections" >
-        <div id="select_list_lebensbereiche">
+        <p><?php echo $strQuestion ?></p>
+        <div id="select-list-matches">
             <ul>
                 <?php
                 $changeColumn1 = rand(0,1);
@@ -84,7 +87,7 @@ echo getHead('test');
                 ?>
             </ul>
         </div>
-        <div id="select_list_wirkdimensionen">
+        <div id="select-list-answers">
             <ul>
                 <?php
                 $changeColumn2 = rand(0,1);
