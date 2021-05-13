@@ -162,8 +162,8 @@ if (isset($test)){
                                     </div>
                                 </div>
                             </div>
-                            <input type="button" value="vymazat" onclick="clearConnections();">
-                            <input type="button" value="ulozit" onclick="points3rdQuestion();">
+                            <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
+                            <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
 
                             <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
                         </div>
@@ -180,7 +180,11 @@ if (isset($test)){
         document.addEventListener("visibilitychange", function (){
             document.title = document.visibilityState;
             if (document.visibilityState == "hidden"){
+                // UPDATE students WHERE id='' SET active=0;
                 console.log("opustil");
+            }
+            else if (document.visibilityState == "visible") {
+                // UPDATE students WHERE id='' SET active=1;
             }
             //console.log(document.visibilityState);
         })
