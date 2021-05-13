@@ -17,6 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $rs = $stmt->fetch();
     if ($rs['exists'] == 1){
+        $insertStudent = $conn->prepare("insert into students (first_name,last_name,active values (:first_name,:last_name,1))");
+        $insertStudent->bindParam(':first_name',$_POST['name']);
+        $insertStudent->bindParam(':last_name',$_POST['name']);
+        $insertStudent->execute();
+
+        $getID = $conn->prepare("SELECT LAST_INSERT_ID() 'last_insert'");
+        $getID->execute();
+        $answerID = $getID->fetch();
+        $_SESSION['student_id'] = $answerID['last_insert'];
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];
         $_SESSION['loginType'] = "Student";
