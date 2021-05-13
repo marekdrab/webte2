@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -12,8 +13,8 @@ $types = $getTypes->fetchAll();
 
 require_once "partials/header.php";
 echo getHead('Test |');
-?>
-<body>
+echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
+    <body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 container-login">
@@ -21,7 +22,7 @@ echo getHead('Test |');
                 <select class="form-control" name="questionType" id="questionType">
                     <option value="">Vyber jednu z možností...</option>
                     <?php foreach ($types as $type) { ?>
-                        <option value="<?php echo $type['id']?>"><?php echo $type['type']?></option>
+                        <option value="<?php echo $type['id'] ?>"><?php echo $type['type'] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -49,6 +50,6 @@ echo getHead('Test |');
             </div>
         </div>
     </div>
-</body>
+    </body>
 
 <?php echo getFooter(); ?>

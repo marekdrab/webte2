@@ -99,6 +99,20 @@ function changeActivity() {
     })
 }
 
+function deleteTest(){
+    var code = event.target.parentNode.parentNode.id;
+    $.ajax({
+        type: 'DELETE',
+        url: 'routes/TestControler.php?code=' + code,
+        success: function (result) {
+            $('table#tableData tr#'+code).remove();
+        },
+        error: function (result) {
+            alert('error: '+result);
+        }
+    })
+}
+
 sources = [];
 targets = [];
 
