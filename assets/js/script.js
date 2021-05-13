@@ -74,6 +74,7 @@ $(document).ready(function () {
 
     })
     $('#addQuestion').click(function () {
+        let searchParams = new URLSearchParams(window.location.search)
         if ($('#question').val() == '') {
             $('#questionError').text('Nebola zadana otazka')
         } else {
@@ -82,7 +83,6 @@ $(document).ready(function () {
                     $('#answer-1-1-error').text('Nebola zadana odpoved')
                 } else {
                     $('#answer-1-1-error').text('')
-                    let searchParams = new URLSearchParams(window.location.search)
 
                     $.ajax({
                         type: 'POST',
@@ -99,42 +99,130 @@ $(document).ready(function () {
                 }
             }
             if ($('#questionType').val() == 2) {
-                var error = 0
                 if ($('#answer-2-1').val() == '') {
                     $('#answer-2-1-error').text('Nebola zadana odpoved')
-                    error++
+                    return
                 } else {
                     $('#answer-2-1-error').text('')
                 }
                 if ($('#answer-2-2').val() == '') {
                     $('#answer-2-2-error').text('Nebola zadana odpoved')
-                    error++
+                    return
                 } else {
                     $('#answer-2-2-error').text('')
                 }
                 if ($('#answer-2-3').val() == '') {
                     $('#answer-2-3-error').text('Nebola zadana odpoved')
-                    error++
+                    return
                 } else {
                     $('#answer-2-3-error').text('')
                 }
                 if ($('#answer-2-4').val() == '') {
                     $('#answer-2-4-error').text('Nebola zadana odpoved')
-                    error++
+                    return
                 } else {
                     $('#answer-2-4-error').text('')
                 }
-                if(error==0){
-                    $.ajax({
-
-                    })
-                }
+                $.ajax({
+                    type: 'POST',
+                    url: 'routes/TestControler.php/question/2',
+                    data: {
+                        code: searchParams.get('code'),
+                        question: $('#question').val(),
+                        correct_answer: $('#answer-2-1').val(),
+                        answer_0: $('#answer-2-2').val(),
+                        answer_1: $('#answer-2-3').val(),
+                        answer_2: $('#answer-2-4').val(),
+                    },
+                    success: function (result) {
+                        console.log(result)
+                    }
+                })
+            }
             if ($('#questionType').val() == 3) {
-
+                if ($('#match-3-1').val() == '') {
+                    $('#match-3-1-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#match-3-1-error').text('')
+                }
+                if ($('#match-3-2').val() == '') {
+                    $('#match-3-2-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#match-3-2-error').text('')
+                }
+                if ($('#match-3-3').val() == '') {
+                    $('#match-3-3-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#match-3-3-error').text('')
+                }
+                if ($('#match-3-4').val() == '') {
+                    $('#match-3-4-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#match-3-4-error').text('')
+                }
+                if ($('#answer-3-1').val() == '') {
+                    $('#answer-3-1-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#answer-3-1-error').text('')
+                }
+                if ($('#answer-3-2').val() == '') {
+                    $('#answer-3-2-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#answer-3-2-error').text('')
+                }
+                if ($('#answer-3-3').val() == '') {
+                    $('#answer-3-3-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#answer-3-3-error').text('')
+                }
+                if ($('#answer-3-4').val() == '') {
+                    $('#answer-3-4-error').text('Nebola zadana odpoved')
+                    return
+                } else {
+                    $('#answer-3-4-error').text('')
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: 'routes/TestControler.php/question/3',
+                    data: {
+                        code: searchParams.get('code'),
+                        question: $('#question').val(),
+                        match_0: $('#match-3-1').val(),
+                        match_1: $('#match-3-2').val(),
+                        match_2: $('#match-3-3').val(),
+                        match_3: $('#match-3-4').val(),
+                        answer_0: $('#match-3-1').val(),
+                        answer_1: $('#match-3-2').val(),
+                        answer_2: $('#match-3-3').val(),
+                        answer_3: $('#match-3-4').val(),
+                    },
+                    success: function (result) {
+                        console.log(result)
+                    }
+                })
+            }
+            if ($('#questionType').val() == 4 || $('#questionType').val() == 5) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'routes/TestControler.php/question/' + $('#questionType').val(),
+                    data: {
+                        code: searchParams.get('code'),
+                        question: $('#question').val(),
+                    },
+                    success: function (result) {
+                        console.log(result)
+                    }
+                })
             }
         }
-    }
-})
+    })
 })
 ;
 
@@ -148,7 +236,7 @@ function changeActivity() {
     else activity = 0
     $.ajax({
         type: 'PUT',
-        url: 'routes/TestControler.php?code=' + code + '&activity=' + activity,
+        url: 'routes/TestControler.php/change?code=' + code + '&activity=' + activity,
         success: function (result) {
             if (result == 1)
                 data[1].style.backgroundColor = '#9dc88d'
