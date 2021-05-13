@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];
         $_SESSION['loginType'] = "Student";
-        header("location: https://wt41.fei.stuba.sk/final/test.php?code=" . $_POST['code']);
+        header("location: test.php?code=" . $_POST['code']);
     }  
     else
         echo 'tento test neexistuje'; //TODO pls dorobte error page

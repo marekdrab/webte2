@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION['name'] = $user['name'];
             $_SESSION['surname'] = $user['surname'];
             $_SESSION['loginType'] = "Teacher";
-            header("location: https://wt41.fei.stuba.sk/final/domov.php");
+            header("location: domov.php");
           } else {
               echo 'Login failed';
           }
