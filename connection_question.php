@@ -43,6 +43,7 @@ echo getHead('test');
         float: left;
     }
     li {
+        text-align: center;
         margin-bottom: 20px;
         list-style: none;
         background-color: #ededed;
@@ -53,14 +54,14 @@ echo getHead('test');
 
     .jtk-connector
     path {
-        stroke: #e03571;
+        stroke: #000000;
         stroke-width: 3;
     }
 
 
     .jtk-endpoint
     circle {
-        fill: #e03571;
+        fill: #000000;
     }
 </style>
 <div class="container">
