@@ -60,7 +60,7 @@ $(document).ready(function () {
         else
             $('#questionChoices').css('display', 'none')
         if($('#questionType').val()==3)
-            $('#questionPairs').css('display', 'block')
+            $('#questionPairs').css('display', 'flex')
         else
             $('#questionPairs').css('display', 'none')
         if($('#questionType').val()==4)
