@@ -37,11 +37,11 @@ $otherAnswers6 = ["21", "17", "19", "20"];
 $type6 = 2;
 
 $question7 = "Spoj vysledky";
-$correctAnswer7 = "2+2,4*4,5+8,6+12&4,16,13,18";
+$correctAnswer7 = "2+2~4*4~5+8~6+12&4~16~13~18";
 $type7 = 3;
 
 $question8 = "Spoj staty s hlavnymi mestami";
-$correctAnswer8 = "Slovensko,Rusko,Nemecko,Rakúsko&Bratislava,Moskva,Berlín,Viedeň";
+$correctAnswer8 = "Slovensko~Rusko~Nemecko~Rakúsko&Bratislava~Moskva~Berlín~Viedeň";
 $type8 = 3;
 
 //vlozi otazku prveho typu - kratka odpoved
