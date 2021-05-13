@@ -3,8 +3,8 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 
-require_once("classes/helper/config.php");
-require_once("classes/helper/Database.php");
+require_once "inc/Database.php";
+
 $conn = (new Database())->createConnection();
 
 if(isset($_POST['latex'])){
