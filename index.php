@@ -15,5 +15,3 @@ error_reporting(E_ALL);
     </div>
 </div>
 <?php echo getFooter();?>
-</body>
-</html>

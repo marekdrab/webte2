@@ -38,7 +38,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 require_once "partials/header.php";
 echo getHead('Login  učiteľ');
 echo getHeaderHome()?>
-<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-4">
@@ -67,5 +66,3 @@ echo getHeaderHome()?>
 
 
 <?php echo getFooter();?>
-</body>
-</html>

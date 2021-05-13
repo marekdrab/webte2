@@ -44,24 +44,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 require_once "partials/header.php";
 echo getHead('Registrácia');
 echo getHeaderHome()?>
-<body>
-<div class="container">
+<div class="container justify-content-center">
     <div class="row justify-content-center marginBottom">
-        <div class="col-lg-3 container-login">
+    <form action="register.php" method="POST">
+        <div class="col-lg-12 container-login">
+        <h1>Registrácia</h1>
             <br>
-            <?php
-            $secret = $ga->createSecret();
-            $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
-            echo '<h4>Naskenuj QR kód: <img class="qrCode" src="'.$qrCodeUrl.'" />' . "</h4>";
-            ?>
-            <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
-            <hr>
-        </div>
-        <div class="col-lg-3 container-login">
-            <form action="register.php" method="POST">
-                <div>
-
-                    <h1>Registrácia</h1>
+                <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
 
                     <label for="email"><b>Email</b></label>
                     <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
@@ -78,18 +67,19 @@ echo getHeaderHome()?>
                     <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
                     <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat" required>
 
+                    <div class="col">   
+                        <?php
+                        $secret = $ga->createSecret();
+                        $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
+                        echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="'.$qrCodeUrl.'" />' . "</h4>";
+                        ?>
+                    </div>
 
                     <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
                     <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
-                </div>
-
-            </form>
         </div>
-
+    </form>
     </div>
 </div>
 
 <?php echo getFooter();?>
-</body>
-</html>
-
