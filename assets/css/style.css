@@ -140,3 +140,31 @@ h5, .qrCode{
 #questionShort,#questionChoices,#questionDrawing,#questionMaths, #questionPairs {
     display: none;
 }
+
+ul {
+    width: 150px;
+    padding: 0;
+    margin-left: 100px;
+    float: left;
+}
+li {
+    text-align: center;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #15ac15;
+    height: 40px;
+    padding: 5px;
+}
+
+
+.jtk-connector
+path {
+    stroke: #000000;
+    stroke-width: 3;
+}
+
+
+.jtk-endpoint
+circle {
+    fill: #000000;
+}
