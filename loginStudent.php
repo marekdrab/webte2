@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insertStudent->bindParam(':first_name',$_POST['name']);
         $insertStudent->bindParam(':last_name',$_POST['name']);
         $insertStudent->execute();
-
         $getID = $conn->prepare("SELECT LAST_INSERT_ID() 'last_insert'");
         $getID->execute();
         $answerID = $getID->fetch();
