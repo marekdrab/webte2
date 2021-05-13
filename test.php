@@ -177,16 +177,27 @@ if (isset($test)){
     ?>
     </div>
     <script>
+        let searchParams = new URLSearchParams(window.location.search)
         document.addEventListener("visibilitychange", function (){
             document.title = document.visibilityState;
             if (document.visibilityState == "hidden"){
-                // UPDATE students WHERE id='' SET active=0;
-                console.log("opustil");
+                $.ajax({
+                    type: 'PUT',
+                    url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=hidden',
+                    success: function (result){
+                        console.log("zavolal som", result)
+                    }
+                })
             }
             else if (document.visibilityState == "visible") {
-                // UPDATE students WHERE id='' SET active=1;
+                $.ajax({
+                    type: 'PUT',
+                    url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=visible',
+                    success: function (result){
+                        console.log("zavolal som", result)
+                    }
+                })
             }
-            //console.log(document.visibilityState);
         })
     </script>
 
