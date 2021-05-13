@@ -23,6 +23,7 @@ if (isset($test)){
     $stmQuestion->execute([$question_ids[0]]);
     $question = $stmQuestion->fetch();
     ?>
+
     <h2>Otázka 1:</h2>
     <p><?php $question['question'] ?></p>';
     <label for="question1">Odpoveď:</label>
@@ -30,9 +31,9 @@ if (isset($test)){
     <?php
 }
 
-
 ?>
 
+<?php echo getFooter();?>
 <body>
 
 

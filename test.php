@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
 
 
-echo getHead('TEST');
+echo getHead('Test');
 ?>
 <body>
 <?php
@@ -31,13 +31,55 @@ if (isset($test)){
     $stmQuestion->execute([$question_ids[0]]);
     $question = $stmQuestion->fetch();
     ?>
-    <h2>Otázka 1:</h2>
-    <p><?php echo $question['question']; ?></p>';
-    <label for="question1">Odpoveď:</label>
-    <input type="text" id="question1" name="question1"><br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 containerQuestion">
+                <div class="container-login">
+                    <h2>Otázka 1:</h2>
+                    <p><?php echo $question['question']; ?></p>';
+                    <label for="question1">Odpoveď:</label>
+                    <input class="form-control" type="text" id="question1" name="question1"><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 containerQuestion">
+                <div class="container-login">
+                    <h2>Otázka X:</h2>
+                    <p><?php echo $question['question']; ?></p>';
+                    <label for="question1">Odpoveď:</label>
+                    <input class="form-control" type="text" id="question1" name="question1"><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 containerQuestion">
+                <div class="container-login">
+                    <h2>Otázka Y:</h2>
+                    <p><?php echo $question['question']; ?></p>';
+                    <label for="question1">Odpoveď:</label>
+                    <input class="form-control" type="text" id="question1" name="question1"><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 containerQuestion">
+                <div class="container-login">
+                    <h2>Otázka Z:</h2>
+                    <p><?php echo $question['question']; ?></p>';
+                    <label for="question1">Odpoveď:</label>
+                    <input class="form-control" type="text" id="question1" name="question1"><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <?php
 }
-
-
 ?>
+<?php echo getFooter();?>
 </body>
