@@ -90,4 +90,3 @@ if (isset($test)){
 }
 ?>
 <?php echo getFooter();?>
-</body>
