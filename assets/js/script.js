@@ -36,7 +36,7 @@ $(document).ready(function () {
         if (!error)
             $.ajax({
                 type: 'POST',
-                url: 'routes/TestControler.php',
+                url: 'routes/TestControler.php/test',
                 data: {
                     name: $('#name').val(),
                     timeLimit: $('#timeLimit').val(),
@@ -82,36 +82,61 @@ $(document).ready(function () {
                     $('#answer-1-1-error').text('Nebola zadana odpoved')
                 } else {
                     $('#answer-1-1-error').text('')
+                    let searchParams = new URLSearchParams(window.location.search)
 
+                    $.ajax({
+                        type: 'POST',
+                        url: 'routes/TestControler.php/question/1',
+                        data: {
+                            code: searchParams.get('code'),
+                            question: $('#question').val(),
+                            answer: $('#answer-1-1').val()
+                        },
+                        success: function (result) {
+                            console.log(result)
+                        }
+                    })
                 }
             }
             if ($('#questionType').val() == 2) {
+                var error = 0
                 if ($('#answer-2-1').val() == '') {
                     $('#answer-2-1-error').text('Nebola zadana odpoved')
+                    error++
                 } else {
                     $('#answer-2-1-error').text('')
                 }
                 if ($('#answer-2-2').val() == '') {
                     $('#answer-2-2-error').text('Nebola zadana odpoved')
+                    error++
                 } else {
                     $('#answer-2-2-error').text('')
                 }
                 if ($('#answer-2-3').val() == '') {
                     $('#answer-2-3-error').text('Nebola zadana odpoved')
+                    error++
                 } else {
                     $('#answer-2-3-error').text('')
                 }
                 if ($('#answer-2-4').val() == '') {
                     $('#answer-2-4-error').text('Nebola zadana odpoved')
+                    error++
                 } else {
                     $('#answer-2-4-error').text('')
                 }
-                if ($('#questionType').val() == 3) {
+                if(error==0){
+                    $.ajax({
+
+                    })
                 }
+            if ($('#questionType').val() == 3) {
+
             }
         }
-    })
-});
+    }
+})
+})
+;
 
 function changeActivity() {
     var rowId = event.target.parentNode.parentNode.id;
