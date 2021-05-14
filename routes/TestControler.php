@@ -1,10 +1,21 @@
 <?php
 require_once "../inc/Database.php";
+session_start();
 $conn = (new Database())->createConnection();
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 $table = preg_replace('/[^a-z0-9_]+/i', '', array_shift($request));
 $key = array_shift($request);
 
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    $time = clone $_SESSION['startTime'];
+    $finishTime = $time->add(new DateInterval('PT' . $_GET['time'] . 'M'));
+    $remain = $finishTime->diff(new DateTime());
+    $remained_time = array();
+    array_push($remained_time, $remain->i);
+    array_push($remained_time, $remain->s);
+
+    echo json_encode($remained_time);
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $table != 'question') {
     $code = rand(10000, 99999);

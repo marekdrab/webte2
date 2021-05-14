@@ -1,27 +1,20 @@
-function countdown( elementName, minutes, seconds )
-{
-    var element, endTime, hours, mins, msLeft, time;
-    function twoDigits( n )
-    {
-        return (n <= 9 ? "0" + n : n);
-    }
-    function updateTimer()
-    {
-        msLeft = endTime - (+new Date);
-        if ( msLeft < 1000 ) {
-            element.innerHTML = "Došiel ti čas chuju!";
-            //TU PRIDAT AUTOMATICKE ODOVZDANIE TESTU
-        } else {
-            time = new Date( msLeft );
-            hours = time.getUTCHours();
-            mins = time.getUTCMinutes();
-            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+function getTime(){
+    $.ajax({
+        type:'GET',
+        url:'routes/TestControler.php/timer?time='+$('#minutes').text(),
+        success: function (result){
+            var time = JSON.parse(result)
+            setTimeout(function () {
+                var minutes = time[0]
+                var secs = time[1]
+                if(time[0] <10)
+                    minutes = '0'+time[0]
+                if(time[1] <10)
+                    secs = '0'+time[1]
+                $('#countdown').text(minutes+':'+secs)
+                getTime()
+            }, 1000);
         }
-    }
-    element = document.getElementById( elementName );
-    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-    updateTimer();
+    })
 }
-timeInMinutes = $('#minutes').text();
-countdown("countdown",timeInMinutes,0);
+getTime()
