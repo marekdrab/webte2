@@ -52,6 +52,25 @@ HTML;
 
 }
 
+function getHeaderStudent($name, $surname, $typeLogin){
+    return <<<HTML
+<header>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">Odhlásiť</a>
+        </li>
+    </ul>
+    <ul class="nav">
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link"><b>Prihláseny:</b> $name $surname - $typeLogin</span>
+        </li>
+    </ul>
+
+</header>
+HTML;
+
+}
+
 function getHeaderHome(){
     return <<<HTML
 <header>
