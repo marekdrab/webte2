@@ -5,9 +5,9 @@ error_reporting(E_ALL);
 
 require_once "partials/loginChecker.php";
 require_once "partials/header.php";
-require_once "inc/DatabasePeter.php";
+require_once "inc/Database.php";
 
-$conn = (new DatabasePeter())->createConnection();
+$conn = (new Database())->createConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['code'])){
