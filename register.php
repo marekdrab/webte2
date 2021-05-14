@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once "inc/Database.php";
@@ -9,16 +9,16 @@ require_once('assets/PHPGangsta/GoogleAuthenticator.php');
 $ga = new PHPGangsta_GoogleAuthenticator();
 $websiteTitle = "Registracia";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['psw']) && isset($_POST['psw-repeat'])){
-        if(strcmp(($_POST['psw-repeat']),($_POST['psw'])) == 0) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['psw']) && isset($_POST['psw-repeat'])) {
+        if (strcmp(($_POST['psw-repeat']), ($_POST['psw'])) == 0) {
             try {
                 $sql = "SELECT COUNT(*) AS num FROM `teachers` WHERE email = :email";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(':email', ($_POST['email']));
                 $stmt->execute();
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                if($row['num'] > 0){
+                if ($row['num'] > 0) {
                     echo "Taky mail uz existuje";
                     //VRATI SPRAVU ZE UZ EXISTUJE 
                 } else {
@@ -29,11 +29,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     //ASI BUDE TREBA VYRIESIT AK TAM UZ TAKY JE
                     header("location: https://wt41.fei.stuba.sk/final/");
                 }
-            } catch(PDOException $e) {
+            } catch (PDOException $e) {
                 echo $e->getMessage();
             }
         } else {
-          echo "Hesla sa nezhoduju";
+            echo "Hesla sa nezhoduju";
         }
 
     }
@@ -43,43 +43,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <?php
 require_once "partials/header.php";
 echo getHead('Registrácia');
-echo getHeaderHome()?>
+echo getHeaderHome() ?>
+
 <div class="container justify-content-center">
     <div class="row justify-content-center marginBottom">
-    <form action="register.php" method="POST">
-        <div class="col-lg-12 container-login">
-        <h1>Registrácia</h1>
-            <br>
+        <form action="register.php" method="POST">
+            <div class="col-lg-12 container-login">
+                <h1>Registrácia</h1>
+                <br>
+                <label for="email"><b>Email</b></label>
+                <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+
+                <label for="name"><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
+
+                <label for="surname"><b>Priezvisko</b></label>
+                <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
+
+                <label for="psw"><b>Zadaj heslo</b></label>
+                <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
+
+                <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
+                <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat"
+                       required>
+
+                <div class="col">
+                    <?php
+                    $secret = $ga->createSecret();
+                    $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
+                    echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="' . $qrCodeUrl . '" />' . "</h4>";
+                    ?>
+                </div>
                 <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
-
-                    <label for="email"><b>Email</b></label>
-                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
-
-                    <label for="name"><b>Meno</b></label>
-                    <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
-
-                    <label for="surname"><b>Priezvisko</b></label>
-                    <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
-
-                    <label for="psw"><b>Zadaj heslo</b></label>
-                    <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
-
-                    <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
-                    <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat" required>
-
-                    <div class="col">   
-                        <?php
-                        $secret = $ga->createSecret();
-                        $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
-                        echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="'.$qrCodeUrl.'" />' . "</h4>";
-                        ?>
-                    </div>
-
-                    <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
-                    <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
-        </div>
-    </form>
+                <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
+                <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
+            </div>
+        </form>
     </div>
 </div>
 
-<?php echo getFooter();?>
+<?php echo getFooter(); ?>
