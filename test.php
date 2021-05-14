@@ -188,12 +188,12 @@ if (isset($test)){
     <!--     Krelsiaca otazka -->
     <div class="row justify-content-center">
         <div class="col-md-8 containerQuestion">
-            <div class="container-login" style="width: 300px; height: 500px;">
+            <div class="container-login" >
                 <h2>Otázka KRESLENIE:</h2>
                 <form class="drawing-form" action="sendCanva.php" method="post">
 
                     <!-- this will be the drawingboard container -->
-                    <div id="board" style="width: 100%; height: 100%;"></div>
+                    <div id="board" style="width: 300px; height: 500px;></div>
 
                     <!-- this will be the input used to pass the drawingboard content to the server -->
                     <input type="hidden" name="image" value="">
