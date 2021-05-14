@@ -169,8 +169,11 @@ if (isset($test)){
                                     </div>
                                 </div>
                             </div>
-                            <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
-                            <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
+                            <div class="col-md-6">
+                                <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
+                                <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
+
+                            </div>
 
                             <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
                         </div>

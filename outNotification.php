@@ -1,14 +1,15 @@
 <?php
 session_start();
 require_once "partials/header.php";
-echo getHead('Notifikácie');
 require_once "inc/Database.php";
 $conn = (new Database())->createConnection();
+
+echo getHead('Notifikácie');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
 
     <body>
     <div class="container table">
-        <table class="table" id="students">
+        <table class="table" id="tableData">
             <thead>
             <tr>
                 <th scope="col">Meno</th>
@@ -17,9 +18,9 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 <th scope="col">Číslo testu</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="bodyTable">
             <?php
-            $insert = $conn->prepare("SELECT * FROM students");
+            $insert = $conn->prepare("SELECT * FROM students WHERE test_submit=0");
             $insert->execute();
             $result = $insert->fetchAll();
 
@@ -57,12 +58,15 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         activeState.forEach((id)=>{
                             if (id['active'] == 0){
                                 var active = "Opustil tab";
-                                $('table#students tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableData tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableData tr#' + id['id'] + ' td.active').css('background-color', 'red');
                             }
 
                             else if (id['active'] == 1){
                                 var active = "Píše test";
-                                $('table#students tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableData tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableData tr#' + id['id'] + ' td.active').css('background-color', 'green');
+
                             }
                         })
                         isHidden();
