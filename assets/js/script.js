@@ -76,11 +76,11 @@ $(document).ready(function () {
     $('#addQuestion').click(function () {
         let searchParams = new URLSearchParams(window.location.search)
         if ($('#question').val() == '') {
-            $('#questionError').text('Nebola zadana otazka')
+            $('#questionError').text('Nebola zadaná otázka')
         } else {
             if ($('#questionType').val() == 1) {
                 if ($('#answer-1-1').val() == '') {
-                    $('#answer-1-1-error').text('Nebola zadana odpoved')
+                    $('#answer-1-1-error').text('Nebola zadaná odpoveď')
                 } else {
                     $('#answer-1-1-error').text('')
 
@@ -102,25 +102,25 @@ $(document).ready(function () {
             }
             if ($('#questionType').val() == 2) {
                 if ($('#answer-2-1').val() == '') {
-                    $('#answer-2-1-error').text('Nebola zadana odpoved')
+                    $('#answer-2-1-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-2-1-error').text('')
                 }
                 if ($('#answer-2-2').val() == '') {
-                    $('#answer-2-2-error').text('Nebola zadana odpoved')
+                    $('#answer-2-2-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-2-2-error').text('')
                 }
                 if ($('#answer-2-3').val() == '') {
-                    $('#answer-2-3-error').text('Nebola zadana odpoved')
+                    $('#answer-2-3-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-2-3-error').text('')
                 }
                 if ($('#answer-2-4').val() == '') {
-                    $('#answer-2-4-error').text('Nebola zadana odpoved')
+                    $('#answer-2-4-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-2-4-error').text('')
@@ -145,49 +145,49 @@ $(document).ready(function () {
             }
             if ($('#questionType').val() == 3) {
                 if ($('#match-3-1').val() == '') {
-                    $('#match-3-1-error').text('Nebola zadana odpoved')
+                    $('#match-3-1-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#match-3-1-error').text('')
                 }
                 if ($('#match-3-2').val() == '') {
-                    $('#match-3-2-error').text('Nebola zadana odpoved')
+                    $('#match-3-2-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#match-3-2-error').text('')
                 }
                 if ($('#match-3-3').val() == '') {
-                    $('#match-3-3-error').text('Nebola zadana odpoved')
+                    $('#match-3-3-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#match-3-3-error').text('')
                 }
                 if ($('#match-3-4').val() == '') {
-                    $('#match-3-4-error').text('Nebola zadana odpoved')
+                    $('#match-3-4-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#match-3-4-error').text('')
                 }
                 if ($('#answer-3-1').val() == '') {
-                    $('#answer-3-1-error').text('Nebola zadana odpoved')
+                    $('#answer-3-1-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-3-1-error').text('')
                 }
                 if ($('#answer-3-2').val() == '') {
-                    $('#answer-3-2-error').text('Nebola zadana odpoved')
+                    $('#answer-3-2-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-3-2-error').text('')
                 }
                 if ($('#answer-3-3').val() == '') {
-                    $('#answer-3-3-error').text('Nebola zadana odpoved')
+                    $('#answer-3-3-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-3-3-error').text('')
                 }
                 if ($('#answer-3-4').val() == '') {
-                    $('#answer-3-4-error').text('Nebola zadana odpoved')
+                    $('#answer-3-4-error').text('Nebola zadaná odpoveď')
                     return
                 } else {
                     $('#answer-3-4-error').text('')

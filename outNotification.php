@@ -1,14 +1,11 @@
 <?php
+session_start();
 require_once "partials/header.php";
 echo getHead('Notifikácie');
 require_once "inc/Database.php";
 $conn = (new Database())->createConnection();
-echo getHeaderHome();
+echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
 
-
-
-
-?>
     <body>
     <div class="container table">
         <table class="table" id="students">
@@ -17,6 +14,7 @@ echo getHeaderHome();
                 <th scope="col">Meno</th>
                 <th scope="col">Priezvisko</th>
                 <th scope="col">Stav</th>
+                <th scope="col">Číslo testu</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +36,7 @@ echo getHeaderHome();
                         }
                         ?>
                     </td>
+                    <td><?php echo $row['test_number']; ?></td>
 
                 </tr>
             <?php

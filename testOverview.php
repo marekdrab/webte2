@@ -30,67 +30,69 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
     <div class="row justify-content-center">
         <div class="col-md-4 container-login">
             <label for="question"><b>Znenie otázky</b></label>
+            <div><span class="error" id="questionError"></span></div>
             <input class="form-control" type="text" id="question" name="question" required>
-            <span class="error" id="questionError"></span>
 
             <hr>
             <div id="questionShort">
                 <label for="answer-1-1"><b>Správna odpoveď</b></label>
+                <div><span class="error" id="answer-1-1-error"></span></div>
                 <input class="form-control" type="text" id="answer-1-1" name="answer-1-1" required>
-                <span class="error" id="answer-1-1-error"></span>
+
             </div>
             <div id="questionChoices">
                 <label for="answer-2-1"><b>Správna odpoveď</b></label>
+                <div><span class="error" id="answer-2-1-error"></span></div>
                 <input class="form-control" type="text" id="answer-2-1" name="answer-2-1" required>
-                <span class="error" id="answer-2-1-error"></span>
 
                 <label for="answer-2-2"><b>Nesprávna odpoveď</b></label>
+                <div><span class="error" id="answer-2-2-error"></span></div>
                 <input class="form-control" type="text" id="answer-2-2" name="answer-2-2" required>
-                <span class="error" id="answer-2-2-error"></span>
 
                 <label for="answer-2-3"><b>Nesprávna odpoveď</b></label>
+                <div><span class="error" id="answer-2-3-error"></span></div>
                 <input class="form-control" type="text" id="answer-2-3" name="answer-2-3" required>
-                <span class="error" id="answer-2-3-error"></span>
+
 
                 <label for="answer-2-4"><b>Nesprávna odpoveď</b></label>
+                <div><span class="error" id="answer-2-4-error"></span></div>
                 <input class="form-control" type="text" id="answer-2-4" name="answer-2-4" required>
-                <span class="error" id="answer-2-4-error"></span>
 
             </div>
             <div id="questionPairs">
                 <div class="col-md-6">
                     <label for="match-3-1"><b>Možnosť</b></label>
+                    <div><span class="error" id="match-3-1-error"></span></div>
                     <input class="form-control" type="text" id="match-3-1" name="match-3-1" required>
-                    <span class="error" id="match-3-1-error"></span>
 
                     <label for="match-3-2"><b>Možnosť</b></label>
+                    <div><span class="error" id="match-3-2-error"></span></div>
                     <input class="form-control" type="text" id="match-3-2" name="match-3-2" required>
-                    <span class="error" id="match-3-2-error"></span>
 
                     <label for="match-3-3"><b>Možnosť</b></label>
+                    <div><span class="error" id="match-3-3-error"></span></div>
                     <input class="form-control" type="text" id="match-3-3" name="match-3-3" required>
-                    <span class="error" id="match-3-3-error"></span>
 
                     <label for="match-3-4"><b>Možnosť</b></label>
+                    <div><span class="error" id="match-3-4-error"></span></div>
                     <input class="form-control" type="text" id="match-3-4" name="match-3-4" required>
-                    <span class="error" id="match-3-4-error"></span>
                 </div>
                 <div class="col-md-6">
                     <label for="answer-3-1"><b>Odpoveď</b></label>
+                    <div><span class="error" id="answer-3-1-error"></span></div>
                     <input class="form-control" type="text" id="answer-3-1" name="answer-3-1" required>
-                    <span class="error" id="answer-3-1-error"></span>
 
                     <label for="answer-3-2"><b>Odpoveď</b></label>
+                    <div><span class="error" id="answer-3-2-error"></span></div>
                     <input class="form-control" type="text" id="answer-3-2" name="answer-3-2" required>
-                    <span class="error" id="answer-3-2-error"></span>
 
                     <label for="answer-3-3"><b>Odpoveď</b></label>
+                    <div><span class="error" id="answer-3-3-error"></span></div>
                     <input class="form-control" type="text" id="answer-3-3" name="answer-3-3" required>
-                    <span class="error" id="answer-3-3-error"></span>
 
                     <label for="answer-3-4"><b>Odpoveď</b></label>
+                    <div><span class="error" id="answer-3-4-error"></span></div>
                     <input class="form-control" type="text" id="answer-3-4" name="answer-3-4" required>
-                    <span class="error" id="answer-3-4-error"></span>
 
                 </div>
             </div>

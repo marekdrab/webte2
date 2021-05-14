@@ -184,3 +184,28 @@ board for drawing canvas*/
 .pad{
     padding: 0.5rem;
 }
+
+.send{
+    height: 4rem;
+    text-align: center;
+    margin-left: 42%;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+div#countdownInfo {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #164a41;
+    color: white;
+    font-weight: lighter;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 10rem;
+    margin-left: 2rem;
+}
+.col-md-6{
+    margin-right: 0.5rem;
+}

@@ -23,6 +23,10 @@ echo getHead('test');
 
 
 <body>
+    <div id="countdownInfo">
+        <b>Čas:</b>
+        <div id="countdown"></div>
+    </div>
 <div class="container">
 <?php
 if (isset($test)){
@@ -32,7 +36,6 @@ if (isset($test)){
     $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = ?");
     echo "<p id='minutes' hidden>". $test['time_limit']."</p>";
     ?>
-    <div id="countdown"></div>
 
     <?php
     $noQuestion = 1;
@@ -97,7 +100,7 @@ if (isset($test)){
             case "3":
                 ?>
                 <div class="row justify-content-center">
-                    <div class="col-md-8 containerQuestion">
+                    <div class="col-md-8 containerQuestion container-login">
                         <div class="container-login">
                             <h2>Otázka <?php echo $noQuestion ?>:</h2>
                             <p><?php echo $question['question']; ?></p>
@@ -166,11 +169,13 @@ if (isset($test)){
                                     </div>
                                 </div>
                             </div>
-                            <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
-                            <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
-
                             <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
                         </div>
+                        <div class="col-md-8">
+                            <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
+                            <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
+                        </div>
+
                     </div>
                 </div>
                 <?php
@@ -179,7 +184,7 @@ if (isset($test)){
         $noQuestion++;
     }
     ?>
-    <button>Odovzdat</button>
+    <button class="btn btn-choice send">Odovzdať</button>
     <br><br><br>
     </div>
     <script>
