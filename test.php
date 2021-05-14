@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $stm = $conn->prepare("SELECT * FROM tests WHERE code = ?");
         $stm->execute([$_GET['code']]);
         $test = $stm->fetch(PDO::FETCH_ASSOC);
+        $time = clone $_SESSION['startTime'];
+        $finishTime = $time->add(new DateInterval('PT' . $test['time_limit'] . 'M'));
     }
 }
 
@@ -26,6 +28,11 @@ echo getHead('test');
     <div id="countdownInfo">
         <b>Čas:</b>
         <div id="countdown"></div>
+        <?php
+        $remain = $finishTime->diff(new DateTime());
+        echo $remain->i . ' minút a ' . $remain->s . ' sekúnd';
+        //var_dump($remain);
+        ?>
     </div>
 <div class="container">
     <form action="testFinish.php" method="post">
@@ -171,8 +178,11 @@ if (isset($test)){
                                     </div>
                                 </div>
                             </div>
-                            <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
-                            <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
+                            <div class="col-md-6">
+                                <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
+                                <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
+
+                            </div>
 
                             <input type="hidden" value="0" id="points-question3" name="points-question3">
                         </div>
@@ -183,11 +193,50 @@ if (isset($test)){
         }
         $noQuestion++;
     }
+    ?><?php 
+  /*
+    <!--     Krelsiaca otazka -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 containerQuestion">
+            <div class="container-login" >
+                <h2>Otázka KRESLENIE:</h2>
+                <form class="drawing-form" action="sendCanva.php" method="post">
 
+                    <!-- this will be the drawingboard container -->
+                    <div id="board" style="width: 300px; height: 500px;></div>
 
-
-    ?>
-
+    <!--   Matematicka otazka   -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 containerQuestion">
+            <div class="container-login">
+                <h2>Otázka MATH:</h2>
+                <p><?php echo $question['question']; ?></p>';
+                <script>
+                    var MQ = MathQuill.getInterface(2);
+                </script>
+                <div id="keyboard">
+                    <div class="btn-group" role="group" aria-label="math functions">
+                        <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>
+                        <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\sum")'>sum</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\int")'>integral</button>
+                    </div>
+                </div>
+                <a href="assets/img/napoveda.png" target="_blank" >nápoveda</a> <br>
+                <form class="latex-form" action="" method="post">
+                    <p>Type math here:
+                    </p>
+                    <div id="some_id"></div>
+                    <button>Submit</button>
+                </form>
+<!--    TODO:pozriet to                                  zatial vyhodim -->
+<!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->  
+            </div>
+        </div>
+    </div>*/ ?>
 
         <button type="submit" class="btn btn-choice send">Odovzdať</button>
     </form>

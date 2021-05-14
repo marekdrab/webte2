@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $rs = $stmt->fetch();
     if ($rs['exists'] == 1){
-        $insertStudent = $conn->prepare("insert into students (first_name,last_name,active, test_number) values (:first_name,:last_name,1,:test_number)");
+        $insertStudent = $conn->prepare("insert into students (first_name,last_name,active, test_number, test_submit) values (:first_name,:last_name,1,:test_number, 0)");
         $insertStudent->bindParam(':first_name',$_POST['name']);
         $insertStudent->bindParam(':last_name',$_POST['surname']);
         $insertStudent->bindParam(':test_number',$_POST['code']);
@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];
         $_SESSION['loginType'] = "Student";
+        $_SESSION['startTime'] = $objDateTime = new DateTime('NOW');
         header("location: test.php?code=" . $_POST['code']);
     }  
     else
