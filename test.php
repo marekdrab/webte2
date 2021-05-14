@@ -240,12 +240,10 @@ echo getHead('test');
                           </div>
                       </div>
                       <a href="assets/img/napoveda.png" target="_blank" >nápoveda</a> <br>
-                      <form class="latex-form" action="" method="post">
                           <p>Type math here:
                           </p>
                           <div id="some_id"></div>
-                          <button>Submit</button>
-                      </form>
+                          <button onclick="sendLatex(this)">Submit</button>
       <!--    TODO:pozriet to                                  zatial vyhodim -->
       <!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->
                   </div>
