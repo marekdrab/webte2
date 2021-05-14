@@ -169,13 +169,11 @@ if (isset($test)){
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
-                        </div>
-                        <div class="col-md-8">
                             <input class="btn btn-login" type="button" value="Vymazať" onclick="clearConnections();">
                             <input class="btn btn-login" type="button" value="Uložiť" onclick="points3rdQuestion();">
-                        </div>
 
+                            <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -184,6 +182,59 @@ if (isset($test)){
         $noQuestion++;
     }
     ?>
+    <!--     Krelsiaca otazka -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 containerQuestion">
+            <div class="container-login" style="width: 300px; height: 500px;">
+                <h2>Otázka KRESLENIE:</h2>
+                <form class="drawing-form" action="sendCanva.php" method="post">
+
+                    <!-- this will be the drawingboard container -->
+                    <div id="board" style="width: 100%; height: 100%;"></div>
+
+                    <!-- this will be the input used to pass the drawingboard content to the server -->
+                    <input type="hidden" name="image" value="">
+                    <label>Name <input type="text" name="name" /></label>
+                    <button>Submit</button>
+                </form>
+                <!--        <input class="form-control" type="text" id="question1" name="question1"><br>-->
+            </div>
+        </div>
+    </div>
+
+    <!--   Matematicka otazka   -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 containerQuestion">
+            <div class="container-login">
+                <h2>Otázka MATH:</h2>
+                <p><?php echo $question['question']; ?></p>';
+                <script>
+                    var MQ = MathQuill.getInterface(2);
+                </script>
+                <div id="keyboard">
+                    <div class="btn-group" role="group" aria-label="math functions">
+                        <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>
+                        <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\sum")'>sum</button>
+                        <button type="button" class="btn btn-default" onClick='input("\\int")'>integral</button>
+                    </div>
+                </div>
+                <a href="assets/img/napoveda.png" target="_blank" >nápoveda</a> <br>
+                <form class="latex-form" action="" method="post">
+                    <p>Type math here:
+                    </p>
+                    <div id="some_id"></div>
+                    <button>Submit</button>
+                </form>
+                <input class="form-control" type="text" id="question1" name="question1"><br>
+            </div>
+        </div>
+    </div>
+
+
     <button class="btn btn-choice send">Odovzdať</button>
     <br><br><br>
     </div>
@@ -214,4 +265,7 @@ if (isset($test)){
     <?php
 }
 ?>
+    <script src="assets/js/draw.js"></script>
+    <script src="assets/js/math.js"></script>
 <?php echo getFooter();?>
+

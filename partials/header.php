@@ -23,6 +23,8 @@ function getHead($pageTitle)
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
     <script src="assets/drawingboard.js-master/dist/drawingboard.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/drawingboard.js-master/dist/drawingboard.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js" type="text/javascript"></script>
 
 </head>
 HTML;
