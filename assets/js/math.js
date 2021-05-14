@@ -1,25 +1,20 @@
+var MQ = MathQuill.getInterface(2);
 var htmlElement = document.getElementById('some_id');
 var config = {
-    handlers: { edit: function(){ console.log('X') } },
     restrictMismatchedBrackets: true
 };
 var mathField = MQ.MathField(htmlElement, config);
 
-// mathField.typedText('2^{\\frac{3}{2}}'); // Renders the given LaTeX in the MathQuill field
-var enteredMath = mathField.latex(); // => '2^{\\frac{3}{2}}'
-// console.log(htmlElement.textContent = enteredMath;) // simple API)
+var enteredMath = mathField.latex();
 
 function input(str) {
     mathField.cmd(str)
     mathField.focus()
 }
-
-$('.latex-form').on('submit', function(e) {
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-    var form = $(this);
-    var text = mathField.latex()
-    console.log(text);
-
+function sendLatex(element){
+    var text = element.previousSibling.previousSibling;//.previousSibling.previousSibling.innerText
+    mathField = MQ.MathField(text, config);
+    text = mathField.latex()
     $.ajax({
         type: "POST",
         url: "latex.php",
@@ -32,4 +27,4 @@ $('.latex-form').on('submit', function(e) {
             //but the best would be to do when the server answers that everything went well
         }
     });
-})
+}
