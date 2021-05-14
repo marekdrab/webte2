@@ -30,7 +30,11 @@ if (isset($test)){
     $question_ids = explode(",", $test['question_id']);
     $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
     $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = ?");
+    echo "<p id='minutes' hidden>". $test['time_limit']."</p>";
+    ?>
+    <div id="ten-countdown"></div>
 
+    <?php
     $noQuestion = 1;
 
     foreach ($question_ids as $question_id){

@@ -17,6 +17,7 @@ function getHead($pageTitle)
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script src="assets/js/script.js"></script>
+    <script defer src="assets/js/david.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/partials/margins.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
