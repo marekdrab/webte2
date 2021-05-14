@@ -264,3 +264,6 @@ if (isset($test)){
 }
 ?>
 <?php echo getFooter();?>
+
+    <script src="assets/js/draw.js"></script>
+    <script src="assets/js/math.js"></script>
