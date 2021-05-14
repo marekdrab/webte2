@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $stm = $conn->prepare("SELECT * FROM tests WHERE code = ?");
         $stm->execute([$_GET['code']]);
         $test = $stm->fetch(PDO::FETCH_ASSOC);
+        $time = clone $_SESSION['startTime'];
+        $finishTime = $time->add(new DateInterval('PT' . $test['time_limit'] . 'M'));
     }
 }
 
@@ -26,8 +28,14 @@ echo getHead('test');
     <div id="countdownInfo">
         <b>Čas:</b>
         <div id="countdown"></div>
+        <?php
+        $remain = $finishTime->diff(new DateTime());
+        echo $remain->i . ' minút a ' . $remain->s . ' sekúnd';
+        //var_dump($remain);
+        ?>
     </div>
 <div class="container">
+
 <?php
 if (isset($test)){
 
