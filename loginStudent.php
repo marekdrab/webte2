@@ -11,7 +11,6 @@ $conn = (new Database())->createConnection();
 //$ga = new PHPGangsta_GoogleAuthenticator();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = (new Database())->createConnection();
     $stmt = $conn->prepare("select case when exists (select * from tests where code = :code and is_active = 1) then 1 else 0 end 'exists'");
     $stmt->bindParam(':code', $_POST['code']);
     $stmt->execute();

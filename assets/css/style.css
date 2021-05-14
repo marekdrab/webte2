@@ -129,7 +129,7 @@ h5, .qrCode{
     font-size: x-large;
 }
 .is-active {
-    background-color:#9dc88d;
+    background-color: #9dc88d;
 }
 .is-inactive{
     background-color: red;
@@ -151,9 +151,10 @@ h5, .qrCode{
     text-align: center;
     margin-bottom: 20px;
     list-style: none;
-    background-color: #15ac15;
+    background-color: #9dc88d;
     height: 40px;
     padding: 5px;
+    color: black;
 }
 
 

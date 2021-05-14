@@ -5,9 +5,9 @@ error_reporting(E_ALL);
 
 require_once "partials/loginChecker.php";
 require_once "partials/header.php";
-require_once "inc/Database.php";
+require_once "inc/DatabasePeter.php";
 
-$conn = (new Database())->createConnection();
+$conn = (new DatabasePeter())->createConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['code'])){
@@ -35,7 +35,7 @@ echo getHead('test');
         ?>
     </div>
 <div class="container">
-
+    <form action="testFinish.php" method="post">
 <?php
 if (isset($test)){
 
@@ -62,7 +62,7 @@ if (isset($test)){
                             <h2>Otázka <?php echo $noQuestion ?>:</h2>
                             <p><?php echo $question['question']; ?></p>
                             <label for="question<?php echo $noQuestion ?>">Odpoveď:</label>
-                            <input class="form-control" type="text" id="question<?php echo $noQuestion ?>" name="question<?php echo $noQuestion ?>"><br>
+                            <input class="form-control" type="text" id="question<?php echo $noQuestion ?>" name="question<?php echo $question_id ?>"><br>
                         </div>
                     </div>
                 </div>
@@ -88,16 +88,17 @@ if (isset($test)){
                                 //var_dump($stmGetAnswer);
                                 ?>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="question<?php echo $noQuestion . $noRadioAnswer ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">
+                                    <input class="form-check-input" type="radio" name="question<?php echo $question_id ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $otherAnswer ?>">
                                     <label class="form-check-label" for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $otherAnswer ?></label>
                                 </div>
 
                                 <?php
+                                $noRadioAnswer++;
                             }
 
                             ?>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="question<?php echo $noQuestion . $noRadioAnswer ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">
+                                <input class="form-check-input" type="radio" name="question<?php echo $question_id ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">
                                 <label class="form-check-label" for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $correctAnswer ?></label>
                             </div>
                         </div>
@@ -183,7 +184,7 @@ if (isset($test)){
 
                             </div>
 
-                            <input type="hidden" value="0" id="question<?php echo $noQuestion . $noRadioAnswer ?>" name="question<?php echo $noQuestion . $noRadioAnswer ?>">
+                            <input type="hidden" value="0" id="points-question3" name="points-question3">
                         </div>
                     </div>
                 </div>
@@ -192,7 +193,8 @@ if (isset($test)){
         }
         $noQuestion++;
     }
-    ?>
+    ?><?php 
+  /*
     <!--     Krelsiaca otazka -->
     <div class="row justify-content-center">
         <div class="col-md-8 containerQuestion">
@@ -202,16 +204,6 @@ if (isset($test)){
 
                     <!-- this will be the drawingboard container -->
                     <div id="board" style="width: 300px; height: 500px;></div>
-
-                    <!-- this will be the input used to pass the drawingboard content to the server -->
-                    <input type="hidden" name="image" value="">
-                    <label>Name <input type="text" name="name" /></label>
-                    <button>Submit</button>
-                </form>
-                <!--        <input class="form-control" type="text" id="question1" name="question1"><br>-->
-            </div>
-        </div>
-    </div>
 
     <!--   Matematicka otazka   -->
     <div class="row justify-content-center">
@@ -244,10 +236,10 @@ if (isset($test)){
 <!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->  
             </div>
         </div>
-    </div>
+    </div>*/ ?>
 
-
-    <button class="btn btn-choice send">Odovzdať</button>
+        <button type="submit" class="btn btn-choice send">Odovzdať</button>
+    </form>
     <br><br><br>
     </div>
     <script>
@@ -277,7 +269,5 @@ if (isset($test)){
     <?php
 }
 ?>
-    <script src="assets/js/draw.js"></script>
-    <script src="assets/js/math.js"></script>
 <?php echo getFooter();?>
 
