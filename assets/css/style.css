@@ -174,3 +174,13 @@ board for drawing canvas*/
     width: 100%;
     height: 100%;
 }
+
+.table{
+    background-color: #4d774e;
+    padding: 1rem;
+    color: ghostwhite;
+}
+
+.pad{
+    padding: 0.5rem;
+}

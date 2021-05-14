@@ -185,13 +185,12 @@ if (isset($test)){
     <script>
         let searchParams = new URLSearchParams(window.location.search)
         document.addEventListener("visibilitychange", function (){
-            document.title = document.visibilityState;
             if (document.visibilityState == "hidden"){
                 $.ajax({
                     type: 'PUT',
                     url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=hidden',
                     success: function (result){
-                        console.log("zavolal som", result)
+                        console.log("zavolal som hidden")
                     }
                 })
             }
@@ -200,7 +199,7 @@ if (isset($test)){
                     type: 'PUT',
                     url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=visible',
                     success: function (result){
-                        console.log("zavolal som", result)
+                        console.log("zavolal som visible")
                     }
                 })
             }

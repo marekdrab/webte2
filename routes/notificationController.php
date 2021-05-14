@@ -16,7 +16,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['visibility'] == 'visible'
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $insert = $conn->prepare("SELECT * FROM students WHERE active=0");
+    $insert = $conn->prepare("SELECT * FROM students");
     $insert->execute();
     $result = $insert->fetchAll();
     echo json_encode($result);
