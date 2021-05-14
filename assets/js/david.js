@@ -24,4 +24,4 @@ function countdown( elementName, minutes, seconds )
     updateTimer();
 }
 timeInMinutes = $('#minutes').text();
-countdown("ten-countdown",timeInMinutes,0);
+countdown("countdown",timeInMinutes,0);

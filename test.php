@@ -32,7 +32,7 @@ if (isset($test)){
     $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = ?");
     echo "<p id='minutes' hidden>". $test['time_limit']."</p>";
     ?>
-    <div id="ten-countdown"></div>
+    <div id="countdown"></div>
 
     <?php
     $noQuestion = 1;
@@ -179,6 +179,8 @@ if (isset($test)){
         $noQuestion++;
     }
     ?>
+    <button>Odovzdat</button>
+    <br><br><br>
     </div>
     <script>
         let searchParams = new URLSearchParams(window.location.search)
