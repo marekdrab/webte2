@@ -55,7 +55,7 @@ if (isset($test)){
                             <h2>Otázka <?php echo $noQuestion ?>:</h2>
                             <p><?php echo $question['question']; ?></p>
                             <label for="question<?php echo $noQuestion ?>">Odpoveď:</label>
-                            <input class="form-control" type="text" id="question<?php echo $noQuestion ?>" name="question<?php echo $noQuestion ?>"><br>
+                            <input class="form-control" type="text" id="question<?php echo $noQuestion ?>" name="question<?php echo $question_id ?>"><br>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ if (isset($test)){
                                 //var_dump($stmGetAnswer);
                                 ?>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="question<?php echo $noQuestion ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $otherAnswer ?>">
+                                    <input class="form-check-input" type="radio" name="question<?php echo $question_id ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $otherAnswer ?>">
                                     <label class="form-check-label" for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $otherAnswer ?></label>
                                 </div>
 
@@ -91,7 +91,7 @@ if (isset($test)){
 
                             ?>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="question<?php echo $noQuestion ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">
+                                <input class="form-check-input" type="radio" name="question<?php echo $question_id ?>" id="question<?php echo $noQuestion . $noRadioAnswer ?>" value="<?php echo $correctAnswer ?>">
                                 <label class="form-check-label" for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $correctAnswer ?></label>
                             </div>
                         </div>
