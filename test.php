@@ -232,7 +232,8 @@ if (isset($test)){
                     <div id="some_id"></div>
                     <button>Submit</button>
                 </form>
-                <input class="form-control" type="text" id="question1" name="question1"><br>
+<!--    TODO:pozriet to                                  zatial vyhodim -->
+<!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->  
             </div>
         </div>
     </div>
