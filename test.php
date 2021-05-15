@@ -24,6 +24,9 @@ echo getHead('test');
 ?>
 <script defer src="assets/js/david.js"></script>
 <body>
+<div id="doTest">
+    <b>Vypracuj TEST</b>
+</div>
 <div id="countdownInfo">
     <b>Čas:</b>
     <div id="countdown"></div>
@@ -33,7 +36,8 @@ echo getHead('test');
     //var_dump($remain);
     ?>
 </div>
-<div class="container">
+
+<div class="container conTest">
     <form action="testFinish.php" method="post">
         <?php
         if (isset($test)){
@@ -55,8 +59,8 @@ echo getHead('test');
             switch ($questionType) {
                 case "1":
                     ?>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 containerQuestion">
+                    <div class="marginTopBottom">
+                        <div class="h-100 row align-items-center">
                             <div class="container-login">
                                 <h2>Otázka <?php echo $noQuestion ?>:</h2>
                                 <p><?php echo $question['question']; ?></p>
@@ -66,6 +70,7 @@ echo getHead('test');
                             </div>
                         </div>
                     </div>
+
                     <?php
                     break;
                 case "2":
@@ -74,50 +79,51 @@ echo getHead('test');
 
                     $otherAnswersIds = explode(",", $question['all_answers_id']);
                     ?>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 containerQuestion">
-                            <div class="container-login">
-                                <h2>Otázka <?php echo $noQuestion ?>:</h2>
-                                <p><?php echo $question['question']; ?></p>
-                                <?php
-                                $noRadioAnswer = 1;
-                                foreach ($otherAnswersIds as $otherAnswersId) {
-                                    $stmGetAnswer->execute([$otherAnswersId]);
-                                    $otherAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
-                                    //var_dump($otherAnswer);
-                                    //var_dump($stmGetAnswer);
-                                    ?>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                               name="question<?php echo $question_id ?>"
-                                               id="question<?php echo $noQuestion . $noRadioAnswer ?>"
-                                               value="<?php echo $otherAnswer ?>">
-                                        <label class="form-check-label"
-                                               for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $otherAnswer ?></label>
-                                    </div>
-
-                                    <?php
-                                    $noRadioAnswer++;
-                                }
-
+                <div class="marginTopBottom">
+                    <div class="h-100 row align-items-center">
+                        <div class="container-login">
+                            <h2>Otázka <?php echo $noQuestion ?>:</h2>
+                            <p><?php echo $question['question']; ?></p>
+                            <?php
+                            $noRadioAnswer = 1;
+                            foreach ($otherAnswersIds as $otherAnswersId) {
+                                $stmGetAnswer->execute([$otherAnswersId]);
+                                $otherAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
+                                //var_dump($otherAnswer);
+                                //var_dump($stmGetAnswer);
                                 ?>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio"
                                            name="question<?php echo $question_id ?>"
                                            id="question<?php echo $noQuestion . $noRadioAnswer ?>"
-                                           value="<?php echo $correctAnswer ?>">
+                                           value="<?php echo $otherAnswer ?>">
                                     <label class="form-check-label"
-                                           for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $correctAnswer ?></label>
+                                           for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $otherAnswer ?></label>
                                 </div>
+
+                                <?php
+                                $noRadioAnswer++;
+                            }
+
+                            ?>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="question<?php echo $question_id ?>"
+                                       id="question<?php echo $noQuestion . $noRadioAnswer ?>"
+                                       value="<?php echo $correctAnswer ?>">
+                                <label class="form-check-label"
+                                       for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $correctAnswer ?></label>
                             </div>
                         </div>
                     </div>
+                </div>
+
                     <?php
                     break;
                 case "3":
                     ?>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 containerQuestion">
+                    <div class="marginTopBottom">
+                        <div class="h-100 row align-items-center">
                             <div class="container-login">
                                 <h2>Otázka <?php echo $noQuestion ?>:</h2>
                                 <p><?php echo $question['question']; ?></p>
@@ -196,6 +202,7 @@ echo getHead('test');
                             </div>
                         </div>
                     </div>
+
                     <?php
                     break;
                 case "4":

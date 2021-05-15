@@ -45,9 +45,9 @@ require_once "partials/header.php";
 echo getHead('Registrácia');
 echo getHeaderHome() ?>
 
-<div class="container justify-content-center">
-    <div class="row justify-content-center">
-        <div class="col-md-3 container-login">
+<div class="container addTest marginBottom">
+    <div class="h-100 row align-items-center">
+        <div class="container-login">
             <?php
             $secret = $ga->createSecret();
             $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
@@ -55,7 +55,7 @@ echo getHeaderHome() ?>
             ?>
         </div>
         <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
-        <form class="col-md-4 container-login" action="register.php" method="POST">
+        <form class="container-login" action="register.php" method="POST">
             <h1>Registrácia</h1>
             <br>
             <label for="email"><b>Email</b></label>
@@ -79,5 +79,6 @@ echo getHeaderHome() ?>
         </form>
     </div>
 </div>
+
 
 <?php echo getFooter(); ?>

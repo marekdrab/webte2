@@ -7,44 +7,48 @@ $conn = (new Database())->createConnection();
 echo getHead('Notifikácie');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
 
-    <body>
-    <div class="container table">
-        <table class="table" id="tableData">
-            <thead>
-            <tr>
-                <th scope="col">Meno</th>
-                <th scope="col">Priezvisko</th>
-                <th scope="col">Stav</th>
-                <th scope="col">Číslo testu</th>
-            </tr>
-            </thead>
-            <tbody class="bodyTable">
-            <?php
-            $insert = $conn->prepare("SELECT * FROM students WHERE test_submit=0");
-            $insert->execute();
-            $result = $insert->fetchAll();
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+                <table class="table" id="tableNotification">
+                    <thead>
+                    <tr>
+                        <th scope="col">Meno</th>
+                        <th scope="col">Priezvisko</th>
+                        <th scope="col">Stav</th>
+                        <th scope="col">Číslo testu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $insert = $conn->prepare("SELECT * FROM students WHERE test_submit=0");
+                    $insert->execute();
+                    $result = $insert->fetchAll();
 
-            foreach ($result as $row){?>
-                <tr class="rowTab" id="<?php echo $row['id']; ?>">
-                    <td class="name"><?php echo $row['first_name']; ?></td>
-                    <td class="surname"><?php echo $row['last_name']; ?></td>
-                    <td class="active"> <?php
-                        if($row['active'] == 0){
-                            echo "Opustil tab";
-                        }
-                        elseif ($row['active'] == 1){
-                            echo "Píše test";
-                        }
-                        ?>
-                    </td>
-                    <td><?php echo $row['test_number']; ?></td>
+                    foreach ($result as $row){?>
+                        <tr class="rowTab" id="<?php echo $row['id']; ?>">
+                            <td class="name"><?php echo $row['first_name']; ?></td>
+                            <td class="surname"><?php echo $row['last_name']; ?></td>
+                            <td class="active"> <?php
+                                if($row['active'] == 0){
+                                    echo "Opustil tab";
+                                }
+                                elseif ($row['active'] == 1){
+                                    echo "Píše test";
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo $row['test_number']; ?></td>
 
-                </tr>
-            <?php
-            }
-            ?>
-            </tbody>
-        </table>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <script>
         function isHidden(){
@@ -58,21 +62,21 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         activeState.forEach((id)=>{
                             if (id['active'] == 0){
                                 var active = "Opustil tab";
-                                $('table#tableData tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableData tr#' + id['id'] + ' td.active').css('background-color', 'red');
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'red');
                             }
 
                             else if (id['active'] == 1){
                                 var active = "Píše test";
-                                $('table#tableData tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableData tr#' + id['id'] + ' td.active').css('background-color', 'green');
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'green');
 
                             }
                         })
                         isHidden();
 
 
-                    }, 1000);
+                    }, 500);
                 }
             })
         }

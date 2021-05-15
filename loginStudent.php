@@ -39,26 +39,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 require_once "partials/header.php";
 echo getHead('Login študent');
 echo getHeaderHome()?>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-4">
-            <form action="loginStudent.php" method="POST">
-                <div class="container-login">
-                    <h1>Prihlásenie</h1>
+<div class="container addTest">
+    <div class="h-100 row align-items-center">
+        <form action="loginStudent.php" method="POST">
+            <div class="container-login">
+                <h1>Prihlásenie</h1>
 
-                    <label for="name"><b>Meno</b></label>
-                    <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
+                <label for="name"><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
 
-                    <label for="surname"><b>Priezvisko</b></label>
-                    <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
+                <label for="surname"><b>Priezvisko</b></label>
+                <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
 
-                    <label for="code"><b>Kód testu</b></label>
-                    <input type="text" class="form-control" placeholder="Vlož kód" name="code" id="code" required>
+                <label for="code"><b>Kód testu</b></label>
+                <input type="text" class="form-control" placeholder="Vlož kód" name="code" id="code" required>
 
-                    <button type="submit" class='btn btn-login btn-block'>Prihlásiť</button>
-                </div>
-            </form>
-        </div>
+                <button type="submit" class='btn btn-login btn-block'>Prihlásiť</button>
+            </div>
+        </form>
     </div>
 </div>
 

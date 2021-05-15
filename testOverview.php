@@ -15,9 +15,9 @@ require_once "partials/header.php";
 echo getHead('Test |');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
     <body>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4 container-login">
+<div class="container addTest">
+    <div class="container-login">
+        <div class="h-100 row align-items-center greenBack">
             <label for="questionType"><b>Vyber typ otázky:</b></label>
             <select class="form-control" name="questionType" id="questionType">
                 <option value="">Vyber jednu z možností...</option>
@@ -27,8 +27,8 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
             </select>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-4 container-login">
+    <div class="container-login">
+        <div class="h-100 row align-items-center greenBack">
             <label for="question"><b>Znenie otázky</b></label>
             <div><span class="error" id="questionError"></span></div>
             <input class="form-control" type="text" id="question" name="question" required>
