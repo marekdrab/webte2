@@ -21,13 +21,13 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['closeWindow'] == '1'){
     $insert->execute();
 }
 else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['sendTest'] == 'yes'){
-    $insert = $conn->prepare("UPDATE students SET active=3 WHERE id=:id");
+    $insert = $conn->prepare("UPDATE students SET active=3,test_submit = 1 WHERE id=:id");
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $insert = $conn->prepare("SELECT s.id, s.first_name, s.last_name, s.active, t.code  FROM students s left join tests t on t.code = s.test_number 
+    $insert = $conn->prepare("SELECT s.id, s.first_name, s.last_name, s.active, t.code FROM students s left join tests t on t.code = s.test_number 
 WHERE s.test_submit=0 and s.test_number = t.code and t.teacher_id = :teacher_id");
     $insert->bindParam(':teacher_id', $_SESSION['teacher_id']);
     $insert->execute();
