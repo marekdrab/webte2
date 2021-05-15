@@ -3,8 +3,6 @@ require_once "partials/header.php";
 require_once "partials/loginChecker.php";
 echo getHead('Pridať test');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
-
-<body>
 <div class="container addTest">
     <div class="h-100 row align-items-center">
         <div class="container-login">
@@ -18,5 +16,4 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
         </div>
     </div>
 </div>
-</body>
 <?php echo getFooter();?>

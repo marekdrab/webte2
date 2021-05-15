@@ -6,8 +6,6 @@ $conn = (new Database())->createConnection();
 
 echo getHead('Notifikácie');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
-
-<body>
     <div class="container">
         <div class="row">
             <div class="col-md-12 table-responsive">
@@ -84,6 +82,5 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
         }
         isHidden();
     </script>
-
 
 <?php echo getFooter();?>

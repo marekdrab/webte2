@@ -11,7 +11,6 @@ $rs = $stmt->fetchAll();
 
 echo getHead('Testy');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]);?>
-<body>
 <div class="container">
     <div class="row">
         <div class="col-md-12 table-responsive">
@@ -46,6 +45,4 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
         </div>
     </div>
 </div>
-
-</body>
 <?php echo getFooter();?>

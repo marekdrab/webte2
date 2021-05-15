@@ -14,7 +14,6 @@ $types = $getTypes->fetchAll();
 require_once "partials/header.php";
 echo getHead('Test |');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
-    <body>
 <div class="container addTest">
     <div class="container-login">
         <div class="h-100 row align-items-center greenBack">

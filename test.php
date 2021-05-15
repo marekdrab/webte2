@@ -25,8 +25,6 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 
 ?>
 <script defer src="assets/js/david.js"></script>
-<body>
-
 <div id="countdownInfo">
     <b>Čas:</b>
     <div id="countdown"></div>
