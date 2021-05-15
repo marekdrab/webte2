@@ -40,12 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pointsQuestion3 = explode("|", $item)[0];
             $submittedPairs = explode("|", $item)[1];
 
-            echo $pointsQuestion3 . '<br>' . $submittedPairs . '<br>';
-
             $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
-        } //TODO QUESTION 4 AND 5
+        }
         else if ($key == "points-question4") {
-            $stmSubmitAnswerWithInput->execute([0, $item]);
+            $stmSubmitAnswerWithInput->execute([0,$item]);
         } else if ($key == "points-question5") {
             $stmSubmitAnswerWithInput->execute([0,$item]);
         }
