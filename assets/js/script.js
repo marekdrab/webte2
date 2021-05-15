@@ -202,10 +202,10 @@ $(document).ready(function () {
                         match_1: $('#match-3-2').val(),
                         match_2: $('#match-3-3').val(),
                         match_3: $('#match-3-4').val(),
-                        answer_0: $('#match-3-1').val(),
-                        answer_1: $('#match-3-2').val(),
-                        answer_2: $('#match-3-3').val(),
-                        answer_3: $('#match-3-4').val(),
+                        answer_0: $('#answer-3-1').val(),
+                        answer_1: $('#answer-3-2').val(),
+                        answer_2: $('#answer-3-3').val(),
+                        answer_3: $('#answer-3-4').val(),
                     },
                     success: function (result) {
                         console.log(result)
