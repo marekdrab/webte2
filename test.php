@@ -35,7 +35,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
     ?>
 </div>
 <div class="container conTest">
-    <form action="testFinish.php" method="post">
+    <form action="testFinish.php?code=<?php echo $test['code'] ?>" method="post">
         <?php
         if (isset($test)){
 
