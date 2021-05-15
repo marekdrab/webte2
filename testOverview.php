@@ -107,11 +107,11 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 <table class="table" id="questionsOverview">
                     <thead>
                     <tr>
-                        <td>Otázka</td>
-                        <td>Typ otázky</td>
-                        <td>Správna odpoveď</td>
-                        <td>Ostatné odpovede</td>
-                        <td></td>
+                        <th>Otázka</th>
+                        <th>Typ otázky</th>
+                        <th>Správna odpoveď</th>
+                        <th>Ostatné odpovede</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
