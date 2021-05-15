@@ -44,7 +44,9 @@ footer{
     width: 100%;
     padding: 0.5rem;
     text-align: center;
+
 }
+
 .container{
     margin-top: 5%;
 }
@@ -295,4 +297,12 @@ td{
     margin-top: 2rem;
     margin-right: auto;
     margin-left: auto;
+}
+
+.space{
+    margin: 6rem;
+}
+
+.btn:focus{
+    box-shadow: none;
 }

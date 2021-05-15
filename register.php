@@ -80,5 +80,6 @@ echo getHeaderHome() ?>
     </div>
 </div>
 
+<div class="space"></div>
 
 <?php echo getFooter(); ?>

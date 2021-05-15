@@ -318,6 +318,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
         })
     })
 </script>
+    <div class="space"></div>
 
 <?php
 }

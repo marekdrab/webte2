@@ -100,116 +100,119 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="container">
         <div class="row">
-            <table id="questionsOverview">
-                <thead>
-                <tr>
-                    <td>Otázka</td>
-                    <td>Tzp otázky</td>
-                    <td>Správna odpoveď</td>
-                    <td>Ostatné odpovede</td>
-                    <td></td>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $test = $conn->prepare("select * from tests where code = :code");
-                $test->bindParam(':code', $_GET['code']);
-                $test->execute();
-                $test = $test->fetch();
-                if ($test['question_id'] != "") {
-                    $question_ids = explode(",", $test['question_id']);
-                    $stmGetQuestion = $conn->prepare("SELECT q.*,qt.type FROM questions q 
+            <div class="col-md-12 table-responsive">
+                <table class="table" id="questionsOverview">
+                    <thead>
+                    <tr>
+                        <td>Otázka</td>
+                        <td>Typ otázky</td>
+                        <td>Správna odpoveď</td>
+                        <td>Ostatné odpovede</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $test = $conn->prepare("select * from tests where code = :code");
+                    $test->bindParam(':code', $_GET['code']);
+                    $test->execute();
+                    $test = $test->fetch();
+                    if ($test['question_id'] != "") {
+                        $question_ids = explode(",", $test['question_id']);
+                        $stmGetQuestion = $conn->prepare("SELECT q.*,qt.type FROM questions q 
     join no_question_type qt on q.type_id = qt.id
     WHERE q.id = :id");
-                    $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = :id");
-                    foreach ($question_ids as $id) {
-                        $stmGetQuestion->bindParam(':id', $id);
-                        $stmGetQuestion->execute();
-                        $question = $stmGetQuestion->fetch();
-                        $questionType = $question['type_id'];
+                        $stmGetAnswer = $conn->prepare("SELECT * FROM answers WHERE id = :id");
+                        foreach ($question_ids as $id) {
+                            $stmGetQuestion->bindParam(':id', $id);
+                            $stmGetQuestion->execute();
+                            $question = $stmGetQuestion->fetch();
+                            $questionType = $question['type_id'];
 
-                        switch ($questionType) {
-                            case "1":
-                                $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
-                                $stmGetAnswer->execute();
-                                $correctAnswer = $stmGetAnswer->fetch();
-                                ?>
-                                <tr id="<?php echo $question['id']; ?>">
-                                    <td><?php echo $question['question']; ?></td>
-                                    <td><?php echo $question['type']; ?></td>
-                                    <td><?php echo $correctAnswer['answer']; ?></td>
-                                    <td><?php ?></td>
-                                    <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
-                                </tr>
-                                <?php
-                                break;
-                            case "2":
-                                $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
-                                $stmGetAnswer->execute();
-                                $correctAnswer = $stmGetAnswer->fetch();
-                                $otherAnswersIds = explode(",", $question['all_answers_id']);
-                                $otherAnswers = array();
-                                foreach ($otherAnswersIds as $answerId) {
-                                    $stmGetAnswer->bindParam(':id', $answerId);
+                            switch ($questionType) {
+                                case "1":
+                                    $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
                                     $stmGetAnswer->execute();
-                                    $answer = $stmGetAnswer->fetch();
-                                    array_push($otherAnswers, $answer['answer']);
-                                }
+                                    $correctAnswer = $stmGetAnswer->fetch();
+                                    ?>
+                                    <tr id="<?php echo $question['id']; ?>">
+                                        <td><?php echo $question['question']; ?></td>
+                                        <td><?php echo $question['type']; ?></td>
+                                        <td><?php echo $correctAnswer['answer']; ?></td>
+                                        <td><?php ?></td>
+                                        <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
+                                    </tr>
+                                    <?php
+                                    break;
+                                case "2":
+                                    $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
+                                    $stmGetAnswer->execute();
+                                    $correctAnswer = $stmGetAnswer->fetch();
+                                    $otherAnswersIds = explode(",", $question['all_answers_id']);
+                                    $otherAnswers = array();
+                                    foreach ($otherAnswersIds as $answerId) {
+                                        $stmGetAnswer->bindParam(':id', $answerId);
+                                        $stmGetAnswer->execute();
+                                        $answer = $stmGetAnswer->fetch();
+                                        array_push($otherAnswers, $answer['answer']);
+                                    }
 
-                                ?>
-                                <tr id="<?php echo $question['id']; ?>">
-                                    <td><?php echo $question['question']; ?></td>
-                                    <td><?php echo $question['type']; ?></td>
-                                    <td><?php echo $correctAnswer['answer']; ?></td>
-                                    <td><?php foreach ($otherAnswers as $answer) {
-                                            echo $answer . ', ';
-                                        } ?></td>
-                                    <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
-                                </tr>
-                                <?php
-                                break;
-                            case "3":
-                                $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
-                                $stmGetAnswer->execute();
-                                $correctAnswer = $stmGetAnswer->fetch();
+                                    ?>
+                                    <tr id="<?php echo $question['id']; ?>">
+                                        <td><?php echo $question['question']; ?></td>
+                                        <td><?php echo $question['type']; ?></td>
+                                        <td><?php echo $correctAnswer['answer']; ?></td>
+                                        <td><?php foreach ($otherAnswers as $answer) {
+                                                echo $answer . ', ';
+                                            } ?></td>
+                                        <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
+                                    </tr>
+                                    <?php
+                                    break;
+                                case "3":
+                                    $stmGetAnswer->bindParam(':id', $question['correct_answer_id']);
+                                    $stmGetAnswer->execute();
+                                    $correctAnswer = $stmGetAnswer->fetch();
 
-                                $arrPairs = explode("&", $correctAnswer['answer']);
-                                $matches = explode("~", $arrPairs[0]);
-                                $answers = explode("~", $arrPairs[1]);
-                                ?>
-                                <tr id="<?php echo $question['id']; ?>">
-                                    <td><?php echo $question['question']; ?></td>
-                                    <td><?php echo $question['type']; ?></td>
-                                    <td><?php for ($i = 0; $i < sizeof($matches); $i++) echo $matches[$i] . '+' . $answers[$i] . ';'; ?></td>
-                                    <td><?php ?></td>
-                                    <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
-                                </tr>
-                                <?php
-                                break;
-                            case "4":
-                            case "5":
-                                ?>
-                                <tr id="<?php echo $question['id']; ?>">
-                                    <td><?php echo $question['question']; ?></td>
-                                    <td><?php echo $question['type']; ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
-                                </tr>
-                                <?php
-                                break;
+                                    $arrPairs = explode("&", $correctAnswer['answer']);
+                                    $matches = explode("~", $arrPairs[0]);
+                                    $answers = explode("~", $arrPairs[1]);
+                                    ?>
+                                    <tr id="<?php echo $question['id']; ?>">
+                                        <td><?php echo $question['question']; ?></td>
+                                        <td><?php echo $question['type']; ?></td>
+                                        <td><?php for ($i = 0; $i < sizeof($matches); $i++) echo $matches[$i] . '+' . $answers[$i] . ';'; ?></td>
+                                        <td><?php ?></td>
+                                        <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
+                                    </tr>
+                                    <?php
+                                    break;
+                                case "4":
+                                case "5":
+                                    ?>
+                                    <tr id="<?php echo $question['id']; ?>">
+                                        <td><?php echo $question['question']; ?></td>
+                                        <td><?php echo $question['type']; ?></td>
+                                        <td><?php ?></td>
+                                        <td><?php ?></td>
+                                        <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></td>
+                                    </tr>
+                                    <?php
+                                    break;
 
 
+                            }
                         }
                     }
-                }
-                ?>
+                    ?>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="space"></div>
+<div class="space"></div>
 <?php echo getFooter(); ?>

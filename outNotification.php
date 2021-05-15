@@ -131,5 +131,6 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
         }
         isHidden();
     </script>
+<div class="space"></div>
 
 <?php echo getFooter();?>
