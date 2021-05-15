@@ -54,8 +54,8 @@ echo getHeaderHome() ?>
             echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="' . $qrCodeUrl . '" />' . "</h4>";
             ?>
         </div>
-        <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
         <form class="container-login" action="register.php" method="POST">
+            <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
             <h1>Registrácia</h1>
             <br>
             <label for="email"><b>Email</b></label>
