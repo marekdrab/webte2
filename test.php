@@ -203,60 +203,120 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                     <?php
                     break;
                 case "4":
-                    //TODO Kod pre stvrtu otazku
+                    ?>
+        <div class="marginTopBottom">
+            <div class="h-100 row align-items-center">
+                <div class="container-login" style="width: 100%; height: 700px;">
+                    <h2>Otázka <?php echo $noQuestion ?>:</h2>
+                    <p><?php echo $question['question']; ?></p>
+
+                    <!-- this will be the drawingboard container -->
+                    <div id="board" style="height: 500px;" class="col-md-10"></div><br>
+                    <button class="btn btn-login" type="button" onclick="sendCanva(this, '<?php echo $_SESSION['name']; ?>', '<?php echo $_SESSION['surname']; ?>')">Uložiť</button>
+
+                </div>
+<!--                    <label for="question--><?php //echo $noQuestion ?><!--">Odpoveď:</label>-->
+<!--                    <input class="form-control" type="text" id="question--><?php //echo $noQuestion ?><!--"-->
+<!--                           name="question--><?php //echo $question_id ?><!--"><br>-->
+
+<!--                <input class="btn btn-login" type="button" onclick="sendCanva(this)" value="Uložiť">-->
+                </div>
+                <input type="hidden" value="0" id="points-question4" name="points-question4">
+
+            </div>
+
+<!--                    //TODO Kod pre stvrtu otazku-->
+                    <?php
                     break;
                 case "5":
-                    //TODO Kod pre piatu otazku
+                    ?>
+        <div class="marginTopBottom">
+            <div class="h-100 row align-items-center">
+                    <div class="container-login">
+                        <h2>Otázka <?php echo $noQuestion ?>:</h2>
+                        <p><?php echo $question['question']; ?></p>
+                        <div id="keyboard" style="overflow: auto">
+                            <div class="btn-group" role="group" aria-label="math functions">
+                                <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>
+                                <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\sum")'>sum</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\int")'>integral</button>
+                            </div>
+                        </div>
+                        <a href="assets/img/napoveda.png" target="_blank" class="mathHint"><img src="assets/img/mathHint.png"> nápoveda</a> <br>
+
+                        <p>Tu napíšte vašu odpoveď: </p>
+                        <div  id="some_id" class="form-control math" ></div>
+                        <button class="btn btn-login" type="button" onclick="sendLatex(this); getText()">Uložiť</button>
+                        <input type="hidden" value="0" id="points-question5" name="points-question5">
+
+
+
+                        <!--                        <label for="question--><?php //echo $noQuestion ?><!--">Odpoveď:</label>-->
+<!--                        <input class="form-control" type="text" id="question--><?php //echo $noQuestion ?><!--"-->
+<!--                               name="question--><?php //echo $question_id ?><!--"><br>-->
+                        <!--    TODO:pozriet to                                  zatial vyhodim -->
+                        <!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->
+                    </div>
+            </div>
+        </div>
+<!--                    //TODO Kod pre piatu otazku-->
+                    <?php
                     break;
             }
             $noQuestion++;
         }
         ?><?php
-        /*
-          <!--     Krelsiaca otazka -->
-          <div class="row justify-content-center">
-              <div class="col-md-8 containerQuestion">
-                  <div class="container-login" >
-                      <h2>Otázka KRESLENIE:</h2>
-                      <form class="drawing-form" action="sendCanva.php" method="post">
-
-                          <!-- this will be the drawingboard container -->
-                          <div id="board" style="width: 300px; height: 500px;></div>
-
-          <!--   Matematicka otazka   -->
-          <div class="row justify-content-center">
-              <div class="col-md-8 containerQuestion">
-                  <div class="container-login">
-                      <h2>Otázka MATH:</h2>
-                      <p><?php echo $question['question']; ?></p>';
-                      <script>
-                          var MQ = MathQuill.getInterface(2);
-                      </script>
-                      <div id="keyboard">
-                          <div class="btn-group" role="group" aria-label="math functions">
-                              <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>
-                              <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>
-                              <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>
-                              <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>
-                              <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>
-                              <button type="button" class="btn btn-default" onClick='input("\\sum")'>sum</button>
-                              <button type="button" class="btn btn-default" onClick='input("\\int")'>integral</button>
-                          </div>
-                      </div>
-                      <a href="assets/img/napoveda.png" target="_blank" >nápoveda</a> <br>
-                          <p>Type math here:
-                          </p>
-                          <div id="some_id"></div>
-                          <button onclick="sendLatex(this)">Submit</button>
-      <!--    TODO:pozriet to                                  zatial vyhodim -->
-      <!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->
-                  </div>
-              </div>
-          </div>*/ ?>
+        ?>
         <button onclick="sendTest()" type="submit" class="btn btn-choice send">Odovzdať</button>
     </form>
-    <br><br><br>
+
+<!--    <!--     Krelsiaca otazka -->-->
+<!--    <div class="row justify-content-center" >-->
+<!--        <div class="col-md-8 containerQuestion" >-->
+<!--            <div class="container-login" style="width: 100%; height: 700px;">-->
+<!--                <h2>Otázka KRESLENIE:</h2>-->
+<!---->
+<!--                <!-- this will be the drawingboard container -->-->
+<!--                <!--                <div id="board" style="width: 300px; height: 500px;"></div>-->-->
+<!--                <div id="board" style="height: 500px;" class="col-md-10"></div><br>-->
+<!--                <button onclick="sendCanva(this)">Submit</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--<!--             Matematicka otazka   -->-->
+<!--          <div class="row justify-content-center">-->
+<!--                    <div class="col-md-8 containerQuestion">-->
+<!--                        <div class="container-login">-->
+<!--                            <h2>Otázka MATH:</h2>-->
+<!--                            <div id="keyboard" style="overflow: auto">-->
+<!--                                <div class="btn-group" role="group" aria-label="math functions">-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\sum")'>sum</button>-->
+<!--                                    <button type="button" class="btn btn-default" onClick='input("\\int")'>integral</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <a href="assets/img/napoveda.png" target="_blank" class="mathHint"><img src="assets/img/mathHint.png"></img>nápoveda</a> <br>-->
+<!--                            <p>Tu napíšte vašu odpoveď: </p>-->
+<!--                            <div  id="some_id" class="form-control math" ></div>-->
+<!--                            <button onclick="sendLatex(this)">Submit</button>-->
+<!--                            <!--    TODO:pozriet to                                  zatial vyhodim -->-->
+<!--                            <!--                 <input class="form-control" type="text" id="question1" name="question1"><br> -->-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--            </div>-->
+            <br><br><br>
 </div>
+
+<script src="assets/js/draw.js"></script>
+<script src="assets/js/math.js"></script>
 <script>
     function sendTest(){
         $.ajax({
@@ -304,5 +364,6 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 <?php
 }
 ?>
+
 <?php echo getFooter(); ?>
 

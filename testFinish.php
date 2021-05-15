@@ -10,6 +10,7 @@ require_once "inc/Database.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = (new Database())->createConnection();
 
+    $stmSubmitAnswerOnlyInput = $conn->prepare("INSERT INTO submitted_answers(input_answer) VALUES(?)");
     $stmSubmitAnswerWithInput = $conn->prepare("INSERT INTO submitted_answers(is_correct, input_answer) VALUES(?,?)");
     $stmSubmitAnswer = $conn->prepare("INSERT INTO submitted_answers(is_correct) VALUES(?)");
     $getLastInsert = $conn->prepare("SELECT LAST_INSERT_ID() 'last_insert'");
@@ -43,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
         } //TODO QUESTION 4 AND 5
-        else if ($key == "TODO QUESTION 4") {
-
-        } else if ($key == "TODO QUESTION 5") {
-
+        else if ($key == "points-question4") {
+            $stmSubmitAnswerWithInput->execute([0, $item]);
+        } else if ($key == "points-question5") {
+            $stmSubmitAnswerWithInput->execute([0,$item]);
         }
 
         $getLastInsert->execute();

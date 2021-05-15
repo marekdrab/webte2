@@ -11,47 +11,34 @@ if(isset($_POST['latex'])){
 
     die();
 }
-
+if(isset($_POST['surname'])) {
+    $student_username = $_POST['name'];
+    $student_surname = $_POST['surname'];
+}
 
 define("DIR", "drawings/");
 
 $img = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_URL);
-$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+//$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-//echo "<br><br>post: ".var_dump(INPUT_POST);
-//echo "<br><br>img: ".var_dump($img);
-//
-//echo "<br><br>name: ".var_dump($name);
 //TODO: zmenit name na ID studenta plus $date
 $date = date("Y-M-D_H:i:s");
-var_dump($date);
-$name.= $date;
+//var_dump($date);
+$name = $date;
+$name = $student_username."_".$student_surname.$name;
 
 //see http://j-query.blogspot.fr/2011/02/save-base64-encoded-canvas-image-to-png.html
 $img = str_replace(' ', '+', str_replace('data:image/png;base64,', '', $img));
 $data = base64_decode($img);
 
-//echo "<br><br>img: ".var_dump($img);
-//
-//echo "<br><br>data: ".var_dump($data);
-
 //create the image png file with the given name
 try{
-file_put_contents(DIR. str_replace(' ', '_', $name) .'.png', $data);
-echo "Success";
+    file_put_contents(DIR. str_replace(' ', '_', $name) .'.png', $data);
+    echo $name.".png";
 }
 catch (Exception $e){
     echo $e;
 }
 
-$id_studenta = 1;
-$id_testu = 1;
-
-$sql = "INSERT INTO canvas(id_studenta, id_testu, name) VALUES(?,?,?);";
-$stm = $conn->prepare($sql);
-$rows = $stm->execute([$id_studenta, $id_testu, $name]);
-//$rows = $stm->fetchAll();
-
-//exit();
 ?>
 
