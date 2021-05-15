@@ -8,56 +8,62 @@ session_start();
 require_once "inc/Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = (new Database())->createConnection();
+    if (isset($_POST) && isset($_GET) && isset($_SESSION)) {
+        $conn = (new Database())->createConnection();
 
-    $stmSubmitAnswerOnlyInput = $conn->prepare("INSERT INTO submitted_answers(input_answer) VALUES(?)");
-    $stmSubmitAnswerWithInput = $conn->prepare("INSERT INTO submitted_answers(is_correct, input_answer) VALUES(?,?)");
-    $stmSubmitAnswer = $conn->prepare("INSERT INTO submitted_answers(is_correct) VALUES(?)");
-    $getLastInsert = $conn->prepare("SELECT LAST_INSERT_ID() 'last_insert'");
-    $stmSubmitTest = $conn->prepare("INSERT INTO submitted_tests(test_code, student_id, submitted_answers_id) VALUES(?,?,?)");
+        $stmSubmitAnswerOnlyInput = $conn->prepare("INSERT INTO submitted_answers(input_answer) VALUES(?)");
+        $stmSubmitAnswerWithInput = $conn->prepare("INSERT INTO submitted_answers(is_correct, input_answer) VALUES(?,?)");
+        $stmSubmitAnswer = $conn->prepare("INSERT INTO submitted_answers(is_correct) VALUES(?)");
+        $getLastInsert = $conn->prepare("SELECT LAST_INSERT_ID() 'last_insert'");
+        $stmSubmitTest = $conn->prepare("INSERT INTO submitted_tests(test_code, student_id, submitted_answers_id) VALUES(?,?,?)");
 
-    $submittedAnswersIds = "";
+        $submittedAnswersIds = "";
 
-    foreach ($_POST as $key => $item) {
-        if (substr($key, 0, 8) == "question") {
-            $questionId = substr($key, "8");
+        foreach ($_POST as $key => $item) {
+            if (substr($key, 0, 8) == "question") {
+                $questionId = substr($key, "8");
 
-            $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
-            $stmGetCorrectAnswer = $conn->prepare("SELECT answer FROM answers WHERE id = ?");
+                $stmGetQuestion = $conn->prepare("SELECT * FROM questions WHERE id = ?");
+                $stmGetCorrectAnswer = $conn->prepare("SELECT answer FROM answers WHERE id = ?");
 
-            $stmGetQuestion->execute([$questionId]);
-            $question = $stmGetQuestion->fetch(PDO::FETCH_ASSOC);
+                $stmGetQuestion->execute([$questionId]);
+                $question = $stmGetQuestion->fetch(PDO::FETCH_ASSOC);
 
-            $stmGetCorrectAnswer->execute([$question['correct_answer_id']]);
-            $correctAnswer = $stmGetCorrectAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
+                $stmGetCorrectAnswer->execute([$question['correct_answer_id']]);
+                $correctAnswer = $stmGetCorrectAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
 
-            if ($item == $correctAnswer) {
-                $stmSubmitAnswerWithInput->execute([1, $item]);
-            } else {
+                if (strtolower($item) == strtolower($correctAnswer)) {
+                    $stmSubmitAnswerWithInput->execute([1, $item]);
+                } else {
+                    $stmSubmitAnswerWithInput->execute([0, $item]);
+                }
+            } else if ($key == "points-question3") {
+                $pointsQuestion3 = explode("|", $item)[0];
+                if (isset(explode("|", $item)[1])) {
+                    $submittedPairs = explode("|", $item)[1];
+                }
+                else{
+                    $submittedPairs = "nezadane";
+                }
+                $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
+            } else if ($key == "points-question4") {
+                $stmSubmitAnswerWithInput->execute([0, $item]);
+            } else if ($key == "points-question5") {
                 $stmSubmitAnswerWithInput->execute([0, $item]);
             }
-        } else if ($key == "points-question3") {
-            $pointsQuestion3 = explode("|", $item)[0];
-            $submittedPairs = explode("|", $item)[1];
+            $getLastInsert->execute();
+            $submitAnswerId = $getLastInsert->fetch()['last_insert'];
 
-            $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
+            $submittedAnswersIds = $submittedAnswersIds . $submitAnswerId . ",";
         }
-        else if ($key == "points-question4") {
-            $stmSubmitAnswerWithInput->execute([0,$item]);
-        } else if ($key == "points-question5") {
-            $stmSubmitAnswerWithInput->execute([0,$item]);
-        }
+        $submittedAnswersIds = substr($submittedAnswersIds, 0, -1);
 
-        $getLastInsert->execute();
-        $submitAnswerId = $getLastInsert->fetch()['last_insert'];
+        $stmSubmitTest->execute([$_GET['code'], $_SESSION['student_id'], $submittedAnswersIds]);
 
-        $submittedAnswersIds = $submittedAnswersIds . $submitAnswerId . ",";
+        session_destroy();
+        header("Location: exit.php");
     }
-
-    $submittedAnswersIds = substr($submittedAnswersIds, 0, -1);
-
-    $stmSubmitTest->execute([$_GET['code'], $_SESSION['student_id'], $submittedAnswersIds]);
-
-    session_destroy();
-    header("Location: exit.php");
+    else{
+        echo "Niekde nastala chyba";
+    }
 }
