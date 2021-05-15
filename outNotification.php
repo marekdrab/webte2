@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once "partials/header.php";
+require_once "partials/loginChecker.php";
 require_once "inc/Database.php";
 $conn = (new Database())->createConnection();
 
@@ -22,7 +22,9 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                     </thead>
                     <tbody>
                     <?php
-                    $insert = $conn->prepare("SELECT * FROM students WHERE test_submit=0");
+                    $insert = $conn->prepare("SELECT * FROM students s left join tests t on t.code = s.test_number 
+                                                    WHERE test_submit=0 and t.teacher_id = :teacher_id");
+                    $insert->bindParam(':teacher_id',$_SESSION['teacher_id']);
                     $insert->execute();
                     $result = $insert->fetchAll();
 
