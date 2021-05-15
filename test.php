@@ -83,39 +83,51 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             <h2>Otázka <?php echo $noQuestion ?>:</h2>
                             <p><?php echo $question['question']; ?></p>
                             <?php
-                            $noRadioAnswer = 1;
+                            $radioButtonOptions = [];
                             foreach ($otherAnswersIds as $otherAnswersId) {
                                 $stmGetAnswer->execute([$otherAnswersId]);
                                 $otherAnswer = $stmGetAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
-                                //var_dump($otherAnswer);
-                                //var_dump($stmGetAnswer);
-                                ?>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio"
-                                           name="question<?php echo $question_id ?>"
-                                           id="question<?php echo $noQuestion . $noRadioAnswer ?>"
-                                           value="<?php echo $otherAnswer ?>">
-                                    <label class="form-check-label"
-                                           for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $otherAnswer ?></label>
-                                </div>
-
-                                <?php
-                                $noRadioAnswer++;
+                                array_push($radioButtonOptions, $otherAnswer);
                             }
+                            array_push($radioButtonOptions, $correctAnswer);
+                            shuffle($radioButtonOptions);
+                                ?>
 
-                            ?>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
                                        name="question<?php echo $question_id ?>"
-                                       id="question<?php echo $noQuestion . $noRadioAnswer ?>"
-                                       value="<?php echo $correctAnswer ?>">
+                                       value="<?php echo $correctAnswer ?>"
+                                       id="question<?php echo $noQuestion ?>1" checked>
                                 <label class="form-check-label"
-                                       for="question<?php echo $noQuestion . $noRadioAnswer ?>"><?php echo $correctAnswer ?></label>
+                                       for="question<?php echo $noQuestion ?>1"><?php echo $radioButtonOptions[0] ?></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="question<?php echo $question_id ?>"
+                                       value="<?php echo $correctAnswer ?>"
+                                       id="question<?php echo $noQuestion ?>2">
+                                <label class="form-check-label"
+                                       for="question<?php echo $noQuestion ?>2"><?php echo $radioButtonOptions[1] ?></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="question<?php echo $question_id ?>"
+                                       value="<?php echo $correctAnswer ?>"
+                                       id="question<?php echo $noQuestion ?>3">
+                                <label class="form-check-label"
+                                       for="question<?php echo $noQuestion ?>3"><?php echo $radioButtonOptions[2] ?></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="question<?php echo $question_id ?>"
+                                       value="<?php echo $correctAnswer ?>"
+                                       id="question<?php echo $noQuestion ?>4">
+                                <label class="form-check-label"
+                                       for="question<?php echo $noQuestion ?>4"><?php echo $radioButtonOptions[3] ?></label>
                             </div>
                         </div>
                     </div>
                 </div>
-
                     <?php
                     break;
                 case "3":
