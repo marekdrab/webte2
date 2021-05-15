@@ -14,13 +14,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $stm = $conn->prepare($sql);
     $stm->execute([$_POST['email']]);
     $user= $stm->fetch(PDO::FETCH_ASSOC);
-
     if(password_verify($_POST['psw'],$user['password'])){
       if (isset($_POST['code'])) {
           $code = $_POST['code'];
           $ga = new PHPGangsta_GoogleAuthenticator();
           $result = $ga->verifyCode($user['secret'], $code);
           if ($result == 1) {
+              $_SESSION['teacher_id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['surname'] = $user['surname'];
             $_SESSION['loginType'] = "Teacher";

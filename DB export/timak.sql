@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: localhost:3306
--- Čas generovania: St 12.Máj 2021, 18:45
+-- Čas generovania: So 15.Máj 2021, 08:21
 -- Verzia serveru: 8.0.23-0ubuntu0.20.04.1
 -- Verzia PHP: 8.0.3
 
@@ -30,8 +30,45 @@ SET time_zone = "+00:00";
 CREATE TABLE `answers` (
   `id` int UNSIGNED NOT NULL,
   `answer` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
-  `is_correct` tinyint NOT NULL
+  `is_correct` tinyint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `canvas`
+--
+
+CREATE TABLE `canvas` (
+  `id` bigint NOT NULL,
+  `id_studenta` int NOT NULL,
+  `id_testu` int NOT NULL,
+  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
+  `body` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
+
+--
+-- Sťahujem dáta pre tabuľku `canvas`
+--
+
+INSERT INTO `canvas` (`id`, `id_studenta`, `id_testu`, `name`, `body`) VALUES
+(6, 1, 1, '232142021-May-Fri_13:41:57', NULL),
+(7, 1, 1, 'tomas2021-May-Fri_15:33:17', NULL),
+(8, 1, 1, '2021-May-Fri_15:50:05', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `latex`
+--
+
+CREATE TABLE `latex` (
+  `id` int NOT NULL,
+  `id_studenta` int NOT NULL,
+  `id_testu` int NOT NULL,
+  `value` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
+  `body` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
 -- --------------------------------------------------------
 
@@ -49,7 +86,7 @@ CREATE TABLE `no_question_type` (
 --
 
 INSERT INTO `no_question_type` (`id`, `type`) VALUES
-(1, ' otvorená odpoveď'),
+(1, 'otvorená odpoveď'),
 (2, 'možnosti'),
 (3, 'párovanie'),
 (4, 'kreslenie'),
@@ -65,7 +102,7 @@ CREATE TABLE `questions` (
   `id` int UNSIGNED NOT NULL,
   `question` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
   `type_id` int NOT NULL,
-  `correct_answer_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
+  `correct_answer_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci DEFAULT NULL,
   `all_answers_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
@@ -78,7 +115,10 @@ CREATE TABLE `questions` (
 CREATE TABLE `students` (
   `id` int UNSIGNED NOT NULL,
   `first_name` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
-  `last_name` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL
+  `last_name` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci NOT NULL,
+  `active` tinyint NOT NULL,
+  `test_number` int NOT NULL,
+  `test_submit` tinyint NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
 -- --------------------------------------------------------
@@ -127,11 +167,11 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `surname`, `email`, `password`, `secret`) VALUES
-(5, 'David', 'Gavenda', 'gavendadavid@gmail.com', '$2y$10$VjCF4lCdVzqy3MvLA8Sile5JMNHFXLRt6qiHNqemheFcySRClADJO', 'YBBJZJRQN3OO2VLL'),
 (6, 'Marek', 'Drab', 'marek.drablp@gmail.com', '$2y$10$Dd6MsXfyNxe39D.uBZVr8e2YQitWSfjzEfMxCivj13KmGZsppi3vW', 'DYG2UCL4I4TG3MIO'),
 (8, 'peter', 'najlepšie', 'peter@mail.to', '$2y$10$MK4yZfkxFyejRQgFnPqF1OCpdHErM4VkF0S9K6uS42MH6cUboUtn6', 'VPCSLW24E6BATNUQ'),
 (9, 'Michal', 'Hamrák', 'xhamrak@stuba.sk', '$2y$10$ZvOjbDWkgKx/FvgoMXjjHeGc.m2fLvYITj7/f98b2/ZRrgjTZb1lK', 'PYDGKGAL5NYXAJ3K'),
-(10, 'David', 'Gavenda', 'davidgavenda@mail.com', '$2y$10$7dQ3Z/a0jYjXU5FjUME5zOTze27Tc20siGskTiuvB75e88GkPYDK6', '');
+(15, 'David', 'Gavenda', 'piskot@gmail.com', '$2y$10$l5KfbjaPyCvyl93uXQPyoOJsroO9gclJT5BC8imevfN91IZQbpCGm', '62ABJTLP4DFTIWGF'),
+(22, 'Tomas', 'Danko', 'danko.tomas.ts@gmail.com', '$2y$10$a8bxzlNMj05V6JaQ0gfCB.gyMs4atHxKwj9RI1T1F2CMOQRAE85wi', '4WMCZQZYICMQP3B6');
 
 -- --------------------------------------------------------
 
@@ -145,18 +185,16 @@ CREATE TABLE `tests` (
   `code` int NOT NULL,
   `question_id` varchar(512) CHARACTER SET utf8 COLLATE utf8_slovak_ci DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
-  `time_limit` int NOT NULL
+  `time_limit` int NOT NULL,
+  `teacher_id` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
 --
 -- Sťahujem dáta pre tabuľku `tests`
 --
 
-INSERT INTO `tests` (`id`, `name`, `code`, `question_id`, `is_active`, `time_limit`) VALUES
-(17, 'test 3 ', 17773, NULL, 1, 22),
-(16, 'test 2', 18540, NULL, 1, 25),
-(15, 'test 1 ', 37307, NULL, 1, 23),
-(19, 'test4', 95663, NULL, 1, 10);
+INSERT INTO `tests` (`id`, `name`, `code`, `question_id`, `is_active`, `time_limit`, `teacher_id`) VALUES
+(37, 'nevidite ma', 99274, '', 0, 25, 6);
 
 --
 -- Kľúče pre exportované tabuľky
@@ -166,6 +204,19 @@ INSERT INTO `tests` (`id`, `name`, `code`, `question_id`, `is_active`, `time_lim
 -- Indexy pre tabuľku `answers`
 --
 ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `canvas`
+--
+ALTER TABLE `canvas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexy pre tabuľku `latex`
+--
+ALTER TABLE `latex`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -219,7 +270,19 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT pre tabuľku `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+
+--
+-- AUTO_INCREMENT pre tabuľku `canvas`
+--
+ALTER TABLE `canvas`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pre tabuľku `latex`
+--
+ALTER TABLE `latex`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pre tabuľku `no_question_type`
@@ -231,13 +294,13 @@ ALTER TABLE `no_question_type`
 -- AUTO_INCREMENT pre tabuľku `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT pre tabuľku `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT pre tabuľku `submitted_answers`
@@ -255,13 +318,13 @@ ALTER TABLE `submitted_tests`
 -- AUTO_INCREMENT pre tabuľku `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pre tabuľku `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

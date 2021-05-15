@@ -19,13 +19,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $table != 'question') {
     $code = rand(10000, 99999);
-    $insert = $conn->prepare("insert into tests(name, time_limit,is_active,code, question_id) 
-values (:name,:time_limit,:is_active,:code, '')");
+    $insert = $conn->prepare("insert into tests(name, time_limit,is_active,code, question_id,teacher_id) 
+values (:name,:time_limit,:is_active,:code, '',:teacher_id)");
     $insert->bindParam(':name', $_POST['name']);
     $insert->bindParam(':time_limit', $_POST['timeLimit']);
     $insert->bindParam(':code', $code);
     $is_active = 0;
     $insert->bindParam(':is_active', $is_active);
+    $insert->bindParam(':teacher_id', $_SESSION['teacher_id']);
     $insert->execute();
     echo $code;
 }
