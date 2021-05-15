@@ -22,7 +22,7 @@ $(document).ready(function () {
         }
     });
     $('#tableData').css('width', '')
-
+    //pridanie testu
     $('#addTest').click(function () {
         var error = false
         if ($('#name').val() == '') {
@@ -50,6 +50,7 @@ $(document).ready(function () {
                 }
             })
     })
+    //zobrazovanie inputov pre odpovede
     $('#questionType').change(function () {
         if ($('#questionType').val() == 1)
             $('#questionShort').css('display', 'block')
@@ -73,6 +74,7 @@ $(document).ready(function () {
             $('#questionMaths').css('display', 'none')
 
     })
+    //pridanie otazok
     $('#addQuestion').click(function () {
         let searchParams = new URLSearchParams(window.location.search)
         if ($('#question').val() == '') {
@@ -94,8 +96,10 @@ $(document).ready(function () {
                         },
                         success: function (result) {
                             console.log(result)
-                            $('#questionShort input[type="text"]').val('');
+                            $('#questionsOverview > tbody:last-child').append(getQuestionsOverviewTableRow($('#question').val(), 'Otvorená odpoveď',$('#answer-1-1').val(),''));
                             $('#question').val('');
+                            $('#questionShort input[type="text"]').val('');
+
                         }
                     })
                 }
@@ -137,6 +141,8 @@ $(document).ready(function () {
                         answer_2: $('#answer-2-4').val(),
                     },
                     success: function (result) {
+                        $('#questionsOverview > tbody:last-child').append(getQuestionsOverviewTableRow($('#question').val(),'Možnosti',$('#answer-2-1').val(),
+                            $('#answer-2-2').val()+', '+$('#answer-2-3').val()+', '+$('#answer-2-4').val()));
                         $('#questionChoices input[type="text"]').val('');
                         $('#question').val('');
                         console.log(result)
@@ -209,6 +215,8 @@ $(document).ready(function () {
                     },
                     success: function (result) {
                         console.log(result)
+                       /* $('#questionsOverview > tbody:last-child').append(getQuestionsOverviewTableRow($('#question').val(),'Možnosti',$('#answer-2-1').val(),
+                            $('#answer-2-2').val()+', '+$('#answer-2-3').val()+', '+$('#answer-2-4').val()));*/
                         $("#questionType option[value='3']").remove();
                         $('#questionPairs input[type="text"]').val('');
                         $('#question').val('');
@@ -224,6 +232,11 @@ $(document).ready(function () {
                         question: $('#question').val(),
                     },
                     success: function (result) {
+                        var type
+                        if($('#questionType').val()==5)
+                            type = 'Matematický výraz'
+                        else type = 'Kreslenie'
+                        $('#questionsOverview > tbody:last-child').append(getQuestionsOverviewTableRow($('#question').val(),type,'',''));
                         console.log(result)
                         $('#question').val('');
                     }
@@ -231,8 +244,13 @@ $(document).ready(function () {
             }
         }
     })
+
 })
 ;
+
+function getQuestionsOverviewTableRow(question, type, correct, incorrect){
+    return '<tr><td>'+question+'</td><td>'+type+'</td><td>'+correct+'</td><td>'+incorrect+'</td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteQuestion()"></tr>'
+}
 
 function changeActivity() {
     var rowId = event.target.parentNode.parentNode.id;
@@ -262,9 +280,25 @@ function deleteTest() {
     var code = event.target.parentNode.parentNode.id;
     $.ajax({
         type: 'DELETE',
-        url: 'routes/TestControler.php?code=' + code,
+        url: 'routes/TestControler.php/deleteTest?code=' + code,
         success: function (result) {
-            $('table#tableData tr#' + code).remove();
+            $('table#tableTest tr#' + code).remove();
+        },
+        error: function (result) {
+            alert('error: ' + result);
+        }
+    })
+}
+function deleteQuestion() {
+    let searchParams = new URLSearchParams(window.location.search)
+    var code = event.target.parentNode.parentNode.id;
+    console.log(code)
+    $.ajax({
+        type: 'DELETE',
+        url: 'routes/TestControler.php/deleteQuestion?question=' + code + '&code=' + searchParams.get('code'),
+        success: function (result) {
+            console.log(result)
+            $('table#questionsOverview tr#' + code).remove();
         },
         error: function (result) {
             alert('error: ' + result);

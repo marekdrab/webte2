@@ -6,15 +6,16 @@ var config = {
 var mathField = MQ.MathField(htmlElement, config);
 
 var enteredMath = mathField.latex();
+// console.log(htmlElement.textContent = enteredMath;) // simple API)
 
 function input(str) {
     mathField.cmd(str)
     mathField.focus()
 }
 function sendLatex(element){
-    var text = element.previousSibling.previousSibling;//.previousSibling.previousSibling.innerText
-    mathField = MQ.MathField(text, config);
+    mathField = MQ.MathField(htmlElement, config);
     text = mathField.latex()
+    // console.log(text);
     $.ajax({
         type: "POST",
         url: "latex.php",

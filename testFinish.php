@@ -58,24 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $submittedAnswersIds = $submittedAnswersIds . $submitAnswerId . ",";
     }
+
     $submittedAnswersIds = substr($submittedAnswersIds, 0, -1);
 
     $stmSubmitTest->execute([$_GET['code'], $_SESSION['student_id'], $submittedAnswersIds]);
 
-
-    //header("location: exit.php");
-
-}
-require_once "partials/header.php";
-echo getHead('Test odovzdaný');
-?>
-<div class="finishTest">
-    <button class="btn btn-choice btn-lg disabled" type="button" >
-        Úspešne si odovzdal test, o výsledkoch budeš informovaný vyučujúcim</button>
-</div>
-<div class="finishTest2">
-    <button onclick="window.location.href='index.php'" id="testInfo" class="btn">Späť na domovskú obrazovku</button>
-</div>
-<?php echo getFooter();?>
-
-
+session_destroy();
+header("Location: exit.php");
