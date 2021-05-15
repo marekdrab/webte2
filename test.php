@@ -96,7 +96,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
                                        name="question<?php echo $question_id ?>"
-                                       value="<?php echo $correctAnswer ?>"
+                                       value="<?php echo $radioButtonOptions[0] ?>"
                                        id="question<?php echo $noQuestion ?>1" checked>
                                 <label class="form-check-label"
                                        for="question<?php echo $noQuestion ?>1"><?php echo $radioButtonOptions[0] ?></label>
@@ -104,7 +104,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
                                        name="question<?php echo $question_id ?>"
-                                       value="<?php echo $correctAnswer ?>"
+                                       value="<?php echo $radioButtonOptions[1] ?>"
                                        id="question<?php echo $noQuestion ?>2">
                                 <label class="form-check-label"
                                        for="question<?php echo $noQuestion ?>2"><?php echo $radioButtonOptions[1] ?></label>
@@ -112,7 +112,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
                                        name="question<?php echo $question_id ?>"
-                                       value="<?php echo $correctAnswer ?>"
+                                       value="<?php echo $radioButtonOptions[2] ?>"
                                        id="question<?php echo $noQuestion ?>3">
                                 <label class="form-check-label"
                                        for="question<?php echo $noQuestion ?>3"><?php echo $radioButtonOptions[2] ?></label>
@@ -120,7 +120,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
                                        name="question<?php echo $question_id ?>"
-                                       value="<?php echo $correctAnswer ?>"
+                                       value="<?php echo $radioButtonOptions[3] ?>"
                                        id="question<?php echo $noQuestion ?>4">
                                 <label class="form-check-label"
                                        for="question<?php echo $noQuestion ?>4"><?php echo $radioButtonOptions[3] ?></label>
