@@ -377,7 +377,7 @@ function points3rdQuestion() {
     var points = 0;
     for (var i = 0; i < sources.length; i++) {
         if (pairs.includes(document.getElementById(sources[i]).innerText + document.getElementById(targets[i]).innerText)) {
-            points++;
+            points += 0.25;
         }
     }
     document.getElementById('points-question3').value = points;
