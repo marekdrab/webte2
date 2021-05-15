@@ -28,7 +28,7 @@ function sendCanva(element, name, surname){
             //data je nazov .png suboru
             //toto ukladame do hidden fieldu v test.php
             // console.log(data);
-            var input = document.getElementById("points-question4").value = data;
+            document.getElementById("points-question4").value = data;
             myBoard.clearWebStorage();
 
         }
