@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 
-echo getHead('test');
+echo getHead('Test');
+echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]);
+
 ?>
 <script defer src="assets/js/david.js"></script>
 <body>
-<div id="doTest">
-    <b>Vypracuj TEST</b>
-</div>
+
 <div id="countdownInfo">
     <b>Čas:</b>
     <div id="countdown"></div>
@@ -36,7 +36,6 @@ echo getHead('test');
     //var_dump($remain);
     ?>
 </div>
-
 <div class="container conTest">
     <form action="testFinish.php" method="post">
         <?php
