@@ -254,18 +254,19 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
               </div>
           </div>*/ ?>
 
-        <button onclick="sentTest()" type="submit" class="btn btn-choice send">Odovzdať</button>
+        <button onclick="sendTest()" type="submit" class="btn btn-choice send">Odovzdať</button>
+        <input type="button" onclick="sendTest()" value="testTest">
     </form>
     <br><br><br>
 </div>
 <script>
-    function sentTest(){
+    function sendTest(){
         $.ajax({
             type: 'PUT',
-            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&sendTest=1',
-            data: { name: $("select[name='players']").val()},
+            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&sendTest=yes',
             success: function (result) {
                 console.log("odovzdal som test")
+                console.log(result)
             }
         })
     }

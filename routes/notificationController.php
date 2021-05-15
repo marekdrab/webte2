@@ -20,7 +20,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['closeWindow'] == '1'){
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
 }
-else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['sendTest'] == '1'){
+else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['sendTest'] == 'yes'){
     $insert = $conn->prepare("UPDATE students SET active=3 WHERE id=:id");
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
