@@ -20,7 +20,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                     </thead>
                     <tbody>
                     <?php
-                    $insert = $conn->prepare("SELECT * FROM students s left join tests t on t.code = s.test_number 
+                    $insert = $conn->prepare("SELECT s.id, s.first_name, s.last_name, s.active, t.code FROM students s left join tests t on t.code = s.test_number 
                                                     WHERE test_submit=0 and t.teacher_id = :teacher_id");
                     $insert->bindParam(':teacher_id',$_SESSION['teacher_id']);
                     $insert->execute();
@@ -39,7 +39,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                                 }
                                 ?>
                             </td>
-                            <td><?php echo $row['test_number']; ?></td>
+                            <td><?php echo $row['code']; ?></td>
 
                         </tr>
                         <?php

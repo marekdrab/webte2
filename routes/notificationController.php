@@ -27,7 +27,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['sendTest'] == '1'){
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $insert = $conn->prepare("SELECT * FROM students s left join tests t on t.code = s.test_number 
+    $insert = $conn->prepare("SELECT s.id, s.first_name, s.last_name, s.active, t.code  FROM students s left join tests t on t.code = s.test_number 
 WHERE s.test_submit=0 and s.test_number = t.code and t.teacher_id = :teacher_id");
     $insert->bindParam(':teacher_id', $_SESSION['teacher_id']);
     $insert->execute();
