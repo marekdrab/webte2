@@ -254,11 +254,22 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
               </div>
           </div>*/ ?>
 
-        <button type="submit" class="btn btn-choice send">Odovzdať</button>
+        <button onclick="sentTest()" type="submit" class="btn btn-choice send">Odovzdať</button>
     </form>
     <br><br><br>
 </div>
 <script>
+    function sentTest(){
+        $.ajax({
+            type: 'PUT',
+            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&sendTest=1',
+            data: { name: $("select[name='players']").val()},
+            success: function (result) {
+                console.log("odovzdal som test")
+            }
+        })
+    }
+
     let searchParams = new URLSearchParams(window.location.search)
     document.addEventListener("visibilitychange", function () {
         if (document.visibilityState == "hidden") {
@@ -278,6 +289,16 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 }
             })
         }
+    })
+
+    window.addEventListener('beforeunload', function (event){
+        $.ajax({
+            type: 'PUT',
+            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&closeWindow=1',
+            success: function (result) {
+                console.log("zatvoril som okno")
+            }
+        })
     })
 </script>
 

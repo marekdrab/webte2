@@ -63,11 +63,24 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                             if (id['active'] == 0){
                                 var active = "Opustil tab";
                                 $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'red');
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'orange');
                             }
 
                             else if (id['active'] == 1){
                                 var active = "Píše test";
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'yellow');
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('color', 'black');
+
+                            }
+                            else if (id['active'] == 2){
+                                var active = "Študent zatvoril okno";
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'red');
+
+                            }
+                            else if (id['active'] == 3){
+                                var active = "Študent odovzdal test";
                                 $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
                                 $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'green');
 
