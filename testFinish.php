@@ -38,7 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
         }
         else if ($key == "points-question3"){
-            $stmSubmitAnswer->execute([$item]);
+            $pointsQuestion3 = explode("|", $item)[0];
+            $submittedPairs = explode("|", $item)[1];
+
+            echo $pointsQuestion3 . '<br>' . $submittedPairs . '<br>';
+
+            $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
         }
         //TODO QUESTION 4 AND 5
         else if ($key == "TODO QUESTION 4"){
@@ -55,11 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     $submittedAnswersIds = substr($submittedAnswersIds, 0, -1);
 
-    echo '<br>' . $_GET['code'] . "---" . $_SESSION['student_id'] . "---" . $submittedAnswersIds . '<br>';
     $stmSubmitTest->execute([$_GET['code'], $_SESSION['student_id'], $submittedAnswersIds]);
 
 
-    header("location: exit.php");
+    //header("location: exit.php");
 
 }
 require_once "partials/header.php";
