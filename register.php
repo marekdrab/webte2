@@ -46,38 +46,36 @@ echo getHead('Registrácia');
 echo getHeaderHome() ?>
 
 <div class="container justify-content-center">
-    <div class="row justify-content-center marginBottom">
-        <form action="register.php" method="POST">
-            <div class="col-lg-12 container-login">
-                <h1>Registrácia</h1>
-                <br>
-                <label for="email"><b>Email</b></label>
-                <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+    <div class="row justify-content-center">
+        <div class="col-md-3 container-login">
+            <?php
+            $secret = $ga->createSecret();
+            $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
+            echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="' . $qrCodeUrl . '" />' . "</h4>";
+            ?>
+        </div>
+        <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
+        <form class="col-md-4 container-login" action="register.php" method="POST">
+            <h1>Registrácia</h1>
+            <br>
+            <label for="email"><b>Email</b></label>
+            <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
 
-                <label for="name"><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
+            <label for="name"><b>Meno</b></label>
+            <input type="text" class="form-control" placeholder="Meno" name="name" id="name" required>
 
-                <label for="surname"><b>Priezvisko</b></label>
-                <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
+            <label for="surname"><b>Priezvisko</b></label>
+            <input type="text" class="form-control" placeholder="Priezvisko" name="surname" id="surname" required>
 
-                <label for="psw"><b>Zadaj heslo</b></label>
-                <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
+            <label for="psw"><b>Zadaj heslo</b></label>
+            <input type="password" class="form-control" placeholder="Heslo" name="psw" id="psw" required>
 
-                <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
-                <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat"
-                       required>
+            <label for="psw-repeat"><b>Zadaj heslo znova</b></label>
+            <input type="password" class="form-control" placeholder="Heslo" name="psw-repeat" id="psw-repeat"
+                   required>
 
-                <div class="col">
-                    <?php
-                    $secret = $ga->createSecret();
-                    $qrCodeUrl = $ga->getQRCodeGoogleUrl($websiteTitle, $secret);
-                    echo '<h4 class>Naskenuj QR kód: <br><img class="qrCode"  alt="qrCode" src="' . $qrCodeUrl . '" />' . "</h4>";
-                    ?>
-                </div>
-                <input type="hidden" name="secret" value="<?php echo isset($secret) ? $secret : null;?>">
-                <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
-                <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
-            </div>
+            <button type="submit" class='btn btn-login btn-block'>Zaregistruj</button>
+            <h5>Už máš účet? <a href="loginTeacher.php">Prihlás sa!</a></h5>
         </form>
     </div>
 </div>

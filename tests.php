@@ -22,8 +22,8 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                     <td>Kód</td>
                     <td>Aktivita</td>
                     <td>Čas</td>
-                    <td></td>
-                    <td></td>
+                    <td>Detail</td>
+                    <td>Vymazať</td>
                 </tr>
                 </thead>
                 <tbody>

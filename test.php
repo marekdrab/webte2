@@ -117,7 +117,7 @@ echo getHead('test');
                 case "3":
                     ?>
                     <div class="row justify-content-center">
-                        <div class="col-md-8 containerQuestion container-login">
+                        <div class="col-md-8 containerQuestion">
                             <div class="container-login">
                                 <h2>Otázka <?php echo $noQuestion ?>:</h2>
                                 <p><?php echo $question['question']; ?></p>
@@ -141,7 +141,7 @@ echo getHead('test');
                                 ?>
 
                                 <div class="containerPairs">
-                                    <div id="page_connections">
+                                    <div class="container-login" id="page_connections">
                                         <div id="select-list-matches">
                                             <ul>
                                                 <?php
