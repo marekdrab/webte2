@@ -7,7 +7,7 @@ session_start();
 
 require_once "inc/Database.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = (new Database())->createConnection();
 
     $stmSubmitAnswerWithInput = $conn->prepare("INSERT INTO submitted_answers(is_correct, input_answer) VALUES(?,?)");
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $submittedAnswersIds = "";
 
-    foreach ($_POST as $key => $item){
+    foreach ($_POST as $key => $item) {
         if (substr($key, 0, 8) == "question") {
             $questionId = substr($key, "8");
 
@@ -30,26 +30,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stmGetCorrectAnswer->execute([$question['correct_answer_id']]);
             $correctAnswer = $stmGetCorrectAnswer->fetch(PDO::FETCH_ASSOC)['answer'];
 
-            if ($item == $correctAnswer){
+            if ($item == $correctAnswer) {
                 $stmSubmitAnswerWithInput->execute([1, $item]);
-            }
-            else{
+            } else {
                 $stmSubmitAnswerWithInput->execute([0, $item]);
             }
-        }
-        else if ($key == "points-question3"){
+        } else if ($key == "points-question3") {
             $pointsQuestion3 = explode("|", $item)[0];
             $submittedPairs = explode("|", $item)[1];
 
             echo $pointsQuestion3 . '<br>' . $submittedPairs . '<br>';
 
             $stmSubmitAnswerWithInput->execute([$pointsQuestion3, $submittedPairs]);
-        }
-        //TODO QUESTION 4 AND 5
-        else if ($key == "TODO QUESTION 4"){
+        } //TODO QUESTION 4 AND 5
+        else if ($key == "TODO QUESTION 4") {
 
-        }
-        else if ($key == "TODO QUESTION 5"){
+        } else if ($key == "TODO QUESTION 5") {
 
         }
 
@@ -63,5 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $stmSubmitTest->execute([$_GET['code'], $_SESSION['student_id'], $submittedAnswersIds]);
 
-session_destroy();
-header("Location: exit.php");
+    session_destroy();
+    header("Location: exit.php");
+}
