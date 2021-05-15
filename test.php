@@ -253,9 +253,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                   </div>
               </div>
           </div>*/ ?>
-
         <button onclick="sendTest()" type="submit" class="btn btn-choice send">Odovzdať</button>
-        <input type="button" onclick="sendTest()" value="testTest">
     </form>
     <br><br><br>
 </div>

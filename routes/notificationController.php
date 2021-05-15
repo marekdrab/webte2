@@ -4,19 +4,19 @@ require_once "../inc/Database.php";
 $conn = (new Database())->createConnection();
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['visibility'] == 'hidden'){
-    $insert = $conn->prepare("UPDATE students SET active=0 WHERE id=:id");
+    $insert = $conn->prepare("UPDATE students SET active=0 WHERE id=:id AND active!=3");
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
 }
 
 else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['visibility'] == 'visible'){
-    $insert = $conn->prepare("UPDATE students SET active=1 WHERE id=:id");
+    $insert = $conn->prepare("UPDATE students SET active=1 WHERE id=:id AND active!=3");
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
 }
 
 else if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $_GET['closeWindow'] == '1'){
-    $insert = $conn->prepare("UPDATE students SET active=2 WHERE id=:id");
+    $insert = $conn->prepare("UPDATE students SET active=2 WHERE id=:id AND active!=3");
     $insert->bindParam(':id', $_SESSION['student_id']);
     $insert->execute();
 }
