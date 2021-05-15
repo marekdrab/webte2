@@ -14,7 +14,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 <div class="container">
     <div class="row">
         <div class="col-md-12 table-responsive">
-            <table class="table">
+            <table class="table" id="tableTest">
                 <thead>
                 <tr>
                     <td>Názov</td>
@@ -37,7 +37,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         </td>
                         <td><?php echo $row['time_limit']; ?></td>
                         <td><a class="btn btn-login btn-table" href="testOverview.php?code=<?php echo $row['code']; ?>">Detail</a> </td>
-                        <td><input class="btn btn-login btn-table" value="Vymazať" onclick="deleteTest()"></td>
+                        <td><input type="button" class="btn btn-login btn-table" value="Vymazať" onclick="deleteTest()"></td>
                     </tr>
                 <?php } ?>
                 </tbody>
