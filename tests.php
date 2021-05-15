@@ -2,9 +2,9 @@
 require_once "partials/loginChecker.php";
 require_once "partials/header.php";
 require_once "inc/Database.php";
-
 $conn = (new Database())->createConnection();
-$stmt = $conn->prepare("select * from tests");
+$stmt = $conn->prepare("select * from tests where teacher_id = :teacher_id");
+$stmt->bindParam(':teacher_id', $_SESSION['teacher_id']);
 $stmt->execute();
 $rs = $stmt->fetchAll();
 
