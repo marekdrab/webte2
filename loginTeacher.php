@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               $_SESSION['teacher_id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['surname'] = $user['surname'];
-            $_SESSION['loginType'] = "Teacher";
+            $_SESSION['loginType'] = "Učiteľ";
             header("location: domov.php");
           } else {
               echo 'Login failed';

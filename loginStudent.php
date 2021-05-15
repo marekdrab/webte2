@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['student_id'] = $answerID['last_insert'];
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];
-        $_SESSION['loginType'] = "Student";
+        $_SESSION['loginType'] = "Študent";
         $_SESSION['startTime'] = $objDateTime = new DateTime('NOW');
         header("location: test.php?code=" . $_POST['code']);
     }  
