@@ -2,7 +2,7 @@
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
-
+session_start();
 require_once "inc/Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -30,18 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             //TODO pridat body do DB pre tretiu otazku
         }
     }
-
 }
-require_once "partials/header.php";
-echo getHead('Test odovzdaný');
-?>
-<div class="finishTest">
-    <button class="btn btn-choice btn-lg disabled" type="button" >
-        Úspešne si odovzdal test, o výsledkoch budeš informovaný vyučujúcim</button>
-</div>
-<div class="finishTest2">
-    <button onclick="window.location.href='index.php'" id="testInfo" class="btn">Späť na domovskú obrazovku</button>
-</div>
-<?php echo getFooter();?>
-
-
+session_destroy();
+header("Location: exit.php");
