@@ -153,9 +153,9 @@ h5, .qrCode{
 }
 
 .containerPairs ul{
-    width: 10rem;
+    width: 20rem;
     float: left;
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 .containerPairs li {
@@ -240,10 +240,6 @@ div#countdownInfo {
 
 .col-md-6{
     margin-right: 0.5rem;
-}
-
-.bodyTable{
-    color: black;
 }
 
 .col-md-3{
