@@ -84,6 +84,20 @@ footer{
     padding: 2rem;
 }
 
+.container-export{
+    background-color: #164a41;
+    color: ghostwhite;
+    padding: 1rem;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.exportTest{
+    font-weight: bold;
+    margin-right: 0.5rem    ;
+}
+
 .containerQuestion{
     margin: 1rem;
 }
@@ -303,4 +317,8 @@ td{
 }
 #exportsRow{
     flex-wrap: nowrap;
+}
+
+.exportLabel{
+    text-align: center;
 }
