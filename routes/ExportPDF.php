@@ -26,17 +26,25 @@ $pdf->SetFont('Arial', 'B', 12);
 foreach ($rs as $row) {
     $answers = explode(",", $row['submitted_answers_id']);
     $questions = explode(",", $row['question_id']);
+    $pdf->Ln();
+    $pdf->Cell(28, 8, "| ID Studenta:");
+    $pdf->Cell(40,8,$row['student_id']);
+
+    $pdf->Ln();
     for ($i = 0; $i < sizeof($answers); $i++) {
-        $pdf->Ln();
         $getQuestion->bindParam(':id', $questions[$i]);
         $getQuestion->execute();
         $resultQuestion = $getQuestion->fetch(PDO::FETCH_ASSOC);
         $getAnswer->bindParam(':id', $answers[$i]);
         $getAnswer->execute();
         $resultAnswer = $getAnswer->fetch(PDO::FETCH_ASSOC);
-        $pdf->Cell(40,12,$row['student_id']);
-        $pdf->Cell(40,12,$resultQuestion['question']);
-        $pdf->Cell(40,12,$resultAnswer['input_answer']);
+        $pdf->Cell(40,8,$resultQuestion['question']);
+        $pdf->Ln();
+        $pdf->Cell(40,8,$resultAnswer['input_answer']);
+        $pdf->Ln();
+        $pdf->Ln();
     }
+    $pdf->Cell(100, 8 ,"-------------------------------------------------------------------------------------");
+
 }
-$pdf->Output('I','Test '.$_GET['code'],true);
+$pdf->Output('I','Test '.$_GET['code'].'.pdf',true);
