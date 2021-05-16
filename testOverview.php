@@ -12,7 +12,7 @@ $getTypes->execute();
 $types = $getTypes->fetchAll();
 
 require_once "partials/header.php";
-echo getHead('Test |');
+echo getHead('Úprava testu');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
     <div class="container addTest">
         <div class="row">

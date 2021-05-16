@@ -46,7 +46,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         <td><?php echo $resultQuestion['question']; ?></td>
                         <td><?php echo isset($resultCorrectAnswer['answer']) ? $resultCorrectAnswer['answer'] : '' ?></td>
                         <td><?php if ($resultQuestion['type_id'] == 4) {
-                                ?> <img alt="odpoved studenta"
+                                ?> <img class="ansImg" alt="odpoved studenta"
                                         src="drawings/<?php echo $resultAnswer['input_answer']; ?>">
                             <?php } else if ($resultQuestion['type_id'] == 5) {
                                 echo 'vypis latexu' . $resultAnswer['input_answer'];
