@@ -307,13 +307,17 @@ function deleteQuestion() {
 }
 function changePoints(){
     var code = event.target.parentNode.parentNode.id;
-    console.log(code)
+    var data = document.getElementById(code).querySelectorAll(".row-data");
+    var correction = event.target.value
+    if(correction==1)
+        correction=0
+    else correction=1
     $.ajax({
         type: 'PUT',
-        url: 'routes/TestControler.php/changePoints?answer='+code,
+        url: 'routes/TestControler.php/changePoints?answer='+code+'&correction='+ correction,
         success: function (result) {
             console.log(result)
-            //$('table#questionsOverview tr#' + code).remove();
+            data[0].value=result
         },
         error: function (result) {
             alert('error: ' + result);

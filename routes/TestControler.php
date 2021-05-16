@@ -205,15 +205,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $table == 'changeActivity') {
     echo $rs['is_active'];
 }
 if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $table == 'changePoints') {
-    $stmt = $conn->prepare("update tests set is_active= :activity where code = :code");
-    $stmt->bindParam(':code', $_GET['code']);
-    $stmt->bindParam(':activity', $_GET['activity']);
-    $stmt->execute();
-    $get = $conn->prepare("select is_active from tests where code = :code");
-    $get->bindParam(':code', $_GET['code']);
-    $get->execute();
-    $rs = $get->fetch();
-    echo $rs['is_active'];
+    $updatePoints = $conn->prepare("update submitted_answers set is_correct = :correction where id = :id");
+    $updatePoints->bindParam(':id',$_GET['answer']);
+    $updatePoints->bindParam(':correction',$_GET['correction']);
+    $updatePoints->execute();
+    $getPoints = $conn->prepare("select is_correct from submitted_answers where id = :id");
+    $getPoints->bindParam(':id',$_GET['answer']);
+    $getPoints->execute();
+    $rs = $getPoints->fetch();
+   echo $rs['is_correct'];
 }
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['question']) && isset($_GET['code']) && $table == 'deleteQuestion') {
     $editTest = $conn->prepare("select question_id from tests where code = :code");
