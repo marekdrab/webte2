@@ -18,6 +18,10 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
             <a href="http://www.fpdf.org/">FPDF</a>
             <h4>PHPGangsta</h4>
             <p>Prihlasovanie</p>
+            <h4>Hodnotenie a aktivácia testov</h4>
+            <p>Hodnotenie a aktivácia testov je vykonávaná pomocou kliknutia na tlačidlo. Po kliknutí zmení hodnotu 0/1.</p>
+            <h4>Bodovanie testov</h4>
+            <p>Bodovanie je spravené spôsobom 1 otázka = 1 bod. V prípade párovacej otázky, 1 správny pár = 0,25 boda.</p>
         </div>
     </div>
     <hr>

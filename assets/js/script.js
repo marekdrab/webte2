@@ -217,7 +217,6 @@ $(document).ready(function () {
                         console.log(result)
                        /* $('#questionsOverview > tbody:last-child').append(getQuestionsOverviewTableRow($('#question').val(),'Možnosti',$('#answer-2-1').val(),
                             $('#answer-2-2').val()+', '+$('#answer-2-3').val()+', '+$('#answer-2-4').val()));*/
-                        $("#questionType option[value='3']").remove();
                         $('#questionPairs input[type="text"]').val('');
                         $('#question').val('');
                     }
