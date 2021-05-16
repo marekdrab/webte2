@@ -125,7 +125,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         isHidden();
 
 
-                    }, 1000);
+                    }, 500);
                 }
             })
         }

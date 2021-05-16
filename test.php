@@ -243,7 +243,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         <div id="keyboard" style="overflow: auto">
                             <div class="btn-group" role="group" aria-label="math functions">
                                 <button type="button" class="btn btn-default" onClick='input("\\sqrt")'>√</button>
-                                <button type="button" class="btn btn-default" onClick= 'input("\\sin")'>sin</button>
+                                <button type="button" class="btn btn-default" onClick='input("\\sin")'>sin</button>
                                 <button type="button" class="btn btn-default" onClick='input("\\cos")'>cos</button>
                                 <button type="button" class="btn btn-default" onClick='input("\\tan")'>tan</button>
                                 <button type="button" class="btn btn-default" onClick='input("\\subset")'>subset</button>
@@ -309,6 +309,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
     })
 
     window.addEventListener('beforeunload', function (event){
+        event.returnValue = 'true';
         $.ajax({
             type: 'PUT',
             url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&closeWindow=1',
@@ -316,6 +317,8 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                 console.log("zatvoril som okno")
             }
         })
+
+
     })
 </script>
     <div class="space"></div>
