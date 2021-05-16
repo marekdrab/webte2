@@ -10,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         $fileName = "test" . $_GET['code'] . ".csv";
 
-        header('Content-Type: text/csv');
+        header('Content-Encoding: UTF-8');
+        header('Content-Type: text/csv; charset=UTF-8');
         header('Content-Disposition: attachment; filename=' . $fileName);
 
         $conn = (new Database())->createConnection();
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         $students = $stmStudents->fetchAll(PDO::FETCH_ASSOC);
 
         $list = [];
+        array_push($list, ["ID", "Meno", "Priezvisko", "Body"]);
 
         foreach ($students as $student){
             $studentArr = [];
@@ -46,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         $fp = fopen('php://output', 'wb');
 
+        //vlozi header pre spravny encode UTF-8
+        fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
         foreach ($list as $line) {
             fputcsv($fp, $line, ",");
         }
