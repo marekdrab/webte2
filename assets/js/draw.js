@@ -17,7 +17,7 @@ function sendCanva(element, name, surname){
 
     $.ajax({
         type: "POST",
-        url: "sendCanva.php",
+        url: "routes/sendCanva.php",
         data: {
             image : imgInput,
             name: name,
