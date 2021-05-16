@@ -18,7 +18,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody class="bodyTable">
+                    <tbody>
                     <?php
                     $insert = $conn->prepare("select st.id, st.test_code, s.first_name, s.last_name 
 from submitted_tests st 

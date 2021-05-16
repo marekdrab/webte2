@@ -87,10 +87,8 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 
                             }
                             else if (id['active'] == 3){
-                                var active = "Študent odovzdal test";
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'green');
-
+                                $('table#tableNotification tr#' + id['id']).remove();
+                                console.log("som tu")
                             }
                         })
                         var tableLen = $('#tableNotification tbody tr').length
@@ -108,18 +106,18 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                                     case 2:
                                         activity ="Študent zatvoril okno"
                                         break
-                                    case 3:
-                                        activity = "Študent odovzdal test"
-                                        break
                                 }
-                                $('#tableNotification > tbody:last-child').append('<tr class="rowTab" id="'+activeState[tableLen+i]['id']+'">' +
-                                    '<td class="name">'+activeState[tableLen+i]['first_name']+'</td>' +
-                                    '<td class="surname">'+activeState[tableLen+i]['last_name']+'</td>' +
-                                    '<td class="active">'+activity+'</td>' +
-                                    '<td>'+activeState[tableLen+i]['code']+'</td>' +
-                                    '</tr>');
-                                $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('background-color', 'yellow');
-                                $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('color', 'black');
+
+                                if (activeState[tableLen+i]['active'] != 3){
+                                    $('#tableNotification > tbody:last-child').append('<tr class="rowTab" id="'+activeState[tableLen+i]['id']+'">' +
+                                        '<td class="name">'+activeState[tableLen+i]['first_name']+'</td>' +
+                                        '<td class="surname">'+activeState[tableLen+i]['last_name']+'</td>' +
+                                        '<td class="active">'+activity+'</td>' +
+                                        '<td>'+activeState[tableLen+i]['code']+'</td>' +
+                                        '</tr>');
+                                    $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('background-color', 'yellow');
+                                    $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('color', 'black');
+                                }
                             }
                         }
                         isHidden();
