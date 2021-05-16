@@ -9,7 +9,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table" id="submittedTestDetail">
                 <thead>
                 <tr>
                     <th>Otázka</th>
@@ -49,10 +49,12 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                                 ?> <img class="ansImg" alt="odpoved studenta"
                                         src="drawings/<?php echo $resultAnswer['input_answer']; ?>">
                             <?php } else if ($resultQuestion['type_id'] == 5) {
+                            //TODO Tomas tu prosim dopln kod potrebny pre vypis latexu
                                 echo 'vypis latexu' . $resultAnswer['input_answer'];
                             } else
                                 echo $resultAnswer['input_answer']; ?></td>
-                        <td><input type="button" class="btn btn-login" value="<?php echo $resultAnswer['is_correct']; ?>" onclick="changePoints()" ></td>
+                        <td><input type="button" class="btn btn-login row-data" value="<?php echo $resultAnswer['is_correct']; ?>" onclick="changePoints()"
+                            <?php if ($resultQuestion['type_id'] == 2 || $resultQuestion['type_id'] == 3) echo 'disabled';?>></td>
                     </tr>
                 <?php } ?>
                 </tbody>
