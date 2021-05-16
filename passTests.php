@@ -33,7 +33,7 @@ from submitted_tests st
                             <td class="name"><?php echo $row['first_name']; ?></td>
                             <td class="surname"><?php echo $row['last_name']; ?></td>
                             <td><?php echo $row['test_code']; ?></td>
-                            <td><a type="button" class="btn btn-login" href="submittedTestDetail.php?id=<?php echo $row['id']; ?>">Detail</a></td>
+                            <td><a type="button" class="btn btn-login btn-table " href="submittedTestDetail.php?id=<?php echo $row['id']; ?>">Detail</a></td>
                         </tr>
                         <?php
                     }

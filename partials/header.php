@@ -35,15 +35,21 @@ function getHeaderTeacher($name, $surname, $typeLogin){
 <header>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="domov.php">Domov</a>
+            <a class="nav-link active" aria-current="page" href="domov.php"><b>Domov</b></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="logout.php">Odhlásiť</a>
+            <a class="nav-link" href="javascript:history.back()">Späť</a>
         </li>
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>Prihláseny:</b> $name $surname - $typeLogin</span>
+            <span id="noHover" class="nav-link">$name $surname - $typeLogin</span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link"><b>|</b></span>
+        </li>
+        <li class="nav-item navRight">
+            <a class="nav-link" href="logout.php">Odhlásiť</a>
         </li>
     </ul>
 
@@ -56,13 +62,17 @@ function getHeaderStudent($name, $surname, $typeLogin){
     return <<<HTML
 <header>
     <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="logout.php">Odhlásiť</a>
-        </li>
+        
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>Prihláseny:</b> $name $surname - $typeLogin</span>
+            <span id="noHover" class="nav-link">$name $surname - $typeLogin</span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link"><b>|</b></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">Odhlásiť</a>
         </li>
     </ul>
 
@@ -83,6 +93,7 @@ function getHeaderHome(){
 HTML;
 
 }
+
 
 function getFooter(){
     return <<<HTMl
