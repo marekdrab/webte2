@@ -262,7 +262,7 @@ function changeActivity() {
     else activity = 0
     $.ajax({
         type: 'PUT',
-        url: 'routes/TestControler.php/change?code=' + code + '&activity=' + activity,
+        url: 'routes/TestControler.php/changeActivity?code=' + code + '&activity=' + activity,
         success: function (result) {
             if (result == 1)
                 data[1].style.backgroundColor = '#9dc88d'
@@ -299,6 +299,21 @@ function deleteQuestion() {
         success: function (result) {
             console.log(result)
             $('table#questionsOverview tr#' + code).remove();
+        },
+        error: function (result) {
+            alert('error: ' + result);
+        }
+    })
+}
+function changePoints(){
+    var code = event.target.parentNode.parentNode.id;
+    console.log(code)
+    $.ajax({
+        type: 'PUT',
+        url: 'routes/TestControler.php/changePoints?answer='+code,
+        success: function (result) {
+            console.log(result)
+            //$('table#questionsOverview tr#' + code).remove();
         },
         error: function (result) {
             alert('error: ' + result);

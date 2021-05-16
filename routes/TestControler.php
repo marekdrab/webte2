@@ -193,7 +193,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $table == 'question' && isset($key))
     }
 
 }
-if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $table == 'changeActivity') {
+    $stmt = $conn->prepare("update tests set is_active= :activity where code = :code");
+    $stmt->bindParam(':code', $_GET['code']);
+    $stmt->bindParam(':activity', $_GET['activity']);
+    $stmt->execute();
+    $get = $conn->prepare("select is_active from tests where code = :code");
+    $get->bindParam(':code', $_GET['code']);
+    $get->execute();
+    $rs = $get->fetch();
+    echo $rs['is_active'];
+}
+if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $table == 'changePoints') {
     $stmt = $conn->prepare("update tests set is_active= :activity where code = :code");
     $stmt->bindParam(':code', $_GET['code']);
     $stmt->bindParam(':activity', $_GET['activity']);
