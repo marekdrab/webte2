@@ -84,6 +84,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                                 var active = "Študent zatvoril okno";
                                 $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
                                 $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'red');
+                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('color', 'ghostwhite');
 
                             }
                             else if (id['active'] == 3){
