@@ -49,10 +49,22 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
                                 ?> <img class="ansImg" alt="odpoved studenta"
                                         src="drawings/<?php echo $resultAnswer['input_answer']; ?>">
                             <?php } else if ($resultQuestion['type_id'] == 5) {
-                            //TODO Tomas tu prosim dopln kod potrebny pre vypis latexu
-                                echo 'vypis latexu' . $resultAnswer['input_answer'];
+                            ?>
+                                <div id="some_id" class="math" ></div>
+                                <script>
+                                    const pokoj = String.raw`<?php echo($resultAnswer['input_answer']); ?>`
+                                    var MQ = MathQuill.getInterface(2);
+                                    var htmlElement = document.getElementById('some_id');
+                                    var config = {
+                                        restrictMismatchedBrackets: true
+                                    };
+                                    var mathField = MQ.MathField(htmlElement, config);
+                                    mathField.latex(pokoj); // Renders the given LaTeX in the MathQuill field
+
+                                </script>
+                            <?php
                             } else
-                                echo $resultAnswer['input_answer']; ?></td>
+                                echo $resultAnswer['input_answer']; ?>
                         <td><input type="button" class="btn btn-login row-data" value="<?php echo $resultAnswer['is_correct']; ?>" onclick="changePoints()"
                             <?php if ($resultQuestion['type_id'] == 2 || $resultQuestion['type_id'] == 3) echo 'disabled';?>></td>
                     </tr>
