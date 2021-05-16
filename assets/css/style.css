@@ -301,4 +301,6 @@ td{
 .ansImg{
     width: 50%;
 }
-
+#exportsRow{
+    flex-wrap: nowrap;
+}

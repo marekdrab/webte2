@@ -324,3 +324,11 @@ function changePoints(){
         }
     })
 }
+function exportToPDF(){
+    var code = $('#exportPDF').val()
+    window.open('routes/ExportPDF.php?code='+code)
+}
+function exportToCSV(){
+    var code = $('#exportPDF').val()
+    window.open('routes/ExportCSV.php?code='+code)
+}

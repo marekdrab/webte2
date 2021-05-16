@@ -7,6 +7,36 @@ $conn = (new Database())->createConnection();
 echo getHead('Odovzdané testy');
 echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]); ?>
     <div class="container">
+        <div class="row" id="exportsRow">
+            <div class="col-md-6">
+                <?php
+                $getTests = $conn->prepare("select distinct st.test_code from tests t join submitted_tests st on st.test_code = t.code where t.teacher_id = :teacher_id");
+                $getTests->bindParam(':teacher_id', $_SESSION['teacher_id']);
+                $getTests->execute();
+                $rs = $getTests->fetchAll();
+                ?>
+                <label for="exportCSV">Vyberte test:</label>
+                <select id="exportPDFexportCSV" name="exportCSV">
+                <?php
+                foreach ($rs as $row){?>
+                    <option value="<?php echo $row['test_code'] ?>"><?php echo $row['test_code'] ?></option>
+               <?php }
+                    ?>
+                </select>
+                <input type="button" onclick="exportToCSV()" value="Export hodnotení" class="btn btn-table">
+            </div>
+            <div class="col-md-6">
+                <label for="exportPDF">Vyberte test:</label>
+                <select id="exportPDF" name="exportPDF">
+                    <?php
+                    foreach ($rs as $row){?>
+                        <option value="<?php echo $row['test_code'] ?>"><?php echo $row['test_code'] ?></option>
+                    <?php }
+                    ?>
+                </select>
+                <input onclick="exportToPDF()" type="button" value="Export odpovedí" class="btn btn-table">
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 table-responsive">
                 <table class="table">
