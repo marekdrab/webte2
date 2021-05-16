@@ -43,7 +43,13 @@ function getHeaderTeacher($name, $surname, $typeLogin){
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link">$name $surname - $typeLogin</span>
+            <span id="noHover" class="nav-link"><b>$typeLogin</b></span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link"><b>|</b></span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link">$name $surname</span>
         </li>
         <li class="nav-item navRight">
             <span id="noHover" class="nav-link"><b>|</b></span>
@@ -66,7 +72,13 @@ function getHeaderStudent($name, $surname, $typeLogin){
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link">$name $surname - $typeLogin</span>
+            <span id="noHover" class="nav-link"><b>$typeLogin</b></span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link"><b>|</b></span>
+        </li>
+        <li class="nav-item navRight">
+            <span id="noHover" class="nav-link">$name $surname</span>
         </li>
         <li class="nav-item navRight">
             <span id="noHover" class="nav-link"><b>|</b></span>
