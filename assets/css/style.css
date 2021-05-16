@@ -322,3 +322,10 @@ td{
 .exportLabel{
     text-align: center;
 }
+
+.documentation{
+    background-color: #4d774e;
+    width: 80%;
+    font-size: large;
+    color: ghostwhite;
+}

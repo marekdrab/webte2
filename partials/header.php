@@ -92,7 +92,7 @@ HTML;
 function getFooter(){
     return <<<HTMl
 <footer>
-    <span>&copy; 2021 Dráb, Hamrák, Gavenda, Andrejko, Danko  -  Záverečné zadanie WEBTECH 2</span>
+    <span>&copy; 2021 Záverečné zadanie WEBTECH 2</span>
 </footer>
 </body>
 </html>
