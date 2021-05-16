@@ -6,7 +6,7 @@ session_start();
 
 require_once "inc/Database.php";
 $conn = (new Database())->createConnection();
-require_once('assets/PHPGangsta/GoogleAuthenticator.php');
+require_once('inc/PHPGangsta/GoogleAuthenticator.php');
 $ga = new PHPGangsta_GoogleAuthenticator();
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
