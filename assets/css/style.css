@@ -29,8 +29,8 @@ header{
 
 .navRight{
     text-align: right;
-
 }
+
 #noHover:hover{
      color: ghostwhite;
 }
@@ -44,21 +44,8 @@ footer{
     width: 100%;
     padding: 0.5rem;
     text-align: center;
-
 }
 
-.container{
-    margin-top: 5%;
-}
-
-.addTest{
-    width: 30rem;
-}
-
-.conRegister{
-    width: 50%;
-    margin-bottom: 4rem;
-}
 
 .btn{
     background-color: #4d774e;
@@ -87,6 +74,10 @@ footer{
     color: ghostwhite;
 }
 
+.container{
+    margin-top: 5%;
+}
+
 .container-login{
     background-color: #4d774e;
     color: ghostwhite;
@@ -95,13 +86,20 @@ footer{
 
 .containerQuestion{
     margin: 1rem;
+}
 
+.conRegister{
+    width: 50%;
+    margin-bottom: 4rem;
+}
+
+.addTest{
+    width: 30rem;
 }
 
 .marginBottom{
     margin-bottom: 4rem;
 }
-
 
 .form-control{
     padding: 0.5rem;
@@ -148,6 +146,7 @@ h5, .qrCode{
 .error{
  color: red;
 }
+
 #questionShort,#questionChoices,#questionDrawing,#questionMaths, #questionPairs {
     display: none;
 }
@@ -174,7 +173,6 @@ path {
     stroke: #000000;
     stroke-width: 3;
 }
-
 
 .jtk-endpoint
 circle {

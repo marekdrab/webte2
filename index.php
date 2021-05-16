@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 
 
 ?>
-<?php echo getHead('Login'); ?>
+<?php echo getHead('Login');
+?>
 <div class="container margin-top-15">
     <div class="d-grid gap-2 col-6 mx-auto ">
         <button onclick="window.location.href='loginStudent.php'" class="btn btn-choice btn-lg" type="button">Študent</button>
