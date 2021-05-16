@@ -1,13 +1,16 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once "partials/loginChecker.php";
 require_once "partials/header.php";
 require_once "inc/Database.php";
-
 $conn = (new Database())->createConnection();
+if(!isset($_GET['code']))
+    header("location: https://wt41.fei.stuba.sk/final/index.php");
+if($_SESSION['loginType']!="Študent")
+    header("location: https://wt41.fei.stuba.sk/final/index.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['code'])) {
@@ -18,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         //$finishTime = $time->add(new DateInterval('PT' . $test['time_limit'] . 'M'));
     }
 }
+
 
 
 echo getHead('Test');
