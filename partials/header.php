@@ -43,16 +43,7 @@ function getHeaderTeacher($name, $surname, $typeLogin){
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>$typeLogin</b></span>
-        </li>
-        <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>|</b></span>
-        </li>
-        <li class="nav-item navRight">
-            <span id="noHover" class="nav-link">$name $surname</span>
-        </li>
-        <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>|</b></span>
+            <span id="noHover" class="nav-link"><b>$typeLogin |</b> $name $surname</span>
         </li>
         <li class="nav-item navRight">
             <a class="nav-link" href="logout.php">Odhlásiť</a>
@@ -72,18 +63,9 @@ function getHeaderStudent($name, $surname, $typeLogin){
     </ul>
     <ul class="nav">
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>$typeLogin</b></span>
+            <span id="noHover" class="nav-link"><b>$typeLogin |</b> $name $surname</span>
         </li>
         <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>|</b></span>
-        </li>
-        <li class="nav-item navRight">
-            <span id="noHover" class="nav-link">$name $surname</span>
-        </li>
-        <li class="nav-item navRight">
-            <span id="noHover" class="nav-link"><b>|</b></span>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="logout.php">Odhlásiť</a>
         </li>
     </ul>
@@ -110,7 +92,7 @@ HTML;
 function getFooter(){
     return <<<HTMl
 <footer>
-    <span>&copy; 2021 Dráb, Hamrák, Gavenda, Andrejko, Danko  ---  Záverečné zadanie WEBTECH 2</span>
+    <span>&copy; 2021 Dráb, Hamrák, Gavenda, Andrejko, Danko  -  Záverečné zadanie WEBTECH 2</span>
 </footer>
 </body>
 </html>
