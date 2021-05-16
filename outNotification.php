@@ -56,78 +56,7 @@ echo getHeaderTeacher($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
             </div>
         </div>
     </div>
-    <script>
-        function isHidden(){
-            $.ajax({
-                type: 'GET',
-                url: 'routes/notificationController.php',
-                success: function (result){
-                    //console.log(result)
-                    setTimeout(function () {
-                        var activeState = JSON.parse(result)
-                        console.log(activeState)
-                        activeState.forEach((id)=>{
-                            if (id['active'] == 0){
-                                var active = "Opustil tab";
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'orange');
-                            }
-
-                            else if (id['active'] == 1){
-                                var active = "Píše test";
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'yellow');
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('color', 'black');
-
-                            }
-                            else if (id['active'] == 2){
-                                var active = "Študent zatvoril okno";
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').text(active);
-                                $('table#tableNotification tr#' + id['id'] + ' td.active').css('background-color', 'red');
-
-                            }
-                            else if (id['active'] == 3){
-                                $('table#tableNotification tr#' + id['id']).remove();
-                                console.log("som tu")
-                            }
-                        })
-                        var tableLen = $('#tableNotification tbody tr').length
-                        console.log(tableLen)
-                        console.log(activeState.length)
-                        if(tableLen < activeState.length) {
-                            var newRows = activeState.length - tableLen
-                            console.log(newRows)
-                            for(var i=0; i<newRows;i++){
-                                var activity ="Píše test"
-                                switch (activeState[tableLen+i]['active']){
-                                    case 0:
-                                        activity = "Opustil tab"
-                                        break
-                                    case 2:
-                                        activity ="Študent zatvoril okno"
-                                        break
-                                }
-
-                                if (activeState[tableLen+i]['active'] != 3){
-                                    $('#tableNotification > tbody:last-child').append('<tr class="rowTab" id="'+activeState[tableLen+i]['id']+'">' +
-                                        '<td class="name">'+activeState[tableLen+i]['first_name']+'</td>' +
-                                        '<td class="surname">'+activeState[tableLen+i]['last_name']+'</td>' +
-                                        '<td class="active">'+activity+'</td>' +
-                                        '<td>'+activeState[tableLen+i]['code']+'</td>' +
-                                        '</tr>');
-                                    $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('background-color', 'yellow');
-                                    $('table#tableNotification tr#' + activeState[tableLen+i]['id'] + ' td.active').css('color', 'black');
-                                }
-                            }
-                        }
-                        isHidden();
-
-
-                    }, 500);
-                }
-            })
-        }
-        isHidden();
+    <script src="assets/js/notifications.js">
     </script>
 <div class="space"></div>
 
