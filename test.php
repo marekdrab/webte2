@@ -24,7 +24,7 @@ echo getHead('Test');
 echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginType"]);
 
 ?>
-<script defer src="assets/js/david.js"></script>
+<script defer src="assets/js/timer.js"></script>
 <script src="assets/js/connections.js"></script>
 <div id="countdownInfo">
     <b>Čas:</b>
