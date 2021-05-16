@@ -28,7 +28,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 <script src="assets/js/connections.js"></script>
 <div id="countdownInfo">
     <b>Čas:</b>
-    <div id="countdown"></div>
+    <div id="countdown"><?php echo $test['time_limit'].':00'; ?></div>
     <?php
     //$remain = $finishTime->diff(new DateTime());
     //echo $remain->i . ' minút a ' . $remain->s . ' sekúnd';
@@ -36,7 +36,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
     ?>
 </div>
 <div class="container conTest">
-    <form action="testFinish.php?code=<?php echo $test['code'] ?>" method="post">
+    <form action="testFinish.php?code=<?php echo $test['code'] ?>" method="post" id="testForm">
         <?php
         if (isset($test)){
 
@@ -275,52 +275,7 @@ echo getHeaderStudent($_SESSION['name'], $_SESSION['surname'], $_SESSION["loginT
 
 <script src="assets/js/draw.js"></script>
 <script src="assets/js/math.js"></script>
-<script>
-    function sendTest(){
-        $.ajax({
-            type: 'PUT',
-            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&sendTest=yes',
-            success: function (result) {
-                console.log("odovzdal som test")
-                console.log(result)
-            }
-        })
-    }
-
-    let searchParams = new URLSearchParams(window.location.search)
-    document.addEventListener("visibilitychange", function () {
-        if (document.visibilityState == "hidden") {
-            $.ajax({
-                type: 'PUT',
-                url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=hidden',
-                success: function (result) {
-                    console.log("zavolal som hidden")
-                }
-            })
-        } else if (document.visibilityState == "visible") {
-            $.ajax({
-                type: 'PUT',
-                url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&visibility=visible',
-                success: function (result) {
-                    console.log("zavolal som visible")
-                }
-            })
-        }
-    })
-
-    window.addEventListener('beforeunload', function (event){
-        event.returnValue = 'true';
-        $.ajax({
-            type: 'PUT',
-            url: 'routes/notificationController.php/?code=' + searchParams.get('code') + '&closeWindow=1',
-            success: function (result) {
-                console.log("zatvoril som okno")
-            }
-        })
-
-
-    })
-</script>
+<script src="assets/js/sendNotifications.js"></script>
     <div class="space"></div>
 
 <?php

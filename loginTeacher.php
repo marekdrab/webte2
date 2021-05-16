@@ -8,7 +8,6 @@ require_once "inc/Database.php";
 $conn = (new Database())->createConnection();
 require_once('inc/PHPGangsta/GoogleAuthenticator.php');
 $ga = new PHPGangsta_GoogleAuthenticator();
-
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "SELECT * FROM teachers WHERE email=?";
     $stm = $conn->prepare($sql);
